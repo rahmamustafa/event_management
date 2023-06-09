@@ -32,6 +32,7 @@ public class Event {
     @Column(name = "description", nullable = false, length = 100)
     private String description;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id")
     private User creator;
