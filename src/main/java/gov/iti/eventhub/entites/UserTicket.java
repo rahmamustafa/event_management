@@ -17,9 +17,9 @@ public class UserTicket {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @MapsId("eventTicketId")
+    @MapsId("id")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "event_ticket_id", nullable = false, referencedColumnName = "ticket_id")
+    @JoinColumn(name = "event_ticket_id", nullable = false, referencedColumnName = "id")
     private EventTicket eventTicket;
 
 }

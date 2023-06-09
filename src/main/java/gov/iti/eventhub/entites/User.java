@@ -1,9 +1,8 @@
 package gov.iti.eventhub.entites;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,32 +15,47 @@ import java.time.LocalDate;
 public class User {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     @Column(name = "is_admin", nullable = false)
     private Byte isAdmin;
 
+    @Size(max = 45)
+    @NotNull
     @Column(name = "email", nullable = false, length = 45)
     private String email;
 
+    @Size(max = 250)
+    @NotNull
     @Column(name = "password", nullable = false, length = 250)
     private String password;
 
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
+    @Size(max = 45)
+    @NotNull
     @Column(name = "phone", nullable = false, length = 45)
     private String phone;
 
+    @Size(max = 45)
     @Column(name = "country", length = 45)
     private String country;
 
+    @Size(max = 45)
+    @NotNull
     @Column(name = "name", nullable = false, length = 45)
     private String name;
 
+    @Size(max = 45)
+    @NotNull
     @Column(name = "creation_date", nullable = false, length = 45)
     private String creationDate;
 
+    @Size(max = 45)
+    @NotNull
     @Column(name = "gender", nullable = false, length = 45)
     private String gender;
 

@@ -1,6 +1,7 @@
 package gov.iti.eventhub.entites;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,6 @@ import lombok.Setter;
 public class EventReview {
     @EmbeddedId
     private EventReviewId id;
-
     @MapsId("eventId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "event_id", nullable = false)
@@ -22,6 +22,7 @@ public class EventReview {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Size(max = 45)
     @Column(name = "review", length = 45)
     private String review;
 

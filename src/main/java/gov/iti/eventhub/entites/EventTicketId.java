@@ -2,6 +2,7 @@ package gov.iti.eventhub.entites;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
@@ -14,9 +15,11 @@ import java.util.Objects;
 @Embeddable
 public class EventTicketId implements Serializable {
     private static final long serialVersionUID = 7587029791674106176L;
+    @NotNull
     @Column(name = "event_id", nullable = false)
     private Integer eventId;
 
+    @NotNull
     @Column(name = "ticket_id", nullable = false)
     private Integer ticketId;
 

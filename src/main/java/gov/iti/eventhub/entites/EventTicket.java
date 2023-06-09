@@ -1,6 +1,7 @@
 package gov.iti.eventhub.entites;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +11,7 @@ import lombok.Setter;
 @Table(name = "event_ticket")
 public class EventTicket {
     @EmbeddedId
-    private EventTicketId id;
+    private EventTicketId eventTicketId;
 
     @MapsId("eventId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -24,5 +25,10 @@ public class EventTicket {
 
     @Column(name = "price")
     private Float price;
+
+    @NotNull
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
 }
