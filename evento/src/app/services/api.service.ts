@@ -6,14 +6,15 @@ import { APIResponse } from '../models/api-response.model';
   providedIn: 'root'
 })
 export class ApiService {
+  basic:string="https://basic_url";
   constructor(private _http:HttpClient) { }
   get(url:string){
-    return this._http.get<APIResponse>(`https://api.mohamed-sadek.com/${url}`);
+    return this._http.get<APIResponse>(`${this.basic}/${url}`);
   }
   post(url:string,body:any){
-    return  this._http.post<APIResponse>(`https://api.mohamed-sadek.com/${url}`,body)
+    return  this._http.post<APIResponse>(`${this.basic}/${url}`,body)
   }
   delete(url:string,id:number){
-   return this._http.delete<APIResponse>(`https://api.mohamed-sadek.com/${url}${id}`)
+   return this._http.delete<APIResponse>(`${this.basic}/${url}${id}`)
   }
 }
