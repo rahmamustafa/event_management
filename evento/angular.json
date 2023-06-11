@@ -31,7 +31,7 @@
               "src/assets/bootstrap/bootstrap.min.css",
               "src/assets/slick/slick.css",
               "src/assets/font-awsome/css/font-awesome.min.css",
-              ".src/assets/magnific-popup/magnific-popup.css"
+              "src/assets/magnific-popup/magnific-popup.css"
             
             ],
             "scripts": []

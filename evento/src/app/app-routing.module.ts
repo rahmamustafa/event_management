@@ -5,10 +5,11 @@ import { LoginComponent } from './components/login/login.component';
 import { EventComponent } from './components/event/event.component';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
-  {path:'evnt',component:EventComponent},
+  {path:'event',component:EventComponent},
+  {path:'',component:HomeComponent},
+
 ];
 
 @NgModule({

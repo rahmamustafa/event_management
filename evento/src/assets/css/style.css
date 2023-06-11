@@ -1,11 +1,4 @@
-/**
- * WEBSITE: https://themefisher.com
- * TWITTER: https://twitter.com/themefisher
- * FACEBOOK: https://www.facebook.com/themefisher
- * GITHUB: https://github.com/themefisher/
- */
 
-/*=== MEDIA QUERY ===*/
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Roboto:300,400,500,700");
 html {
   font-size: 16px;
@@ -253,7 +246,7 @@ button:hover {
 }
 
 .bg-service {
-  background: url(../images/background/feature-background.jpg) no-repeat;
+  background: url(./assets/images/background/feature-background.jpg) no-repeat;
   background-size: cover;
 }
 
@@ -286,7 +279,7 @@ button:hover {
 }
 
 .bg-title {
-  background: url(../images/background/page-title-bg.jpg) no-repeat;
+  background: url('../../assets/images/background/page-title-bg.jpg') no-repeat;
   background-size: cover;
   background-position: center center;
 }
@@ -424,7 +417,6 @@ select.form-control:not([size]):not([multiple]) {
 .mfp-with-zoom .mfp-container,
 .mfp-with-zoom.mfp-bg {
   opacity: 0;
-  /* ideally, transition speed should match zoom duration */
   transition: all 0.3s ease-out;
 }
 
@@ -2423,9 +2415,6 @@ select.form-control:not([size]):not([multiple]) {
   color: #ff6600;
   font-family: FontAwesome;
 }
-
-/* Controls
----------------------------------------------------------------------- */
 .controls {
   text-align: center;
   margin-bottom: 40px;
@@ -2454,16 +2443,7 @@ select.form-control:not([size]):not([multiple]) {
   color: #ff6600;
 }
 
-/* Container
----------------------------------------------------------------------- */
-.gallery-wrapper {
-  /* Target Elements
-    ---------------------------------------------------------------------- */
-  /* Grid Breakpoints
-    ---------------------------------------------------------------------- */
-  /* 2 Columns */
-  /* 3 Columns */
-}
+
 .gallery-wrapper .gallery-item {
   padding: 15px;
 }
@@ -3167,4 +3147,4 @@ ul.pagination .active a {
   margin-top: 30px;
   margin-bottom: 30px;
 }
-/*# sourceMappingURL=style.css.map */
+
