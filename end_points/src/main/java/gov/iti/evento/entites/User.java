@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.time.LocalDate;
 
 @Getter
@@ -49,14 +50,17 @@ public class User {
     @Column(name = "name", nullable = false, length = 45)
     private String name;
 
-    @Size(max = 45)
     @NotNull
-    @Column(name = "creation_date", nullable = false, length = 45)
-    private String creationDate;
+    @Column(name = "creation_date", nullable = false)
+    private Instant creationDate;
 
     @Size(max = 45)
     @NotNull
     @Column(name = "gender", nullable = false, length = 45)
     private String gender;
+
+    @Size(max = 45)
+    @Column(name = "image", length = 45)
+    private String image;
 
 }
