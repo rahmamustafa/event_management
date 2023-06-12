@@ -25,7 +25,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/style.css",
+              "src/assets/slick/slick-theme.css",
+              "src/assets/bootstrap/bootstrap.min.css",
+              "src/assets/slick/slick.css",
+              "src/assets/font-awsome/css/font-awesome.min.css",
+              "src/assets/magnific-popup/magnific-popup.css"
+            
             ],
             "scripts": []
           },
