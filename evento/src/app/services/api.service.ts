@@ -12,9 +12,9 @@ export class ApiService {
     return this._http.get<any>(`${this.basic}/${url}`);
   }
   post(url:string,body:any){
-    return  this._http.post<APIResponse>(`${this.basic}/${url}`,body)
+    return  this._http.post<any>(`${this.basic}/${url}`,body)
   }
   delete(url:string,id:number){
-   return this._http.delete<APIResponse>(`${this.basic}/${url}${id}`)
+   return this._http.delete<any>(`${this.basic}/${url}${id}`)
   }
 }
