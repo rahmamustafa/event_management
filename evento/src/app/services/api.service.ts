@@ -6,10 +6,10 @@ import { APIResponse } from '../models/api-response.model';
   providedIn: 'root'
 })
 export class ApiService {
-  basic:string="https://basic_url";
+  basic:string="http://localhost:8888";
   constructor(private _http:HttpClient) { }
   get(url:string){
-    return this._http.get<APIResponse>(`${this.basic}/${url}`);
+    return this._http.get<any>(`${this.basic}/${url}`);
   }
   post(url:string,body:any){
     return  this._http.post<APIResponse>(`${this.basic}/${url}`,body)
