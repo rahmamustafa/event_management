@@ -33,6 +33,7 @@ build/
 .vscode/
 
 #angular project
+evento/node_modules/
 evento/.vcode/
 #end-points
 end-points/.idea/
