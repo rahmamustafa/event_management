@@ -32,7 +32,6 @@ public class Event {
     @Column(name = "description", nullable = false, length = 100)
     private String description;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id")
     private User creator;
@@ -58,5 +57,9 @@ public class Event {
 
     @Column(name = "creation_date")
     private Instant creationDate;
+
+    @Size(max = 45)
+    @Column(name = "image", length = 45)
+    private String image;
 
 }
