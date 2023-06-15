@@ -1,9 +1,12 @@
 package gov.iti.evento.entites;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -12,6 +15,7 @@ import lombok.Setter;
 public class EventReview {
     @EmbeddedId
     private EventReviewId id;
+
     @MapsId("eventId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "event_id", nullable = false)
@@ -25,5 +29,9 @@ public class EventReview {
     @Size(max = 45)
     @Column(name = "review", length = 45)
     private String review;
+
+    @NotNull
+    @Column(name = "review_date", nullable = false)
+    private Instant reviewDate;
 
 }

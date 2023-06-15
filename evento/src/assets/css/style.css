@@ -246,7 +246,7 @@ button:hover {
 }
 
 .bg-service {
-  background: url(./assets/images/background/feature-background.jpg) no-repeat;
+  background: url(../images/background/feature-background.jpg) no-repeat;
   background-size: cover;
 }
 
