@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Mapper
 @Component
-public interface EventDisplayMapper {
+public interface EventDisplayMapper{
 
     @Mapping(source = "title", target= "title")
     @Mapping(source = "description", target = "description")

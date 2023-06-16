@@ -23,4 +23,8 @@ public class EventDetailService {
         Event event = eventRepository.findById(id).orElseThrow(()-> new NotFoundException("Event not found"));
         return eventDisplayMapper.eventToEventDetailsDTO(event);
     }
+
+    public Event savaEvent (Event event){
+        return eventRepository.save(event);
+    }
 }

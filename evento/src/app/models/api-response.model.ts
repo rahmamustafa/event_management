@@ -1,5 +1,5 @@
 export class APIResponse{
-    Data:any;
+    _embedded:any;
     Message:string;
     Sucess:boolean;
 }

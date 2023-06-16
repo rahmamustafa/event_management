@@ -6,15 +6,16 @@ import { APIResponse } from '../models/api-response.model';
   providedIn: 'root'
 })
 export class ApiService {
-  basic:string="https://basic_url";
+  [x: string]: any;
+  basic:string="http://localhost:8888";
   constructor(private _http:HttpClient) { }
   get(url:string){
-    return this._http.get<APIResponse>(`${this.basic}/${url}`);
+    return this._http.get<any>(`${this.basic}/${url}`);
   }
   post(url:string,body:any){
-    return  this._http.post<APIResponse>(`${this.basic}/${url}`,body)
+    return  this._http.post<any>(`${this.basic}/${url}`,body)
   }
   delete(url:string,id:number){
-   return this._http.delete<APIResponse>(`${this.basic}/${url}${id}`)
+   return this._http.delete<any>(`${this.basic}/${url}${id}`)
   }
 }
