@@ -10,13 +10,14 @@ import org.webjars.NotFoundException;
 
 @Service
 public class EventDetailService {
-    private final EventRepository eventRepository;
-    private final EventDisplayMapper eventDisplayMapper;
+    private EventRepository eventRepository;
+    @Autowired
+    private EventDisplayMapper eventDisplayMapper;
 
     @Autowired
-    public EventDetailService(EventRepository eventRepository, EventDisplayMapper eventDisplayMapper){
+    public EventDetailService(EventRepository eventRepository){
         this.eventRepository=eventRepository;
-        this.eventDisplayMapper=eventDisplayMapper;
+        // this.eventDisplayMapper=eventDisplayMapper;
     }
 
     public EventoDetailesDTO getEvent (Integer id) {
