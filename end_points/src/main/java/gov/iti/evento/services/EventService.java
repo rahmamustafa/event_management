@@ -21,7 +21,11 @@ public class EventService {
     EventMapper eventMapper;
 
    public List<EventDto> getAllEvents() {
-        List<Event> events = Collections.unmodifiableList(eventRepository.findAll());
+       List<Event> events = Collections.unmodifiableList(eventRepository.findAll());
+        return events.stream().map(eventMapper.INSTANCE::toDto).toList();
+    }
+    public List<EventDto> getEventByCategoryType(String categoryType) {
+        List<Event> events = Collections.unmodifiableList(eventRepository.findByCategoryType(categoryType));
         return events.stream().map(eventMapper.INSTANCE::toDto).toList();
     }
 }
