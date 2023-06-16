@@ -42,5 +42,10 @@ public class EventController {
         System.out.println("speaker : " + speaker);
         return eventService.getEventBySpeaker(speaker);
     }
+    @GetMapping("/events/status/{status}")
+    public List<EventDto> getEventByStatus(@PathVariable("status") String status) throws MessageException {
+        System.out.println("speaker : " + status);
+        return eventService.getEventByStatus(status);
+    }
 
 }

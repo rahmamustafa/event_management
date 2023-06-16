@@ -47,4 +47,9 @@ public class EventService {
         List<Event> events = eventSpeakers.stream().map(EventSpeaker::getEvent).collect(Collectors.toList());
         return events.stream().map(eventMapper.INSTANCE::toDto).toList();
     }
+
+    public List<EventDto> getEventByStatus(String status) {
+        List<Event> events = Collections.unmodifiableList(eventRepository.findByStatus(status));
+        return events.stream().map(eventMapper.INSTANCE::toDto).toList();
+    }
 }
