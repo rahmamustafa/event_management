@@ -5,7 +5,7 @@ class="m-0 vh-100 row d-flex overflow-auto
     <div class="row h-100">
         <div class="col-lg-5 col-md-12 p-0">
             <div class="service-block bg-service overlay-primary text-center">
-                <div class="row my-5 no-gutters">
+                <div class="row my-7 no-gutters">
                     <div class="col-6">
                         <!-- Service item -->
                         <div class="service-item">
@@ -41,8 +41,8 @@ class="m-0 vh-100 row d-flex overflow-auto
             <div class="registration-block bg-registration overlay-dark">
                 <div class="block">
                     <div class="title text-left">
-                        <h3>Register to <span class="alternate">Eventre</span></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                        <h3>Register to <span class="alternate">Evento</span></h3>
+                        <p>Strategic Events | Experiential Events Marketing | Virtual & Hybrid Event Experiences</p>
                     </div>
                     <form action="#" class="row">
                         <div class="col-md-6">
@@ -56,14 +56,19 @@ class="m-0 vh-100 row d-flex overflow-auto
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <select class="form-control main" id="select-ticket" required>
-                                    <option>Ticket Type</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                                <mbsc-page>
+                                    <mbsc-select [data]="countries" display="anchored" [itemHeight]="40" 
+                                    [filter]="true" label="Countries" [itemTemplate]="itemTemp" 
+                                    labelStyle="stacked" inputStyle="box" placeholder="Please select..."
+                                    (onChange)="onChangeCountry($event)">
+                                </mbsc-select>
+                                    <ng-template #itemTemp let-item>
+                                        <div class="md-country-picker-item">
+                                            <img class="md-country-picker-flag" [src]="'https://img.mobiscroll.com/demos/flags/' + item.data.value + '.png'" />
+                                            {{item.display}}
+                                        </div>
+                                    </ng-template>
+                                </mbsc-page>
                             </div>
                         </div>
                         <div class="col-12">
