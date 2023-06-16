@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { SharedComponent } from './shared/shared.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     HomeComponent,
     HeaderComponent,
     NotFoundComponent,
-    FooterComponent
+    FooterComponent,
+    SharedComponent
   ],
   imports: [
     BrowserModule,
