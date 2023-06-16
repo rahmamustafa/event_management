@@ -4,9 +4,11 @@ import gov.iti.evento.entites.Event;
 import gov.iti.evento.services.dtos.EventoDetailesDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
-@Mapper
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 @Component
 public interface EventDisplayMapper{
 
