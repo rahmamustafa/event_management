@@ -37,5 +37,10 @@ public class EventController {
         return eventService.getEventByCategoryType(categoryType);
     }
 
+    @GetMapping("/events/speaker")
+    public List<EventDto> getEventBySpeaker(@RequestParam("speaker") String speaker) throws MessageException {
+        System.out.println("speaker : " + speaker);
+        return eventService.getEventBySpeaker(speaker);
+    }
 
 }

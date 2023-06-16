@@ -42,4 +42,9 @@ public class EventService {
         return events.stream().map(eventMapper.INSTANCE::toDto).toList();
     }
 
+    public List<EventDto> getEventBySpeaker(String speaker) {
+        List<EventSpeaker> eventSpeakers = eventSpeakerRepository.findBySpeakerNameIgnoreCaseLike(speaker);
+        List<Event> events = eventSpeakers.stream().map(EventSpeaker::getEvent).collect(Collectors.toList());
+        return events.stream().map(eventMapper.INSTANCE::toDto).toList();
+    }
 }
