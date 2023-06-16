@@ -10,6 +10,8 @@ import gov.iti.evento.services.dtos.EventDto;
 import gov.iti.evento.services.mappers.EventMapper;
 import gov.iti.evento.services.util.exceptions.MessageException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
@@ -30,9 +32,11 @@ public class EventService {
     @Autowired
     EventMapper eventMapper;
 
-    public List<EventDto> getAllEvents() {
-        List<Event> events = Collections.unmodifiableList(eventRepository.findAll());
-        return events.stream().map(eventMapper.INSTANCE::toDto).toList();
+    public Page<EventDto> getEvents(int page, int size) {
+        System.out.println("Page : " + page + " Size : " + size );
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<Event> eventPage = eventRepository.findAll(pageRequest);
+        return eventPage.map(eventMapper.INSTANCE::toDto);
     }
 
     public List<EventDto> getEventByCategoryType(String categoryType) throws MessageException {
