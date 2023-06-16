@@ -6,6 +6,7 @@ import { EventComponent } from './components/event/event.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
 
 
+
 const routes: Routes = [
   {path: '', 
       children: [

@@ -30,8 +30,10 @@ import { SharedComponent } from './shared/shared.component';
     EventDetailsComponent,
     SharedComponent
   ],
+
   imports: [  
-    MbscModule,   
+    MbscModule, 
+    SharedComponent,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
