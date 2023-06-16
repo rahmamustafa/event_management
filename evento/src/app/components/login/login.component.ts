@@ -43,30 +43,29 @@ export class LoginComponent implements OnInit {
         password: [''],
         email: [''],
         phone: [''], 
-        image:null,
         country: [''], 
         gender: [''], 
-        birthDate: [null]
+        birthDate: ['']
       });
 
   }
   register(): void{
     this.registerForm.controls["country"].setValue(this.selectedCountry);
-
-    const imageData = new FormData();
-    imageData.append('image', this.selectedImage, this.selectedImage.name);
-
-    this.registerForm.controls["image"].setValue(imageData.get('image'));
     const user = this.registerForm.value;
+    // user.image = this.selectedImage;
     console.log(user)
-    // this.apiService.get("/users")
-    // .subscribe({
-    //   next:response=>{
-    //     console.log(response._embedded)
-    //   },
-    //   error:error=>{}
-    // }
-    // );
+
+    const userData = new FormData();
+    userData.append('image', this.selectedImage);
+    userData.append('user',JSON.stringify(user));
+    this.apiService.post("users",userData)
+    .subscribe({
+      next:response=>{
+        console.log(response)
+      },
+      error:error=>{}
+    }
+    );
   }
 
   onChangeCountry(event: any) {

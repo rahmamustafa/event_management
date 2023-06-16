@@ -43,7 +43,7 @@
                             <h3>Register to <span class="alternate">Evento</span></h3>
                             <p>Strategic Events | Experiential Events Marketing | Virtual & Hybrid Event Experiences</p>
                         </div>
-                        <form class="row form-group" (ngSubmit)="register()"  [formGroup]="registerForm" >
+                        <form class="row form-group" (ngSubmit)="register()" enctype="multipart/form-data" [formGroup]="registerForm" >
                             <div class="col-md-6">
                                 <input type="text" formControlName="name" class="form-control main bg-transparent "
                                     name="name" placeholder="Name" required>

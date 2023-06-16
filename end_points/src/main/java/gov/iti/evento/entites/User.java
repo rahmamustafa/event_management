@@ -52,7 +52,7 @@ public class User {
     private String name;
 
     @NotNull
-    @Column(name = "creation_date", nullable = false)
+    @Column(name = "creation_date")
     private Instant creationDate;
 
     @Size(max = 45)
@@ -62,6 +62,6 @@ public class User {
 
     @Size(max = 45)
     @Column(name = "image", length = 45)
-    private String image;
+    private String imageUrl;
 
 }

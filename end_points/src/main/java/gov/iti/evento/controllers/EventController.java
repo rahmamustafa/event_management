@@ -16,8 +16,6 @@ import java.util.List;
 
 @RestController
 public class EventController {
-    @Autowired
-    CategoryRepository categoryRepository;
 
     @Autowired
     EventService eventService;
