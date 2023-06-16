@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { MbscInputModule } from '@mobiscroll/angular';
 
@@ -16,6 +17,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SharedComponent } from './shared/shared.component';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,16 +29,19 @@ import { SharedComponent } from './shared/shared.component';
     HeaderComponent,
     NotFoundComponent,
     FooterComponent,
-    SharedComponent
+    SharedComponent,
+    SubscriptionComponent
   ],
   imports: [  
-    MbscModule, 
+    MbscModule,   
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

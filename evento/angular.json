@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
               "src/assets/css/style.css",
               "src/assets/slick/slick-theme.css",
@@ -38,6 +39,7 @@
           },
           "configurations": {
             "production": {
+              "sourceMap": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -93,6 +95,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
