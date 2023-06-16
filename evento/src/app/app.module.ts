@@ -16,6 +16,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SharedComponent } from './shared/shared.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
 
 @NgModule({
   declarations: [
@@ -26,10 +27,11 @@ import { SharedComponent } from './shared/shared.component';
     HeaderComponent,
     NotFoundComponent,
     FooterComponent,
-    SharedComponent
+    SharedComponent,
+    EventDetailsComponent
   ],
   imports: [  
-    MbscModule, 
+    MbscModule,   
     BrowserModule,
     AppRoutingModule,
     FormsModule,
