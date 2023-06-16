@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import gov.iti.evento.services.SubscriptionService;
 import gov.iti.evento.services.dtos.SubscriptionRequest;
 
 @RestController
@@ -16,6 +17,8 @@ public class SubscriptionController {
 
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private SubscriptionService subscriptionService;
 
     @PostMapping
     public ResponseEntity<?> subscribeEmail(@RequestBody SubscriptionRequest request) {
@@ -32,5 +35,6 @@ public class SubscriptionController {
         message.setText("Thank you for subscribing to our newsletter!");
 
         mailSender.send(message);
+        subscriptionService.createSubscription(email);
     }
 }

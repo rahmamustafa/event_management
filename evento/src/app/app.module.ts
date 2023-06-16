@@ -17,8 +17,9 @@ import { HeaderComponent } from './shared/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SharedComponent } from './shared/shared.component';
-import { SubscriptionComponent } from './components/subscription/subscription.component';
+import { SubscriptionComponent } from './components/home/subscription/subscription.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ScheduleComponent } from './components/home/schedule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NotFoundComponent,
     FooterComponent,
     SharedComponent,
-    SubscriptionComponent
+    SubscriptionComponent,
+    ScheduleComponent
   ],
   imports: [  
     MbscModule,   
