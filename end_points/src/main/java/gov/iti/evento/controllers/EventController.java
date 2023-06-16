@@ -19,8 +19,7 @@ import java.util.List;
 
 @RestController
 public class EventController {
-    @Autowired
-    CategoryRepository categoryRepository;
+
 
     @Autowired
     private EventReviewService eventReviewService;
@@ -28,10 +27,9 @@ public class EventController {
     public List<EventReviewDto> getEventReviews(@PathVariable("id")int id) {
         return eventReviewService.getReviewByEventId(id);
     }
+    @Autowired
     EventService eventService;
 
-    public void m() {
-    }
 
     @GetMapping("/events")
     public List<EventDto> getEvents() {
