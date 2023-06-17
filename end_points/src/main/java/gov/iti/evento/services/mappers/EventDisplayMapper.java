@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 @Component
+
 public interface EventDisplayMapper{
 
     @Mapping(source = "title", target= "title")
@@ -19,6 +20,7 @@ public interface EventDisplayMapper{
     @Mapping(source = "image", target = "image")
     @Mapping(source="isOnline",target = "isOnline")
     @Mapping(source = "eventDate", target = "eventDate")
+    @Mapping(source= "location", target="location")
 //    @Mapping(source="location", target="location")
     EventoDetailesDTO eventToEventDetailsDTO (Event event);
 }

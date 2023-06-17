@@ -9,11 +9,12 @@ import { EventDetailsComponent } from './event-details/event-details.component';
 const routes: Routes = [
   {path: '', 
       children: [
+  {path:'eventDetails/:id',component:EventDetailsComponent},
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'event',component:EventComponent},
-  {path:'',component:HomeComponent},
-  {path:'event/1',component:EventDetailsComponent}
+  {path:'',component:HomeComponent}
+  
   ]}
 
 

@@ -23,16 +23,16 @@ public class EventDetailsController {
     public EventDetailsController(EventDetailService eventDetailService) {
         this.eventDetailService = eventDetailService;
     }
-    @PostMapping("/{eventId}")
+    @GetMapping("/{eventId}")
     public EventoDetailesDTO getEvent(@PathVariable Integer eventId) {
         return eventDetailService.getEvent(eventId);
     }
-    @GetMapping("/{title}")
-    public Event savaEvent (String title, Event event){
-        event.setDescription("en esto evento vamos a hablar sobre como el deporte puede afectar las emociones ");
-        //  String imagePath = "deportistas";
-        event.setImage("http://2.bp.blogspot.com/-8AAEYfC6BD4/UgFHZq62UWI/AAAAAAAAAYw/SsybCfdzSnc/s1600/musica-deporte.jpg");
-        return eventDetailService.savaEvent(event);
-    }
+//    @GetMapping("/{title}")
+//    public Event savaEvent (String title, Event event){
+//        event.setDescription("en esto evento vamos a hablar sobre como el deporte puede afectar las emociones ");
+//        //  String imagePath = "deportistas";
+//        event.setImage("http://2.bp.blogspot.com/-8AAEYfC6BD4/UgFHZq62UWI/AAAAAAAAAYw/SsybCfdzSnc/s1600/musica-deporte.jpg");
+//        return eventDetailService.savaEvent(event);
+//    }
    
 }

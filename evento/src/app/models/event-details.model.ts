@@ -3,6 +3,7 @@ export class eventDetailsDTO {
     description: string;
     title: string;
     isOnline: boolean;
+    location: string;
     image: string;
 
 

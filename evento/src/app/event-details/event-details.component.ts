@@ -11,23 +11,31 @@ import { ActivatedRoute } from '@angular/router';
 
 export class EventDetailsComponent implements OnInit {
   eventDetails: eventDetailsDTO;
-  eventId: number;
-  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
+  // _activatedRoute: any;
+  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.eventId = +params['eventId'];
+    this.route.paramMap.subscribe((params) => {
+      const eventId = params.get('eventId');
       this.getEvent();
     });
   }
+  
   getEvent(): void {
-    this.apiService['getEvent'](this.eventId).subscribe(
-      (response: eventDetailsDTO) => {
-        this.eventDetails = response;
-      },
-      (error: any) => {
-        console.error(error)
+    this.route.paramMap
+      .subscribe(parms => {
+        let id = parms.get('id');
+        console.log(id);
+        this.apiService.get("eventDetails/" + id)
+          .subscribe({
+            next: response => {
+              this.eventDetails = response;
+              console.log(response);
+            },
+            error: error => { }
+          }
+          );
       }
-    )
+      );
   }
 }
