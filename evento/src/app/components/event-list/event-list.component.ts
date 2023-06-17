@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { Event } from 'src/app/models/event/event';
+import { Category } from 'src/app/models/event/category';
 
 @Component({
   selector: 'app-event-list',
@@ -12,6 +13,7 @@ import { Event } from 'src/app/models/event/event';
 })
 export class EventListComponent {
   events: Event[] = [];
+  categories:Category[] =[];
   image: any;
   constructor(private _activatedRoute: ActivatedRoute, private apiService: ApiService, private sanitizer: DomSanitizer) {
 
@@ -43,6 +45,17 @@ export class EventListComponent {
       );
 
       
+  }
+
+  
+  getCategories(){
+    this.apiService.get("categories")
+    .subscribe({
+      next: response=>{
+        this.categories = response;
+      },
+      error:error =>{}
+    })
   }
 
 }

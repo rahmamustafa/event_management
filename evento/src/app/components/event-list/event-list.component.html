@@ -32,21 +32,10 @@
 						<label class="btn active">
 							<input type="radio" name="gallery-filter" value="all" checked="checked" />All
 						</label>
-						<label class="btn">
-							<input type="radio" name="gallery-filter" value="conference" />Conference
+						<label class="btn" *ngFor="let c of categories;" >
+							<input type="radio" name="gallery-filter" value="conference" />{{c.type}}
 						</label>
-						<label class="btn">
-							<input type="radio" name="gallery-filter" value="meeting" />Meeting
-						</label>
-						<label class="btn">
-							<input type="radio" name="gallery-filter" value="events" />Events
-						</label>
-						<label class="btn">
-							<input type="radio" name="gallery-filter" value="party" />Party
-						</label>
-						<label class="btn">
-							<input type="radio" name="gallery-filter" value="concert" />Concert
-						</label>
+						
 					</div>
 				</div>
 				<div class="gallery-wrapper row">
@@ -63,13 +52,8 @@
                                 <h5><a>{{e.title}}</a></h5>
                                 <p>{{e.description}} </p>
                             </div>
-                            
 						</div>
-                        
 					</div>
-					
-					
-					
 				</div>
 			</div>
 		</div>
