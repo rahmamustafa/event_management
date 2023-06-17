@@ -1,5 +1,4 @@
-
-export class Events{
+export class Event{
     title:string ;
     description:string;
     categoryType:string;

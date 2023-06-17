@@ -2,7 +2,7 @@
 =            Page Title            =
 =================================-->
 <app-shared>
-<section class="page-title bg-title overlay-dark">
+<section class="page-title bg-title overlay-dark event-header">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 text-center">
@@ -50,7 +50,7 @@
 					</div>
 				</div>
 				<div class="gallery-wrapper row">
-					<div class="gallery-item col-lg-4 col-md-6" data-groups="[&quot;meeting&quot;]">
+					<div class="gallery-item col-lg-4 col-md-6" data-groups="[&quot;meeting&quot;]" *ngFor="let e of events;">
 						<div class="image-block">
 							<div class="image">
 								<img src="assets/images/gallery/gallery-one.jpg" alt="gallery-image" class="img-fluid">
@@ -60,30 +60,16 @@
 								</div>
 							</div>
                             <div class="content text-center">
-                                <h5><a>Johnathan Franco</a></h5>
-                                <p>Project Manager </p>
+                                <h5><a>{{e.title}}</a></h5>
+                                <p>{{e.description}} </p>
                             </div>
-
+                            
 						</div>
-
+                        
 					</div>
-					<div class="gallery-item col-lg-4 col-md-6" data-groups="[&quot;party&quot;,&quot;events&quot;]">
-						<div class="image-block">
-							<div class="image">
-								<img src="assets/images/gallery/gallery-two.jpg" alt="gallery-image" class="img-fluid">
-								<div class="primary-overlay">
-									<a class="image-popup" data-effect="mfp-with-zoom" href="images/gallery/gallery-popup-two.jpg"><i
-											class="fa fa-picture-o"></i></a>
-								</div>
-							</div>
-                            <div class="content text-center">
-                                <h5><a>Johnathan Franco</a></h5>
-                                <p>Project Manager </p>
-                            </div>
-						</div>
-					</div>
-
-
+					
+					
+					
 				</div>
 			</div>
 		</div>
