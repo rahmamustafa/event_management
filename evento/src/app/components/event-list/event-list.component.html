@@ -30,9 +30,9 @@
 				<div class="controls">
 					<div class="btn-group btn-group-toggle d-block" data-toggle="buttons">
 						<label class="btn active">
-							<input type="radio" name="gallery-filter" value="all" checked="checked" />All
+							<input type="radio" name="gallery-filter" value="all" checked="checked" (click)="getEvents()" />All
 						</label>
-						<label class="btn" *ngFor="let c of categories;" >
+						<label class="btn" *ngFor="let c of categories;" (click)="getEventByCategory(c.type)">
 							<input type="radio" name="gallery-filter" value="conference" />{{c.type}}
 						</label>
 						

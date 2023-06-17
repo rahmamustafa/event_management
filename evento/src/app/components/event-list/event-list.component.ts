@@ -59,4 +59,15 @@ export class EventListComponent {
     })
   }
 
+  getEventByCategory(categoryType:string){
+
+    this.apiService.get(`events/category/${categoryType}`)
+    .subscribe({
+      next: response=>{
+        this.events = response;
+      },
+      error:error =>{}
+    })
+  }
+
 }
