@@ -9,9 +9,9 @@ import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Mapper
-@Service
-(unmappedTargetPolicy = ReportingPolicy.IGNORE, ComponentModel = MappingConstants.ComponentModel.SPRING)
+
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+@Component
 public interface EventDisplayMapper{
 
     @Mapping(source = "title", target= "title")

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import java.util.List;
+
 public interface EventSpeakerRepository extends JpaRepository<EventSpeaker, EventSpeakerId> {
     List<EventSpeaker> findBySpeakerNameIgnoreCaseLike (String speaker);
 }
