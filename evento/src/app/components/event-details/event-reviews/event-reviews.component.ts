@@ -19,15 +19,12 @@ export class EventReviewsComponent implements OnInit{
     this._activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
       console.log(id);
-      this.getReviews();
+      this.getReviews(id);
     });
   }
 
-  getReviews() {
-    this._activatedRoute.paramMap
-    .subscribe(parms=>{
-      let id=parms.get('id');
-      console.log(id);
+  getReviews(id:any) {
+  
       this.apiService.get("event/"+id+"/reviews")
       .subscribe({
         next:response=>{
@@ -43,8 +40,7 @@ export class EventReviewsComponent implements OnInit{
       error:error=>{}
     }
         );
-      }
-        );
+     
 }
   
 }

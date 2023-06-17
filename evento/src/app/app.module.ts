@@ -18,6 +18,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { SharedComponent } from './shared/shared.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventReviewsComponent } from './components/event-details/event-reviews/event-reviews.component';
+import { EventTicketsComponent } from './components/event-details/event-tickets/event-tickets.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EventReviewsComponent } from './components/event-details/event-reviews/
     FooterComponent,
     SharedComponent,
     EventDetailsComponent,
-    EventReviewsComponent
+    EventReviewsComponent,
+    EventTicketsComponent
   ],
   imports: [  
     MbscModule,   
