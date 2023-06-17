@@ -10,6 +10,7 @@ import { MbscInputModule } from '@mobiscroll/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { EventComponent } from './components/event/event.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -23,6 +24,7 @@ import { EventReviewsComponent } from './components/event-details/event-reviews/
   declarations: [
     AppComponent,
     LoginComponent,
+    SignupComponent,
     EventComponent,
     HomeComponent,
     HeaderComponent,

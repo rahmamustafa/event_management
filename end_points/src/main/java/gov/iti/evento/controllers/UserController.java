@@ -4,7 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.iti.evento.services.FileStorageService;
 import gov.iti.evento.services.UserService;
-import gov.iti.evento.services.dtos.CreateUserDto;
+import gov.iti.evento.services.dtos.user.CreateUserDto;
+import gov.iti.evento.services.dtos.user.UserLoginDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,10 @@ public class UserController {
     @PostMapping("/api/email/check")
     public boolean checkEmailValid(@RequestBody String email){
         return userService.checkEmailValid(email);
+    }
+    @PostMapping("/api/login/check")
+    public boolean checkUserValid(@RequestBody UserLoginDto user){
+        return userService.checkUserValid(user);
     }
 
 }

@@ -7,12 +7,12 @@ import { ApiService } from 'src/app/services/api.service';
 import { EmailValidator } from 'src/app/services/email-validator';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
 
-export class LoginComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
   constructor(private apiService: ApiService, private _formBuilder: FormBuilder
 
@@ -28,33 +28,57 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
-   
+    this.http.get('https://trial.mobiscroll.com/content/countries.json').subscribe((resp: any) => {
+      const countries = [];
+      for (let i = 0; i < resp.length; ++i) {
+        const country = resp[i];
+        countries.push({ text: country.text, value: country.value });
+      }
+      this.countries = countries;
+    });
     this.registerForm = this._formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
       email: ['', [Validators.required, Validators.email]],
-   
+      phone: ['', [Validators.required, Validators.pattern("^[0][1][0125][0-9]{8}$")]],
+      image: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      birthDate: ['', [Validators.required]]
     });
 
   }
-  login(): void {
+  register(): void {
+    this.registerForm.controls["country"].setValue(this.selectedCountry);
     const user = this.registerForm.value;
     console.log(user)
 
-    this.apiService.post("api/users/login", user)
+    const userData = new FormData();
+    userData.append('image', this.selectedImage);
+    userData.append('user', JSON.stringify(user));
+    this.apiService.post("api/users", userData)
       .subscribe({
         next: response => {
           console.log(response)
           this._router.navigateByUrl('/home');
+
         },
         error: error => { }
       }
       );
   }
 
+  onChangeCountry(event: any) {
+    this.selectedCountry = event.valueText;
+    console.log('Selected Country:', event.valueText);
+  }
+  onImageSelected(event: any) {
+    this.selectedImage = event.target.files[0];
+  }
 
   validateEmail(){
     console.log(this.email);
-    this.apiService.post("api/login/check",this.email)
+    this.apiService.post("api/email/check",this.email)
     .subscribe({
       next:response=>{
         console.log("resp " + response)
