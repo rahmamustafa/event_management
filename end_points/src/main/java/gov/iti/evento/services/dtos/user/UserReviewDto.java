@@ -15,6 +15,6 @@ public class UserReviewDto implements Serializable {
     @NotNull
     @Size(max = 45)
     String name;
-    @Size(max = 45)
-    String image;
+
+    byte[] image;
 }

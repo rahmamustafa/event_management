@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {UserReviewMapper.class})
 public interface EventReviewMapper {
-    EventReview toEntity(EventReviewDto eventReviewDto);
+//    EventReview toEntity(EventReviewDto eventReviewDto);
 
     EventReviewDto toDto(EventReview eventReview);
 

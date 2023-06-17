@@ -1,5 +1,5 @@
 export class UserReview{
-    image:string;
+    image:any;
     name:string;
     
  }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventReview } from 'src/app/models/event-details-models/review-models/event-review.model';
 import { ApiService } from 'src/app/services/api.service';
-
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-event-reviews',
   templateUrl: './event-reviews.component.html',
@@ -10,7 +10,8 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class EventReviewsComponent implements OnInit{
   reviews:EventReview []=[];
-  constructor(private _activatedRoute:ActivatedRoute,private apiService:ApiService){
+  image:any;
+  constructor(private _activatedRoute:ActivatedRoute,private apiService:ApiService,private sanitizer: DomSanitizer){
   
   }
   
@@ -31,6 +32,12 @@ export class EventReviewsComponent implements OnInit{
       .subscribe({
         next:response=>{
           this.reviews=response;
+          const bytes = new Uint8Array(this.reviews[0].user.image);
+          const base64 = btoa(String.fromCharCode(...bytes));
+          let objectURL = 'data:image/png;base64,' + this.reviews[0].user.image;
+          this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+          // this.image = `data:image/jpg;base64,${base64}`;
+          console.log(this.image);
         console.log( this.reviews);
       },
       error:error=>{}
