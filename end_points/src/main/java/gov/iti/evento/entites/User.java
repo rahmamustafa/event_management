@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Value;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -62,6 +61,6 @@ public class User {
 
     @Size(max = 45)
     @Column(name = "image", length = 45)
-    private String imageUrl;
+    private String image;
 
 }
