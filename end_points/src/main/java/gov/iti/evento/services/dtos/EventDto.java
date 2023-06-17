@@ -7,9 +7,9 @@ import lombok.Value;
 
 import java.io.Serializable;
 
-@Data
-@NoArgsConstructor
-public class EventDto implements Serializable {
+
+@Value
+public class EventDto implements Serializable  {
 
     private String title;
     private String image;

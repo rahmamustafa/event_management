@@ -17,17 +17,22 @@ public interface EventMapper {
     @Mapping(source = "categoryType", target = "category.type")
     Event toEntity(EventDto eventDto);
 
+
+    //    @Mappings({
+//            @Mapping(target = "image", expression = "java(recoverImageFromUrl(event.getImage()))"),
+//    })
     @Mapping(source = "category.type", target = "categoryType")
-    @Mappings({
-            @Mapping(target = "image", expression = "java(recoverImageFromUrl(event.getImage()))")
-    })
     EventDto toDto(Event event);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(source = "categoryType", target = "category.type")
     Event partialUpdate(EventDto eventDto, @MappingTarget Event event);
 
-    default byte[] recoverImageFromUrl(String urlText) throws Exception {
-        return ImageConverter.recoverImageFromUrl(urlText);
+    default String mapByteArrayToString(byte[] bytes) {
+        return null;
     }
+
+//    default byte[] recoverImageFromUrl(String urlText) throws Exception {
+//        return ImageConverter.recoverImageFromUrl(urlText);
+//    }
 }
