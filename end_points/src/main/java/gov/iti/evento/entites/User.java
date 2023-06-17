@@ -62,6 +62,6 @@ public class User {
 
     @Size(max = 45)
     @Column(name = "image", length = 45)
-    private String imageUrl;
+    private String image;
 
 }
