@@ -1,6 +1,6 @@
 import { DatePipe } from "@angular/common";
 
-export class User{
+export class CreateUserDto{
      name:string;
      password:string;
      email:string;

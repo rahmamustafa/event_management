@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.io.IOException;
 
 @RestController
 public class UserController {
@@ -30,7 +27,7 @@ public class UserController {
 
         createUserDto = objectMapper.readValue(userDto , CreateUserDto.class);
         String userImageName = fileStorageService.storeFile(userImage , createUserDto.getEmail());
-        createUserDto.setImageUrl(userImageName);
+        createUserDto.setImage(userImageName);
 
         System.out.println(createUserDto);
         userService.saveUser(createUserDto);

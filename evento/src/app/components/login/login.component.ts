@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/models/login/user';
+import { CreateUserDto } from 'src/app/models/login/create-user-dto';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
