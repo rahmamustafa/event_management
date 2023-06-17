@@ -5,7 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MbscInputModule } from '@mobiscroll/angular';
+// import { MbscInputModule } from '@mobiscroll/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SharedComponent } from './shared/shared.component';
+import { EventListComponent } from './components/event-list/event-list.component';
 
 @NgModule({
   declarations: [
@@ -26,10 +27,11 @@ import { SharedComponent } from './shared/shared.component';
     HeaderComponent,
     NotFoundComponent,
     FooterComponent,
-    SharedComponent
+    SharedComponent,
+    EventListComponent
   ],
   imports: [  
-    MbscModule, 
+    MbscModule,   
     BrowserModule,
     AppRoutingModule,
     FormsModule,
