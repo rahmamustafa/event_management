@@ -23,4 +23,7 @@ public class UserService {
         user = userRepository.save(user);
         System.out.println(user.getId());
     }
+    public boolean checkEmailValid(String email){
+        return userRepository.existsByEmailIgnoreCase(email);
+    }
 }

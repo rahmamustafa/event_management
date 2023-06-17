@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = "/users" , consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PostMapping(value = "/api/users" , consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public void createUser(@RequestParam("image") MultipartFile userImage , @RequestParam("user") String userDto)
             throws JsonProcessingException {
         CreateUserDto createUserDto;
@@ -31,6 +31,10 @@ public class UserController {
 
         System.out.println(createUserDto);
         userService.saveUser(createUserDto);
+    }
+    @PostMapping("/api/email/check")
+    public boolean checkEmailValid(@RequestBody String email){
+        return userService.checkEmailValid(email);
     }
 
 }

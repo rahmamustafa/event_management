@@ -44,28 +44,66 @@
                             <p>Strategic Events | Experiential Events Marketing | Virtual & Hybrid Event Experiences</p>
                         </div>
                         <form class="row form-group" (ngSubmit)="register()" enctype="multipart/form-data" [formGroup]="registerForm" >
-                            <div class="col-md-6">
-                                <input type="text" formControlName="name" class="form-control main bg-transparent "
-                                    name="name" placeholder="Name" required>
+                            <div class="mb-2 col-md-6">
+                                <input [class.is-valid]="!registerForm.controls['name'].errors" type="text" 
+                                formControlName="name" class="form-control main bg-transparent "name="name" placeholder="Name" required>
+                                    <div class="mt-20" *ngIf="registerForm.controls['name'].errors && 
+                                    (registerForm.controls['name'].touched || registerForm.controls['name'].dirty)">
+                                      <small *ngIf="registerForm.controls['name'].errors?.['required']"  
+                                      class="form-text text-danger">required</small>
+                                      <small *ngIf="registerForm.controls['name'].errors?.['maxlength']"  
+                                      class="form-text text-danger">Max Length is 20</small>
+                                      <small *ngIf="registerForm.controls['name'].errors?.['minlength']"  
+                                      class="form-text text-danger">Min Length is 3</small>
+                                    </div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" formControlName="phone" class="form-control main bg-transparent "
+                            <div class="mb-2 col-md-6">
+                                <input [class.is-valid]="!registerForm.controls['phone'].errors" type="text" formControlName="phone" class="form-control main bg-transparent "
                                     name="phone" placeholder="Phone" required>
+                                    <div class="mt-20" *ngIf="registerForm.controls['phone'].errors && 
+                                    (registerForm.controls['phone'].touched || registerForm.controls['phone'].dirty)">
+                                      <small *ngIf="registerForm.controls['phone'].errors?.['required']"  
+                                      class="form-text text-danger">required</small>
+                                      <small *ngIf="registerForm.controls['phone'].errors?.['pattern']"  
+                                      class="form-text text-danger">should be valid phone number</small>
+                                     
+                                    </div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="email" formControlName="email"
+                            <div class="mb-2 col-md-6">
+                                <input (input)="validateEmail()" [(ngModel)]="email" [class.is-valid]="!registerForm.controls['email'].errors" type="email" formControlName="email"
                                     class="text-white form-control main bg-transparent " name="email"
                                     placeholder="Email" required>
+                                    <div class="mt-20" *ngIf="registerForm.controls['email'].errors  &&
+                                    (registerForm.controls['email'].touched || emailExists || registerForm.controls['email'].dirty)">
+                                      <small *ngIf="registerForm.controls['email'].errors?.['required']"  
+                                      class="form-text text-danger">required</small>
+                                      <small *ngIf="registerForm.controls['email'].errors?.['email']"  
+                                      class="form-text text-danger">should be valid email </small>
+                                    </div>
+                                    <small  *ngIf="emailExists"  
+                                    class="mt-20 form-text text-danger">should be unique email </small>
+                                    
                             </div>
-                            <div class="col-md-6">
-                                <input type="password" formControlName="password"
+                            <div class="mb-2 col-md-6">
+                                <input [class.is-valid]="!registerForm.controls['password'].errors" type="password" formControlName="password"
                                     class="form-control main bg-transparent " name="password" placeholder="Password"
                                     required>
+                                    <div class="mt-20" *ngIf="registerForm.controls['password'].errors && 
+                                    (registerForm.controls['password'].touched||  registerForm.controls['password'].dirty)">
+                                      <small *ngIf="registerForm.controls['password'].errors?.['required']"  
+                                      class="form-text text-danger">required</small>
+                                      <small *ngIf="registerForm.controls['password'].errors?.['maxlength']"  
+                                      class="form-text text-danger">Max Length is 20</small>
+                                      <small *ngIf="registerForm.controls['password'].errors?.['minlength']"  
+                                      class="form-text text-danger">Min Length is 5</small>
+                                    </div>
                             </div>
-                            <div class="btn-group col-md-6">
+                            <div class="mb-2 btn-group col-md-6">
                                 <div>
                                     <input id="male" type="radio" value="male" name="gender" formControlName="gender">
                                     <label for="male" class="btn btn-orange">Male</label>
+                                    <div class="mt-20">
+                                      <small *ngIf="registerForm.controls['gender'].errors?.['required']" ></small></div>
                                  </div>
                         
                                  <div>
@@ -81,7 +119,7 @@
                             </div>
                             <div class=" mt-3 col-md-6">
                                 <label class="text-white" for="birthDate">Choose Your Image</label>
-                                <input type="file" accept="image/png, image/gif, image/jpeg" 
+                                <input type="file" accept="image/png, image/gif, image/jpeg" formControlName="image"
                                 (change)="onImageSelected($event)" class="form-control bg-transparent" 
                                 name="image" placeholder="Birth Date" required>
                             </div>
@@ -90,7 +128,7 @@
                                     <mbsc-page class="bg-transparent">
                                         <mbsc-select class="bg-transparent" [data]="countries"
                                             display="anchored" [itemHeight]="40" [filter]="true"
-                                            label="Choose Your Country" [itemTemplate]="itemTemp" labelStyle="stacked"
+                                            label="Choose Your Country" [itemTemplate]="itemTemp" formControlName="country" labelStyle="stacked"
                                             inputStyle="box" placeholder="Please select..."
                                             (onChange)="onChangeCountry($event)">
                                         </mbsc-select>
@@ -106,7 +144,7 @@
                             </div>
 
                             <div class="col-12">
-                                <button type="submit"
+                                <button [disabled]="emailExists || !registerForm.valid" type="submit"
                                     class="btn orange-hover btn-white btn-white-md">Register Now</button>
                             </div>
                         </form>

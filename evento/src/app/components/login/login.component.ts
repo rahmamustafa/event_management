@@ -1,22 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateUserDto } from 'src/app/models/login/create-user-dto';
 import { ApiService } from 'src/app/services/api.service';
+import { EmailValidator } from 'src/app/services/email-validator';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   
-  constructor(private apiService:ApiService,private _formBuilder: FormBuilder , private http: HttpClient){
+  constructor(private apiService:ApiService,private _formBuilder: FormBuilder 
+    
+    , private http: HttpClient , private emailValidator: EmailValidator){
 
   }
   selectedCountry :string;
   selectedImage: File
+  email:string;
+  emailExists:boolean;
   countries: any;
   registerForm:FormGroup;
   
@@ -31,34 +37,26 @@ export class LoginComponent implements OnInit {
           this.countries = countries;
       });
       this.registerForm = this._formBuilder.group({
-        // name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-        // password: ['', [Validators.required, Validators.min(5),Validators.maxLength(20)]],
-        // email: ['', [Validators.required, Validators.email]],
-        // phone: ['', [Validators.required]], 
-        // image: [null,[Validators.required]], 
-        // country: ['',[Validators.required]], 
-        // gender: ['',[Validators.required]], 
-        // birthDate: [null,[Validators.required]] 
-          name: [''],
-        password: [''],
-        email: [''],
-        phone: [''], 
-        country: [''], 
-        gender: [''], 
-        birthDate: ['']
+        name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+        password: ['', [Validators.required, Validators.minLength(5),Validators.maxLength(20)]],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', [Validators.required,Validators.pattern("^[0][1][0125][0-9]{8}$")]], 
+        image: ['',[Validators.required]], 
+        country: ['',[Validators.required]], 
+        gender: ['',[Validators.required]], 
+        birthDate: ['',[Validators.required]] 
       });
 
   }
   register(): void{
     this.registerForm.controls["country"].setValue(this.selectedCountry);
     const user = this.registerForm.value;
-    // user.image = this.selectedImage;
     console.log(user)
 
     const userData = new FormData();
     userData.append('image', this.selectedImage);
     userData.append('user',JSON.stringify(user));
-    this.apiService.post("users",userData)
+    this.apiService.post("api/users",userData)
     .subscribe({
       next:response=>{
         console.log(response)
@@ -75,6 +73,23 @@ export class LoginComponent implements OnInit {
   onImageSelected(event: any) {
     this.selectedImage = event.target.files[0];
   }
+
+  validateEmail(){
+    console.log(this.email);
+    this.apiService.post("api/email/check",this.email)
+    .subscribe({
+      next:response=>{
+        console.log("resp " + response)
+        this.emailExists=response
+      },
+      error:error=>{
+        return null;
+      }
+    }
+    );
+}
   
 }
+
+
 
