@@ -26,7 +26,7 @@ UserReviewMapper INSTANCE = Mappers.getMapper(UserReviewMapper.class);
     UserReviewDto toDto(User user) throws Exception;
 //    @ByteArrayToStringMapping
     default String mapByteArrayToString(byte[] bytes) {
-        return new String(bytes);
+        return null;
     }
     default byte[] recoverImageFromUrl(String urlText) throws Exception {
        return ImageConverter.recoverImageFromUrl(urlText);
