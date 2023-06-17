@@ -21,6 +21,7 @@ export class EventListComponent {
 
   ngOnInit(): void {
     this.getEvents();
+    this.getCategories();
     console.log("aaaaaaaaaaaaaaa");
 
   }
