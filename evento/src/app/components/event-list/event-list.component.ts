@@ -45,10 +45,10 @@ export class EventListComponent {
       }
       );
 
-      
+
   }
 
-  
+
   getCategories(){
     this.apiService.get("categories")
     .subscribe({
@@ -69,5 +69,25 @@ export class EventListComponent {
       error:error =>{}
     })
   }
+  getEventBySpeaker(speakerName:string){
+
+      this.apiService.get(`events/${speakerName}`)
+      .subscribe({
+        next: response=>{
+          this.events = response;
+        },
+        error:error =>{}
+      })
+    }
+ getEventByStatus(status:string){
+
+      this.apiService.get(`events/status/${status}`)
+      .subscribe({
+        next: response=>{
+          this.events = response;
+        },
+        error:error =>{}
+      })
+    }
 
 }
