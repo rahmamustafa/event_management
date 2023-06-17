@@ -29,12 +29,7 @@ UserReviewMapper INSTANCE = Mappers.getMapper(UserReviewMapper.class);
         return new String(bytes);
     }
     default byte[] recoverImageFromUrl(String urlText) throws Exception {
-        System.out.println(urlText);
-        BufferedImage bufferimage = ImageIO.read(new File(urlText));
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        ImageIO.write(bufferimage, "jpg", output );
-        byte [] data = output.toByteArray();
-        return data;
+       return ImageConverter.recoverImageFromUrl(urlText);
     }
 
 }
