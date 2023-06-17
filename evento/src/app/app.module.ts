@@ -22,6 +22,8 @@ import { SharedComponent } from './shared/shared.component';
 import { SubscriptionComponent } from './components/home/subscription/subscription.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScheduleComponent } from './components/home/schedule/schedule.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { EventReviewsComponent } from './components/event-details/event-reviews/event-reviews.component';
 
 @NgModule({
   declarations: [
@@ -34,10 +36,12 @@ import { ScheduleComponent } from './components/home/schedule/schedule.component
     FooterComponent,
     SharedComponent,
     SubscriptionComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    EventDetailsComponent,
+    EventReviewsComponent
   ],
   imports: [  
-    MbscModule,   
+    MbscModule,     
     BrowserModule,
     AppRoutingModule,
     FormsModule,

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Value;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -20,7 +21,7 @@ public class User {
     private Integer id;
 
     @NotNull
-    @Column(name = "is_admin", nullable = false)
+    @Column(name = "is_admin" ,nullable = false ,columnDefinition="default '0'")
     private Byte isAdmin;
 
     @Size(max = 45)

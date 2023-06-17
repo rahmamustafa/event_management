@@ -1,0 +1,39 @@
+<div class="comments">
+    <h5>Comments ({{reviews.length}})</h5>
+    <!-- Comment -->
+    <div class="media comment"  *ngFor="let r of reviews;">
+        <img [src]="image" alt="image" style="width: 100px; height: 100px;">
+        <div class="media-body">
+            <h6>{{r.user.name}}</h6>
+            <ul class="list-inline">
+                <li class="list-inline-item"><span class="fa fa-calendar"></span>{{r.reviewDate | date:'medium'}}
+                </li>
+                <!-- <li class="list-inline-item"><a href="#">Reply</a></li> -->
+            </ul>
+            <p>
+                {{r.review}}
+            </p>
+       
+        </div>
+    </div>
+</div>
+<div class="comment-form">
+    <h5>Leave A Comment</h5>
+    <form action="#" class="row">
+        <div class="col-12">
+            <textarea class="form-control main" name="comment" id="comment" rows="10"
+                placeholder="Your Review"></textarea>
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control main" name="text" id="name"
+                placeholder="Your Name">
+        </div>
+        <div class="col-md-6">
+            <input type="email" class="form-control main" name="email" id="email"
+                placeholder="Your Email">
+        </div>
+        <div class="col-12">
+            <button class="btn btn-main-md" type="submit">Submit Now</button>
+        </div>
+    </form>
+</div>

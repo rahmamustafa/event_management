@@ -39,3 +39,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+
+# node_module
+# evento/node_modules/

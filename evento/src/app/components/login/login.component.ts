@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/models/login/user';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -10,11 +12,14 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class LoginComponent implements OnInit {
   
-  constructor(private apiService:ApiService , private http: HttpClient){
+  constructor(private apiService:ApiService,private _formBuilder: FormBuilder , private http: HttpClient){
 
   }
-  selectedCountry :string
+  selectedCountry :string;
+  selectedImage: File
   countries: any;
+  registerForm:FormGroup;
+  
 
   ngOnInit(): void {
       this.http.get('https://trial.mobiscroll.com/content/countries.json').subscribe((resp: any) => {
@@ -25,21 +30,51 @@ export class LoginComponent implements OnInit {
           }
           this.countries = countries;
       });
+      this.registerForm = this._formBuilder.group({
+        // name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+        // password: ['', [Validators.required, Validators.min(5),Validators.maxLength(20)]],
+        // email: ['', [Validators.required, Validators.email]],
+        // phone: ['', [Validators.required]], 
+        // image: [null,[Validators.required]], 
+        // country: ['',[Validators.required]], 
+        // gender: ['',[Validators.required]], 
+        // birthDate: [null,[Validators.required]] 
+          name: [''],
+        password: [''],
+        email: [''],
+        phone: [''], 
+        image:null,
+        country: [''], 
+        gender: [''], 
+        birthDate: [null]
+      });
+
   }
-  login(): void{
-    this.apiService.get("/")
-    .subscribe({
-      next:response=>{
-        console.log(response._embedded)
-      },
-      error:error=>{}
-    }
-    );
+  register(): void{
+    this.registerForm.controls["country"].setValue(this.selectedCountry);
+
+    const imageData = new FormData();
+    imageData.append('image', this.selectedImage, this.selectedImage.name);
+
+    this.registerForm.controls["image"].setValue(imageData.get('image'));
+    const user = this.registerForm.value;
+    console.log(user)
+    // this.apiService.get("/users")
+    // .subscribe({
+    //   next:response=>{
+    //     console.log(response._embedded)
+    //   },
+    //   error:error=>{}
+    // }
+    // );
   }
 
   onChangeCountry(event: any) {
     this.selectedCountry = event.valueText;
     console.log('Selected Country:', event.valueText);
+  }
+  onImageSelected(event: any) {
+    this.selectedImage = event.target.files[0];
   }
   
 }
