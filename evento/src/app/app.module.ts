@@ -16,7 +16,6 @@ import { HeaderComponent } from './shared/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SharedComponent } from './shared/shared.component';
-import { EventListComponent } from './components/event-list/event-list.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +26,7 @@ import { EventListComponent } from './components/event-list/event-list.component
     HeaderComponent,
     NotFoundComponent,
     FooterComponent,
-    SharedComponent,
-    EventListComponent
+    SharedComponent
   ],
   imports: [
     MbscModule,

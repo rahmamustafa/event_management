@@ -16,7 +16,3 @@
 .mbsc-scroller-wheel-item-2d .md-country-picker-item {
     transform: scale(1.1);
 }
-.bg-transparent {
-    background-color: transparent !important;
-    color: #fff;
-}
