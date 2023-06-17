@@ -20,6 +20,7 @@ public class UserService {
     public void saveUser(CreateUserDto createUserDto){
         User user = userMapper.toEntity(createUserDto);
         user.setIsAdmin((byte) 0x00);
-        userRepository.save(user);
+        user = userRepository.save(user);
+        System.out.println(user.getId());
     }
 }

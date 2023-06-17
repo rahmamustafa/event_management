@@ -27,10 +27,11 @@ public class UserController {
     public void createUser(@RequestParam("image") MultipartFile userImage , @RequestParam("user") String userDto)
             throws JsonProcessingException {
         CreateUserDto createUserDto;
-        String userImageName = fileStorageService.storeFile(userImage);
-        ServletUriComponentsBuilder.fromCurrentContextPath().path(userImageName).toUriString();
+
         createUserDto = objectMapper.readValue(userDto , CreateUserDto.class);
-        createUserDto.setImageUrl(userImage.getOriginalFilename());
+        String userImageName = fileStorageService.storeFile(userImage , createUserDto.getEmail());
+        createUserDto.setImageUrl(userImageName);
+
         System.out.println(createUserDto);
         userService.saveUser(createUserDto);
     }

@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileStorageService {
 
     private final Path fileStorageLocation;
+
     @Autowired
     public FileStorageService(FileStorageProperties fileStorageProperties) {
         this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir()).toAbsolutePath().normalize();
@@ -37,14 +38,16 @@ public class FileStorageService {
 
     }
 
-    public String storeFile(MultipartFile file , Integer id) {
+    public String storeFile(MultipartFile file , String email) {
         // Normalize file name
-        String fileName = id + "_" + StringUtils.cleanPath(file.getOriginalFilename());
+
+        String fileName = email + "-" + StringUtils.cleanPath(file.getOriginalFilename());
         try {
             // Check if the file's name contains valid  characters or not
             if (fileName.contains("..")) {
                 throw new RuntimeException("Sorry! File name which contains invalid path sequence " + fileName);
             }
+
             // Copy file to the target place (Replacing existing file with the same name)
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
