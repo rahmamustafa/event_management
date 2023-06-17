@@ -70,18 +70,19 @@
                                     </div>
                             </div>
                             <div class="mb-2 col-md-6">
-                                <input (input)="validateEmail()" [(ngModel)]="email" [class.is-valid]="!registerForm.controls['email'].errors" type="email" formControlName="email"
+                                <input (input)="validateEmail()" [(ngModel)]="email" [class.is-valid]="!emailExists && !registerForm.controls['email'].errors" type="email" formControlName="email"
                                     class="text-white form-control main bg-transparent " name="email"
                                     placeholder="Email" required>
-                                    <div class="mt-20" *ngIf="registerForm.controls['email'].errors  &&
-                                    (registerForm.controls['email'].touched || emailExists || registerForm.controls['email'].dirty)">
+                                    <div class="mt-20" *ngIf="emailExists || registerForm.controls['email'].errors  &&
+                                    (registerForm.controls['email'].touched || registerForm.controls['email'].dirty)">
                                       <small *ngIf="registerForm.controls['email'].errors?.['required']"  
                                       class="form-text text-danger">required</small>
                                       <small *ngIf="registerForm.controls['email'].errors?.['email']"  
                                       class="form-text text-danger">should be valid email </small>
+                                      <small  *ngIf="emailExists"  
+                                      class="mt-20 form-text text-danger">should be unique email </small>
                                     </div>
-                                    <small  *ngIf="emailExists"  
-                                    class="mt-20 form-text text-danger">should be unique email </small>
+                                   
                                     
                             </div>
                             <div class="mb-2 col-md-6">
