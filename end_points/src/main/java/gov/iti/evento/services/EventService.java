@@ -32,11 +32,11 @@ public class EventService {
     @Autowired
     EventMapper eventMapper;
 
-    public Page<EventDto> getEvents(int page, int size) {
-        System.out.println("Page : " + page + " Size : " + size );
+    public List<EventDto> getEvents(int page, int size) {
+        System.out.println("Page : " + page + " Size : " + size);
         PageRequest pageRequest = PageRequest.of(page, size);
-        Page<Event> eventPage = eventRepository.findAll(pageRequest);
-        return eventPage.map(eventMapper.INSTANCE::toDto);
+        List<Event> events = eventRepository.findAll(pageRequest).getContent();
+        return events.stream().map(eventMapper.INSTANCE::toDto).toList();
     }
 
     public List<EventDto> getEventByCategoryType(String categoryType) throws MessageException {
