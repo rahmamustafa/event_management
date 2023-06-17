@@ -30,8 +30,8 @@ import { EventListComponent } from './components/event-list/event-list.component
     SharedComponent,
     EventListComponent
   ],
-  imports: [  
-    MbscModule,   
+  imports: [
+    MbscModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
