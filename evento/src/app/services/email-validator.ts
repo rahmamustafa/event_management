@@ -7,21 +7,21 @@ import { ApiService } from "./api.service";
 })
 
 export class EmailValidator {
-    constructor() { }
-
-     validate(control: AbstractControl , apiService: ApiService) : ValidationErrors | null{
-        let isValid:boolean = false;
-        apiService.post("api/email/check",control.value)
-        .subscribe({
-          next:response=>{
-            console.log("resp " + response)
-            isValid=response
-          },
-          error:error=>{
-            return null;
-          }
+    constructor( private apiService:ApiService) { }
+    isExist:boolean;
+    validateEmail(email:string) :boolean{
+      console.log(email);
+      this.apiService.post("api/email/check",email)
+      .subscribe({
+        next:response=>{
+          console.log("resp " + response)
+          this.isExist =  response;
+        },
+        error:error=>{
+          return null;
         }
-        );
-        return isValid ? null : { 'myCustomError': 'This value is invalid' };
-    }
+      }
+      );
+      return this.isExist;
+}
 }
