@@ -1,39 +1,26 @@
 package gov.iti.evento.services;
 
 import java.time.LocalDate;
-import java.util.stream.Collectors;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import gov.iti.evento.entites.Event;
-import gov.iti.evento.repositories.EventRepository;
-import gov.iti.evento.services.dtos.EventByDateDto;
-import gov.iti.evento.services.mappers.EventMapper;
-
 import gov.iti.evento.entites.Category;
 import gov.iti.evento.entites.Event;
+
+
 import gov.iti.evento.entites.EventSpeaker;
 import gov.iti.evento.repositories.CategoryRepository;
 import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.EventSpeakerRepository;
+import gov.iti.evento.services.dtos.EventByDateDto;
 import gov.iti.evento.services.dtos.EventDto;
 import gov.iti.evento.services.mappers.EventMapper;
 import gov.iti.evento.services.util.exceptions.MessageException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.lang.reflect.Type;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class EventService {
