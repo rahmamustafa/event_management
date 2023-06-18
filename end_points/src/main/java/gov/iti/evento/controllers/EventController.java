@@ -2,6 +2,7 @@ package gov.iti.evento.controllers;
 
 import gov.iti.evento.entites.Event;
 import gov.iti.evento.repositories.CategoryRepository;
+import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.services.EventService;
 import gov.iti.evento.services.dtos.EventDto;
 import gov.iti.evento.services.util.exceptions.MessageException;
@@ -27,6 +28,8 @@ public class EventController {
 
     @Autowired
     EventService eventService;
+    @Autowired
+    private EventRepository eventRepository;
 
     public void m() {
     }
@@ -34,7 +37,8 @@ public class EventController {
     @GetMapping("/events")
     public ResponseEntity<List<EventDto>> getEvents(@RequestParam("page") @DefaultValue("0") int page, @RequestParam("size") @DefaultValue("6") int size) throws Exception {
         System.out.println("rtyrtry : ");
-        return new ResponseEntity<>(eventService.getEvents(page, size), HttpStatus.OK);
+        int pagination_size = calculatePaginationSize((int) eventRepository.count(), 6);
+        return new ResponseEntity<>(eventService.getEvents(page, pagination_size), HttpStatus.OK);
     }
 
     @GetMapping("/events/category/{categoryType}")
@@ -55,4 +59,7 @@ public class EventController {
         return eventService.getEventByStatus(status);
     }
 
+    public static int calculatePaginationSize(int totalItems, int itemsPerPage) {
+        return (int) Math.ceil((double) totalItems / itemsPerPage);
+    }
 }
