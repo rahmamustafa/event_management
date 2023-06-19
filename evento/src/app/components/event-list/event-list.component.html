@@ -59,7 +59,7 @@
         <div class="col-md-12">
           <!--Pagination Start-->
           <div class="iqoniq-pagination text-center ml-2" *ngFor="let number of numbers">
-            <a class="page-numbers" (click)="getEvents(number)">{{ number }}</a>
+            <a class="page-numbers" (click)="getEvents(number-1)">{{ number }}</a>
           </div>
           <!--Pagination End-->
         </div>

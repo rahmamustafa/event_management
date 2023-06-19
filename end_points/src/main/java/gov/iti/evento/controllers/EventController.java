@@ -35,10 +35,9 @@ public class EventController {
     }
 
     @GetMapping("/events")
-    public ResponseEntity<List<EventDto>> getEvents(@RequestParam("page") @DefaultValue("0") int page, @RequestParam("size") @DefaultValue("6") int size) throws Exception {
+    public ResponseEntity<List<EventDto>> getEvents(@RequestParam("page") @DefaultValue("0") int page) throws Exception {
         System.out.println("rtyrtry : ");
-        int pagination_size = calculatePaginationSize((int) eventRepository.count(), 6);
-        return new ResponseEntity<>(eventService.getEvents(page, pagination_size), HttpStatus.OK);
+        return new ResponseEntity<>(eventService.getEvents(page, 6), HttpStatus.OK);
     }
 
     @GetMapping("/events/category/{categoryType}")
