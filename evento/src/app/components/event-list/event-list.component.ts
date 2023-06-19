@@ -33,12 +33,6 @@ export class EventListComponent implements OnInit {
     this.apiService.get(`events?page=${page}&size=6`).subscribe({
       next: (response: Event[]) => {
         this.events = response;
-        // const bytes = new Uint8Array(this.events[0].image);
-        // const base64 = btoa(String.fromCharCode(...bytes));
-        // let objectURL = 'data:image/png;base64,' + this.events[0].image;
-        // this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-        // // this.image = 'data:image/jpg;base64,${base64}';
-        // console.log(this.image);
         console.log("ssssssss s");
         console.log(response);
       },
@@ -81,4 +75,12 @@ export class EventListComponent implements OnInit {
       error: (error) => {}
     });
   }
+  getImage(image:any):any {
+          const bytes = new Uint8Array(image);
+          const base64 = btoa(String.fromCharCode(...bytes));
+          let objectURL = 'data:image/png;base64,' + image;
+          let return_image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+          return return_image;
+    }
+
 }

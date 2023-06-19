@@ -21,8 +21,11 @@ public interface EventMapper {
     //    @Mappings({
 //            @Mapping(target = "image", expression = "java(recoverImageFromUrl(event.getImage()))"),
 //    })
-    @Mapping(source = "category.type", target = "categoryType")
-    EventDto toDto(Event event);
+    @Mappings({
+            @Mapping(target = "image", expression = "java(recoverImageFromUrl(event.getImage()))"),
+            @Mapping(source = "category.type", target = "categoryType")
+    })
+    EventDto toDto(Event event) throws Exception;
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(source = "categoryType", target = "category.type")
@@ -32,7 +35,7 @@ public interface EventMapper {
         return null;
     }
 
-//    default byte[] recoverImageFromUrl(String urlText) throws Exception {
-//        return ImageConverter.recoverImageFromUrl(urlText);
-//    }
+    default byte[] recoverImageFromUrl(String urlText) throws Exception {
+        return ImageConverter.recoverImageFromUrl(urlText);
+    }
 }

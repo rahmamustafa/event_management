@@ -9,10 +9,11 @@ import java.io.Serializable;
 
 
 @Value
-public class EventDto implements Serializable  {
+public class EventDto implements Serializable {
 
+    private Integer id;
     private String title;
-    private String image;
+    byte[] image;
     private String description;
     private String categoryType;
 

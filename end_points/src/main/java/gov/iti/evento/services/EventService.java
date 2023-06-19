@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -32,28 +33,48 @@ public class EventService {
     @Autowired
     EventMapper eventMapper;
 
-    public List<EventDto> getEvents(int page, int size) {
+    public List<EventDto> getEvents(int page, int size) throws Exception {
         System.out.println("Page : " + page + " Size : " + size);
         PageRequest pageRequest = PageRequest.of(page, size);
         List<Event> events = eventRepository.findAll(pageRequest).getContent();
-        return events.stream().map(eventMapper.INSTANCE::toDto).toList();
+        List<EventDto> list = new ArrayList<>();
+        for (Event event : events) {
+            EventDto eventDto = eventMapper.INSTANCE.toDto(event);
+            list.add(eventDto);
+        }
+        return list;
     }
 
-    public List<EventDto> getEventByCategoryType(String categoryType) throws MessageException {
+    public List<EventDto> getEventByCategoryType(String categoryType) throws Exception {
         Category category = categoryRepository.findCategoryByType(categoryType);
         if (category == null) throw new MessageException("Category Not Found");
         List<Event> events = Collections.unmodifiableList(eventRepository.findByCategoryType(categoryType));
-        return events.stream().map(eventMapper.INSTANCE::toDto).toList();
+        List<EventDto> list = new ArrayList<>();
+        for (Event event : events) {
+            EventDto eventDto = eventMapper.INSTANCE.toDto(event);
+            list.add(eventDto);
+        }
+        return list;
     }
 
-    public List<EventDto> getEventBySpeaker(String speaker) {
+    public List<EventDto> getEventBySpeaker(String speaker) throws Exception {
         List<EventSpeaker> eventSpeakers = eventSpeakerRepository.findBySpeakerNameIgnoreCaseLike(speaker);
         List<Event> events = eventSpeakers.stream().map(EventSpeaker::getEvent).collect(Collectors.toList());
-        return events.stream().map(eventMapper.INSTANCE::toDto).toList();
+        List<EventDto> list = new ArrayList<>();
+        for (Event event : events) {
+            EventDto eventDto = eventMapper.INSTANCE.toDto(event);
+            list.add(eventDto);
+        }
+        return list;
     }
 
-    public List<EventDto> getEventByStatus(String status) {
+    public List<EventDto> getEventByStatus(String status) throws Exception {
         List<Event> events = Collections.unmodifiableList(eventRepository.findByStatus(status));
-        return events.stream().map(eventMapper.INSTANCE::toDto).toList();
+        List<EventDto> list = new ArrayList<>();
+        for (Event event : events) {
+            EventDto eventDto = eventMapper.INSTANCE.toDto(event);
+            list.add(eventDto);
+        }
+        return list;
     }
 }
