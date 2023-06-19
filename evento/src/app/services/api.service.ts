@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
   basic:string="http://localhost:8888";
   constructor(private _http:HttpClient) { }

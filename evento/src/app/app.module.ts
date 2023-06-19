@@ -3,10 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { DatePipe } from '@angular/common';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { MbscInputModule } from '@mobiscroll/angular';
 
@@ -19,9 +16,6 @@ import { HeaderComponent } from './shared/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SharedComponent } from './shared/shared.component';
-import { SubscriptionComponent } from './components/home/subscription/subscription.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ScheduleComponent } from './components/home/schedule/schedule.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventReviewsComponent } from './components/event-details/event-reviews/event-reviews.component';
 
@@ -35,22 +29,17 @@ import { EventReviewsComponent } from './components/event-details/event-reviews/
     NotFoundComponent,
     FooterComponent,
     SharedComponent,
-    SubscriptionComponent,
-    ScheduleComponent,
     EventDetailsComponent,
     EventReviewsComponent
   ],
   imports: [  
-    MbscModule,     
+    MbscModule,   
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     RouterModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatSnackBarModule,
-    DatePipe
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
