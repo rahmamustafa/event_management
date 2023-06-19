@@ -1,4 +1,4 @@
-package gov.iti.evento.configuration;
+package gov.iti.evento.configurations;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

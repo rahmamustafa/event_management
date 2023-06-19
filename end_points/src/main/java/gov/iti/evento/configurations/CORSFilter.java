@@ -1,4 +1,4 @@
-package gov.iti.evento.configuration;
+package gov.iti.evento.configurations;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

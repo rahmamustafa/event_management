@@ -1,4 +1,4 @@
-package gov.iti.evento.configuration;
+package gov.iti.evento.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
