@@ -6,7 +6,12 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javax.xml.crypto.Data;
 
 @Getter
 @Setter
@@ -20,7 +25,7 @@ public class Event {
 
     @NotNull
     @Column(name = "event_date", nullable = false)
-    private Instant eventDate;
+    private LocalDateTime eventDate;
 
     @Size(max = 100)
     @NotNull
