@@ -56,7 +56,12 @@
                     </div>
                     
                 </div>
-                <app-event-reviews></app-event-reviews>
+                <p>{{currentDateTime}}</p>
+                <div *ngIf="eventDate < currentDateTime ; else elseBlock">
+                    <app-event-reviews></app-event-reviews>
+                  </div>
+                  <ng-template #elseBlock><app-event-tickets></app-event-tickets></ng-template>
+                
             </div>
         </div>
     <!-- </section> -->

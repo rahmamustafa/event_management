@@ -64,7 +64,7 @@ import { NewEventsComponent } from './components/home/new-events/new-events.comp
     MbscInputModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
