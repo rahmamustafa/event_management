@@ -8,13 +8,13 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './event-reviews.component.html',
   styleUrls: ['./event-reviews.component.css']
 })
-export class EventReviewsComponent implements OnInit{
-  reviews:EventReview []=[];
-  image:any;
-  constructor(private _activatedRoute:ActivatedRoute,private apiService:ApiService,private sanitizer: DomSanitizer){
-  
+export class EventReviewsComponent implements OnInit {
+  reviews: EventReview[] = [];
+  image: any;
+  constructor(private _activatedRoute: ActivatedRoute, private apiService: ApiService, private sanitizer: DomSanitizer) {
+
   }
-  
+
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
@@ -23,26 +23,27 @@ export class EventReviewsComponent implements OnInit{
     });
   }
 
-  getReviews(id:any) {
-  
-      this.apiService.get("event/"+id+"/reviews")
+  getReviews(id: any) {
+
+    this.apiService.get("event/" + id + "/reviews")
       .subscribe({
-        next:response=>{
-          this.reviews=response;
-          const bytes = new Uint8Array(this.reviews[0].user.image);
-          const base64 = btoa(String.fromCharCode(...bytes));
-          let objectURL = 'data:image/png;base64,' + this.reviews[0].user.image;
-          this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-          // this.image = `data:image/jpg;base64,${base64}`;
-          console.log(this.image);
-        console.log( this.reviews);
-      },
-      error:error=>{}
-    }
-        );
-     
-}
-  
+        next: response => {
+          this.reviews = response;
+         
+        },
+        error: error => { }
+      }
+      );
+
+  }
+  getImage(image: any): any {
+    const bytes = new Uint8Array(image);
+    const base64 = btoa(String.fromCharCode(...bytes));
+    let objectURL = 'data:image/png;base64,' + image;
+    let return_image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    return return_image;
+  }
+
 }
 //   ngOnInit(): void {
 //     this._activatedRoute.paramMap
