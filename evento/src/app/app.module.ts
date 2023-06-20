@@ -17,6 +17,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { SharedComponent } from './shared/shared.component';
+// import { EventSpeakersComponent } from './event-details/event-speakers.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SharedComponent } from './shared/shared.component';
     FooterComponent,
     EventDetailsComponent,
     SharedComponent
+    
   ],
   imports: [  
     MbscModule,   

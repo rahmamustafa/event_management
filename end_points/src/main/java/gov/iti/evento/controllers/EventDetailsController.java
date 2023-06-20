@@ -3,10 +3,12 @@ package gov.iti.evento.controllers;
 
 import gov.iti.evento.entites.Event;
 import gov.iti.evento.services.EventDetailService;
+import gov.iti.evento.services.dtos.EventSpeakersDto;
 import gov.iti.evento.services.dtos.EventoDetailesDTO;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +36,10 @@ public class EventDetailsController {
 //        event.setImage("http://2.bp.blogspot.com/-8AAEYfC6BD4/UgFHZq62UWI/AAAAAAAAAYw/SsybCfdzSnc/s1600/musica-deporte.jpg");
 //        return eventDetailService.savaEvent(event);
 //    }
+
+    @GetMapping("/{eventId}/speakers")
+    public List<EventSpeakersDto> getEventSpeakers(@PathVariable Integer eventId){
+        return  eventDetailService.getEventSpeakers(eventId);
+    }
    
 }
