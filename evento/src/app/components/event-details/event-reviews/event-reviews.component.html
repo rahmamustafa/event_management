@@ -2,7 +2,7 @@
     <h5>Comments ({{reviews.length}})</h5>
     <!-- Comment -->
     <div class="media comment"  *ngFor="let r of reviews;">
-        <img [src]="image" alt="image" style="width: 100px; height: 100px;">
+        <img [src]="getImage(r.user.image)" alt="image" style="width: 100px; height: 100px;">
         <div class="media-body">
             <h6>{{r.user.name}}</h6>
             <ul class="list-inline">
