@@ -33,4 +33,8 @@ public class Speaker {
     @Column(name = "age", nullable = false)
     private Integer age;
 
+    @Size(max = 45)
+    @Column(name = "image", length = 45)
+    private String image;
+
 }

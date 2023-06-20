@@ -1,5 +1,7 @@
 package gov.iti.evento.services;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +21,7 @@ import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.EventSpeakerRepository;
 import gov.iti.evento.services.dtos.EventByDateDto;
 import gov.iti.evento.services.dtos.EventDto;
+import gov.iti.evento.services.dtos.NewEventsDto;
 import gov.iti.evento.services.mappers.EventMapper;
 import gov.iti.evento.services.util.exceptions.MessageException;
 
@@ -55,7 +58,13 @@ public class EventService {
     
     public Page<EventByDateDto> getEventsByDate(LocalDate date, Pageable pageable) {
         Page<Event> eventPage=eventRepository.findByDate(date, pageable);
-        eventPage.forEach(eventpage ->System.out.println("titel ->"+eventpage.getTitle()));
+    
         return EventMapper.INSTANCE.map(eventPage);
+    }
+
+     public List<NewEventsDto> getLastNewEvents() {
+        List<Event> events= eventRepository.findTop3ByOrderByEventDateDesc();
+
+        return events.stream().map(eventMapper.INSTANCE::toNewEventDto).toList();
     }
 }

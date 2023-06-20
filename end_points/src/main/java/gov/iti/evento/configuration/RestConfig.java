@@ -26,9 +26,5 @@ public class RestConfig {
                 .registerCorsConfiguration("/**", config);
         return new CORSFilter(source);
     }
-
-    // @Bean
-    // public EventDisplayMapper eventDisplayMapper() {
-    //     return Mappers.getMapper(EventDisplayMapper.class);
-    // }
+    
 }

@@ -3,8 +3,10 @@ import { Time } from "@angular/common";
  export class eventTable{
     id:number;
     title:string;
-    image:string;
+    image:any;
     category:string;
-    venue:string;
+    online:boolean;
     time:Time;
+    eventDate:any;
+
 }
