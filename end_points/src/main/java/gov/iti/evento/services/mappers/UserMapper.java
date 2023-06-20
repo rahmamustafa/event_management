@@ -1,7 +1,7 @@
 package gov.iti.evento.services.mappers;
 
 import gov.iti.evento.entites.User;
-import gov.iti.evento.services.dtos.CreateUserDto;
+import gov.iti.evento.services.dtos.user.CreateUserDto;
 import org.mapstruct.*;
 import org.springframework.stereotype.Component;
 

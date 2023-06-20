@@ -5,7 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+// import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -14,6 +14,7 @@ import { MbscInputModule } from '@mobiscroll/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { EventComponent } from './components/event/event.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -31,6 +32,7 @@ import { NewEventsComponent } from './components/home/new-events/new-events.comp
   declarations: [
     AppComponent,
     LoginComponent,
+    SignupComponent,
     EventComponent,
     HomeComponent,
     HeaderComponent,
@@ -52,7 +54,7 @@ import { NewEventsComponent } from './components/home/new-events/new-events.comp
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
-    MatSnackBarModule,
+    // MatSnackBarModule,
     DatePipe,
     MbscInputModule,
     BrowserAnimationsModule
