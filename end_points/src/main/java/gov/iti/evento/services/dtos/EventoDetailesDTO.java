@@ -25,7 +25,8 @@ public class EventoDetailesDTO implements Serializable {
     private String title;
     private Byte isOnline;
     private String location;
-    private String image;
+    private byte[] image;
+
 
 
 }

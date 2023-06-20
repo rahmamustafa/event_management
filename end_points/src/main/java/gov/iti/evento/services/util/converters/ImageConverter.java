@@ -4,29 +4,22 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class ImageConverter {
     public static byte[] recoverImageFromUrl(String urlText) throws Exception {
-        System.out.println(urlText);
+        String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/uploads";
+        Path imagePath = Paths.get(UPLOAD_DIRECTORY, urlText);
+        boolean fileExists = Files.exists(imagePath);
+        if (fileExists) {
+            byte[] imageBytes;
 
-        URL url;
-        if (urlText.startsWith("file:")) {
-            url = new URL(urlText);
-        } else {
-            File file = new File(urlText);
-            url = file.toURI().toURL();
+            imageBytes = Files.readAllBytes(imagePath);
+
+            return imageBytes;
         }
-
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-
-        try (InputStream inputStream = url.openStream()) {
-            int n = 0;
-            byte [] buffer = new byte[ 1024 ];
-            while (-1 != (n = inputStream.read(buffer))) {
-                output.write(buffer, 0, n);
-            }
-        }
-
-        return output.toByteArray();
+        return null;
     }
 }
