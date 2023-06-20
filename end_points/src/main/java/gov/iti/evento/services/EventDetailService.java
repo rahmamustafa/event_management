@@ -46,7 +46,6 @@ public class EventDetailService {
             eventSpeakersDTO.setJobTitle(eventSpeaker.getSpeaker().getJobTitle());
             eventSpeakersDTO.setDescription(eventSpeaker.getSpeaker().getDescription());
             eventSpeakersDTO.setImage(eventSpeaker.getSpeaker().getImage());
-            // Set other properties as needed
             eventSpeakersDTOList.add(eventSpeakersDTO);
         }
         return eventSpeakersDTOList;
