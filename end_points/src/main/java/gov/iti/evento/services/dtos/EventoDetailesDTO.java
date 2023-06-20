@@ -19,18 +19,12 @@ import java.time.LocalDateTime;
 @Setter
 @Data
 public class EventoDetailesDTO implements Serializable {
-    private Instant eventDate;
+//    private LocalDateTime eventDate;
     private String description;
     private String title;
     private Byte isOnline;
     private String location;
     private String image;
 
-    public Instant getEventDate() {
-        return eventDate;
-    }
 
-    public void setEventDate(Instant eventDate) {
-        this.eventDate = eventDate;
-    }
 }

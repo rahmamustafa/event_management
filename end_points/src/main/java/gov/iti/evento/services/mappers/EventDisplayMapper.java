@@ -17,7 +17,7 @@ public interface EventDisplayMapper{
     @Mapping(source = "description", target = "description")
     @Mapping(source = "image", target = "image")
     @Mapping(source="isOnline",target = "isOnline")
-    @Mapping(source = "eventDate", target = "eventDate")
+//    @Mapping(source = "eventDate", target = "eventDate")
     @Mapping(source= "location", target="location")
 //    @Mapping(source="location", target="location")
     EventoDetailesDTO eventToEventDetailsDTO (Event event);

@@ -22,7 +22,7 @@ public class EventDetailService {
 
     public EventoDetailesDTO getEvent (Integer id) {
         Event event = eventRepository.findById(id).orElseThrow(()-> new NotFoundException("Event not found"));
-        System.out.println(event);
+        System.out.println(event.getEventDate());
         return eventDisplayMapper.eventToEventDetailsDTO(event);
     }
 

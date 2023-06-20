@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class EventByDateDto {
     private Long id;
-    private Instant time;
+    private LocalDateTime time;
     private String category;
     private String title;
     private boolean online;
