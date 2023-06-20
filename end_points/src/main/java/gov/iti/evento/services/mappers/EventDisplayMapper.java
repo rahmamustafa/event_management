@@ -1,11 +1,9 @@
 package gov.iti.evento.services.mappers;
 
 import gov.iti.evento.entites.Event;
+
 import gov.iti.evento.services.dtos.EventoDetailesDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -23,4 +21,7 @@ public interface EventDisplayMapper{
     @Mapping(source= "location", target="location")
 //    @Mapping(source="location", target="location")
     EventoDetailesDTO eventToEventDetailsDTO (Event event);
+    EventoDetailesDTO toDto(Event event);
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Event partialUpdate(EventoDetailesDTO eventoDetailesDTO, @MappingTarget Event event);
 }

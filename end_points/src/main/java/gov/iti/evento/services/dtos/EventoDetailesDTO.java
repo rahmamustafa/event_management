@@ -6,10 +6,17 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Data
 public class EventoDetailesDTO implements Serializable {
     private Instant eventDate;
@@ -19,4 +26,11 @@ public class EventoDetailesDTO implements Serializable {
     private String location;
     private String image;
 
+    public Instant getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(Instant eventDate) {
+        this.eventDate = eventDate;
+    }
 }
