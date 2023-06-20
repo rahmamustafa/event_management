@@ -1,29 +1,40 @@
 package gov.iti.evento.controllers;
 
 import gov.iti.evento.repositories.CategoryRepository;
+import gov.iti.evento.services.EventReviewService;
+import gov.iti.evento.services.EventTicketService;
+import gov.iti.evento.services.dtos.eventReviews.EventReviewDto;
 import gov.iti.evento.services.EventService;
 import gov.iti.evento.services.dtos.EventDto;
+import gov.iti.evento.services.dtos.ticket.EventTicketDto;
 import gov.iti.evento.services.util.exceptions.MessageException;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 public class EventController {
-    @Autowired
-    CategoryRepository categoryRepository;
 
+
+    @Autowired
+    private EventReviewService eventReviewService;
+    @Autowired
+    private EventTicketService eventTicketService;
+    @GetMapping("event/{id}/reviews")
+    public List<EventReviewDto> getEventReviews(@PathVariable("id")int id) {
+        return eventReviewService.getReviewByEventId(id);
+    }
     @Autowired
     EventService eventService;
 
-    public void m() {
-    }
 
     @GetMapping("/events")
     public List<EventDto> getEvents() {
@@ -41,6 +52,16 @@ public class EventController {
     public List<EventDto> getEventBySpeaker(@RequestParam("speaker") String speaker) throws MessageException {
         System.out.println("speaker : " + speaker);
         return eventService.getEventBySpeaker(speaker);
+    }
+
+    @GetMapping("/event/{eventId}/tickets")
+    public List<EventTicketDto> getEventTicketDetails( @PathVariable("eventId") int eventId) {
+        List<EventTicketDto> eventTicketDto=eventTicketService.getEventTicketDetails(eventId);
+        for (EventTicketDto e:eventTicketDto
+             ) {
+            System.out.println(e);
+        }
+        return eventTicketService.getEventTicketDetails(eventId);
     }
 
 }

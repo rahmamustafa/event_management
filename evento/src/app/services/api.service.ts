@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { APIResponse } from '../models/api-response.model';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
   [x: string]: any;
   basic:string="http://localhost:8888";

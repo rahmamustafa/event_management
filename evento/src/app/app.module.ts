@@ -15,8 +15,11 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { EventDetailsComponent } from './event-details/event-details.component';
+// import { EventDetailsComponent } from './event-details/event-details.component';
 import { SharedComponent } from './shared/shared.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { EventReviewsComponent } from './components/event-details/event-reviews/event-reviews.component';
+import { EventTicketsComponent } from './components/event-details/event-tickets/event-tickets.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +30,11 @@ import { SharedComponent } from './shared/shared.component';
     HeaderComponent,
     NotFoundComponent,
     FooterComponent,
+    // EventDetailsComponent,
+    SharedComponent,
     EventDetailsComponent,
-    SharedComponent
+    EventReviewsComponent,
+    EventTicketsComponent
   ],
   imports: [  
     MbscModule,   

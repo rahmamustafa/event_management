@@ -1,4 +1,4 @@
-package gov.iti.evento;
+package gov.iti.evento.configuration;
 
 import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
