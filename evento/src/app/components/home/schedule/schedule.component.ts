@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/services/api.service';
@@ -10,7 +10,7 @@ import { eventTable } from 'src/app/models/home-models/event-table.model';
   styleUrls: ['./schedule.component.css'],
   providers: [DatePipe]
 })
-export class ScheduleComponent {
+export class ScheduleComponent implements OnInit{
   currentDate: string|null;
   tomorrowDate: string|null;
   afterTomorrowDate: string|null;
@@ -18,15 +18,18 @@ export class ScheduleComponent {
   currentPage:number;
   constructor(private datePipe: DatePipe,private apiService:ApiService) {
     this.setDate();
-    this.getTableData(this.currentDate,1);
 
   }
-  getTableData(date:string|null,page:number=1):void{
-    this.apiService.get(`events/dates?date=${date}&page=${page}&size=1`)
+  ngOnInit(): void {
+    this.getTableData(this.currentDate,1);
+  }
+  getTableData(date:string|null,page:number=0):void{
+    this.apiService.get(`events/dates?date=${date}&page=${page}&size=4`)
     .subscribe({
       next:response=>{
-        console.log(response);
-
+        console.log(response.content);
+        this.events =response.content;
+        console.log(this.events);
       },
       error:error=>{
         console.log("error->"+error);

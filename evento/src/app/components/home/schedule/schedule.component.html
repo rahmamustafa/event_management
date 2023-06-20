@@ -46,7 +46,7 @@
 					  		</li>
 					  		<!-- Schedule Details -->
 							
-					  		<li *ngFor="let event of events" class="schedule-details">
+					  		<li  class="image-row" *ngFor="let event of events" class="schedule-details">
 					  			<div class="block">
 					  				<!-- time -->
 							  		<div class="time">
@@ -55,13 +55,21 @@
 							  		</div>
 							  		<!-- Speaker -->
 							  		<div class="speaker">
-							  			<img src="./assets/images/speakers/speaker-thumb-one.jpg" alt="speaker-thumb-one">
-										<span class="name">{{event.title}}</span>
+										<div *ngIf=event.image>
+											<img [src]="'data:image/jpeg;base64,' + event.image" class="img-fluid" alt="event Image">
+										    <span class="name">{{event.title}}</span>
+										</div>
+									
 							  		</div>
 							  		<!-- category -->
 							  		<div class="subject">{{event.category}}</div>
 							  		<!-- Venue -->
-							  		<div class="venue">{{event.venue}}</div>
+							  		<div class="venue">
+										<p *ngIf="event.online; else elseBlock">online</p>
+												<ng-template #elseBlock>
+												<p> On-Premise</p>
+												</ng-template>
+									</div>
 					  			</div>
 					  		</li>
 					  	</ul>
@@ -70,28 +78,36 @@
 						<ul class="m-0 p-0">
 							<li class="headings">
 								<div class="time">Time</div>
-								<div class="event">Event</div>
+								<div class="speaker">Event</div>
+							  <div class="subject">Category</div>
 								<div class="venue">Venue</div>
-							  <div class="category">Category</div>
 
 							</li>
 							<!-- Schedule Details -->
-							<li class="schedule-details">
+							<li  class="image-row"*ngFor="let event of events" class="schedule-details">
 								<div class="block">
 									<!-- time -->
 									<div class="time">
 										<i class="fa fa-clock-o"></i>
-										<span class="time">9.00 AM</span>
+										<span class="time">{{event.time}}</span>
 									</div>
 									<!-- Speaker -->
 									<div class="speaker">
-										<img src="images/speakers/speaker-thumb-one.jpg" alt="speaker-thumb-one">
-									  <span class="name">Samanta Doe</span>
+									  <div *ngIf=event.image>
+										  <img [src]="'data:image/jpeg;base64,' + event.image" class="img-fluid" alt="event Image">
+										  <span class="name">{{event.title}}</span>
+									  </div>
+								  
 									</div>
-									<!-- Subject -->
-									<div class="subject">Introduction to Wp</div>
+									<!-- category -->
+									<div class="subject">{{event.category}}</div>
 									<!-- Venue -->
-									<div class="venue">Auditorium A</div>
+									<div class="venue">
+										<p *ngIf="event.online; else elseBlock">online</p>
+												<ng-template #elseBlock>
+												<p> On-Premise</p>
+												</ng-template>
+									</div>
 								</div>
 							</li>
 						</ul>
@@ -100,28 +116,36 @@
 						<ul class="m-0 p-0">
 							<li class="headings">
 								<div class="time">Time</div>
-								<div class="event">Event</div>
+								<div class="speaker">Event</div>
+							  <div class="subject">Category</div>
 								<div class="venue">Venue</div>
-							  <div class="category">Category</div>
 
 							</li>
 							<!-- Schedule Details -->
-							<li class="schedule-details">
+							<li  class="image-row"*ngFor="let event of events" class="schedule-details">
 								<div class="block">
 									<!-- time -->
 									<div class="time">
 										<i class="fa fa-clock-o"></i>
-										<span class="time">9.00 AM</span>
+										<span class="time">{{event.time}}</span>
 									</div>
 									<!-- Speaker -->
 									<div class="speaker">
-										<img src="images/speakers/speaker-thumb-one.jpg" alt="speaker-thumb-one">
-									  <span class="name">Samanta Doe</span>
+									  <div *ngIf=event.image>
+										  <img [src]="'data:image/jpeg;base64,' + event.image" class="img-fluid" alt="event Image">
+										  <span class="name">{{event.title}}</span>
+									  </div>
+								  
 									</div>
-									<!-- Subject -->
-									<div class="subject">Introduction to Wp</div>
+									<!-- category -->
+									<div class="subject">{{event.category}}</div>
 									<!-- Venue -->
-									<div class="venue">Auditorium A</div>
+									<div class="venue">
+										<p *ngIf="event.online; else elseBlock">online</p>
+												<ng-template #elseBlock>
+												<p> On-Premise</p>
+												</ng-template>
+									</div>
 								</div>
 							</li>
 						</ul>

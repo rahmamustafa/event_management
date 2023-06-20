@@ -8,8 +8,6 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.xml.crypto.Data;
 
@@ -25,7 +23,7 @@ public class Event {
 
     @NotNull
     @Column(name = "event_date", nullable = false)
-    private LocalDateTime eventDate;
+    private Timestamp eventDate;
 
     @Size(max = 100)
     @NotNull

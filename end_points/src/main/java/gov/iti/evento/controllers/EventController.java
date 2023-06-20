@@ -6,12 +6,14 @@ import gov.iti.evento.services.dtos.eventReviews.EventReviewDto;
 import gov.iti.evento.services.EventService;
 import gov.iti.evento.services.dtos.EventByDateDto;
 import gov.iti.evento.services.dtos.EventDto;
+import gov.iti.evento.services.dtos.NewEventsDto;
 import gov.iti.evento.services.util.exceptions.MessageException;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,6 +66,12 @@ public class EventController {
         
         Page<EventByDateDto> eventPage = eventService.getEventsByDate(eventDate, PageRequest.of(page, size, Sort.by("eventDate").ascending()));
 
-        return ResponseEntity.ok(eventPage);
+        return ResponseEntity.ok().body(eventPage);
+    }
+
+     @GetMapping("/events/new")
+    public ResponseEntity<List<NewEventsDto>> getLastNewEvents() {
+        List<NewEventsDto> events = eventService.getLastNewEvents();
+        return ResponseEntity.ok(events);
     }
 }

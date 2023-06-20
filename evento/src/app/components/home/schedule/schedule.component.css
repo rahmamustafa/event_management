@@ -1,0 +1,10 @@
+.img-fluid {
+    max-width: 10em;
+    max-height: 6em;
+  }
+  .image-row {
+    display: flex;
+    align-items: center;
+  }
+  
+  
