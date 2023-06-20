@@ -5,7 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+// import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -50,7 +50,7 @@ import { ScheduleComponent } from './components/home/schedule/schedule.component
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
-    MatSnackBarModule,
+    // MatSnackBarModule,
     DatePipe,
     MbscInputModule,
     BrowserAnimationsModule
