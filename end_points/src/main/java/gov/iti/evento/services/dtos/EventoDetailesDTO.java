@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
@@ -19,7 +20,7 @@ import java.time.LocalDateTime;
 @Setter
 @Data
 public class EventoDetailesDTO implements Serializable {
-//    private LocalDateTime eventDate;
+    private Timestamp eventDate;
     private String description;
     private String title;
     private Byte isOnline;

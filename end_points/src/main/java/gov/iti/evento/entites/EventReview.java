@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 
 @Getter
@@ -32,6 +33,6 @@ public class EventReview {
 
     @NotNull
     @Column(name = "review_date", nullable = false)
-    private Instant reviewDate;
+    private Timestamp reviewDate;
 
 }

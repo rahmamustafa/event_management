@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Value;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.Instant;
 
 /**
@@ -17,5 +18,5 @@ public class EventReviewDto implements Serializable {
     @Size(max = 45)
     String review;
     @NotNull
-    Instant reviewDate;
+    Timestamp reviewDate;
 }
