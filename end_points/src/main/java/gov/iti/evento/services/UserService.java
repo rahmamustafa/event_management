@@ -2,7 +2,8 @@ package gov.iti.evento.services;
 
 import gov.iti.evento.entites.User;
 import gov.iti.evento.repositories.UserRepository;
-import gov.iti.evento.services.dtos.CreateUserDto;
+import gov.iti.evento.services.dtos.user.CreateUserDto;
+import gov.iti.evento.services.dtos.user.UserLoginDto;
 import gov.iti.evento.services.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,4 +27,11 @@ public class UserService {
     public boolean checkEmailValid(String email){
         return userRepository.existsByEmailIgnoreCase(email);
     }
+
+    public boolean checkUserValid(UserLoginDto user) {
+        return userRepository.existsByEmailIgnoreCaseAndPassword(user.getEmail() , user.getPassword());
+    }
+//    public UserDto getUser(UserLoginDto user) {
+//        return userRepository.findsByEmailIgnoreCaseAndPassword(user.getEmail() , user.getPassword());
+//    }
 }
