@@ -4,6 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { MbscInputModule } from '@mobiscroll/angular';
 
@@ -19,6 +23,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { SharedComponent } from './shared/shared.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventReviewsComponent } from './components/event-details/event-reviews/event-reviews.component';
+import { SubscriptionComponent } from './components/home/subscription/subscription.component';
+import { ScheduleComponent } from './components/home/schedule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +38,8 @@ import { EventReviewsComponent } from './components/event-details/event-reviews/
     FooterComponent,
     SharedComponent,
     EventDetailsComponent,
+    SubscriptionComponent,
+    ScheduleComponent,
     EventReviewsComponent
   ],
   imports: [  
@@ -41,7 +49,11 @@ import { EventReviewsComponent } from './components/event-details/event-reviews/
     FormsModule,
     HttpClientModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    DatePipe,
+    MbscInputModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
