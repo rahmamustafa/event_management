@@ -16,6 +16,9 @@ export class EventListComponent implements OnInit {
   categories: Category[] = [];
   numbers: number[] = [1, 2, 3, 4, 5];
   image: any;
+  pageNumber:number = 0 ;
+  categoryType:string;
+  type:number;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,7 +33,7 @@ export class EventListComponent implements OnInit {
   }
 
   getEvents(page: number) {
-    this.apiService.get(`events?page=${page}&size=6`).subscribe({
+    this.apiService.get(`events?page=${this.pageNumber}&size=6`).subscribe({
       next: (response: Event[]) => {
         this.events = response;
         console.log("ssssssss s");
@@ -49,8 +52,8 @@ export class EventListComponent implements OnInit {
     });
   }
 
-  getEventByCategory(categoryType: string) {
-    this.apiService.get(`events/category/${categoryType}`).subscribe({
+  getEventByCategory() {
+    this.apiService.get(`events/category/${this.categoryType}?page=${this.pageNumber}`).subscribe({
       next: (response: Event[]) => {
         this.events = response;
       },
@@ -58,8 +61,8 @@ export class EventListComponent implements OnInit {
     });
   }
 
-  getEventBySpeaker(speakerName: string) {
-    this.apiService.get(`events/${speakerName}`).subscribe({
+  getEventBySpeaker(speakerName: string ) {
+    this.apiService.get(`events/${speakerName}?page=${this.pageNumber}`).subscribe({
       next: (response: Event[]) => {
         this.events = response;
       },
@@ -68,12 +71,23 @@ export class EventListComponent implements OnInit {
   }
 
   getEventByStatus(status: string) {
-    this.apiService.get(`events/status/${status}`).subscribe({
+    this.apiService.get(`events/status/${status}?page=${this.pageNumber}`).subscribe({
       next: (response: Event[]) => {
         this.events = response;
       },
       error: (error) => {}
     });
+  }
+  setPageNumber(page:number) {
+   this.pageNumber = page ;
+   if(this.type==1)
+      this.getEventByCategory();
+   else if(this.type==0)
+      this.getEvents(page);
+  }
+  setCategoryType(type:string) {
+   this.categoryType = type;
+   this.getEventByCategory();
   }
   getImage(image:any):any {
           const bytes = new Uint8Array(image);

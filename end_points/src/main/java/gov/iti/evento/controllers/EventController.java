@@ -41,21 +41,21 @@ public class EventController {
     }
 
     @GetMapping("/events/category/{categoryType}")
-    public List<EventDto> getEventByCategoryType(@PathVariable("categoryType") String categoryType) throws Exception {
+    public List<EventDto> getEventByCategoryType(@PathVariable("categoryType") String categoryType, @RequestParam("page") @DefaultValue("0") int page) throws Exception {
         System.out.println("categoryType : " + categoryType);
-        return eventService.getEventByCategoryType(categoryType);
+        return eventService.getEventByCategoryType(categoryType, page);
     }
 
     @GetMapping("/events/{speaker}")
-    public List<EventDto> getEventBySpeaker(@PathVariable("speaker") String speaker) throws Exception {
+    public List<EventDto> getEventBySpeaker(@PathVariable("speaker") String speaker, @RequestParam("page") @DefaultValue("0") int page) throws Exception {
         System.out.println("speaker : " + speaker);
-        return eventService.getEventBySpeaker(speaker);
+        return eventService.getEventBySpeaker(speaker, page);
     }
 
     @GetMapping("/events/status/{status}")
-    public List<EventDto> getEventByStatus(@PathVariable("status") String status) throws Exception {
+    public List<EventDto> getEventByStatus(@PathVariable("status") String status, @RequestParam("page") @DefaultValue("0") int page) throws Exception {
         System.out.println("speaker : " + status);
-        return eventService.getEventByStatus(status);
+        return eventService.getEventByStatus(status, page);
     }
 
     public static int calculatePaginationSize(int totalItems, int itemsPerPage) {

@@ -32,7 +32,7 @@
               <label class="btn active">
                 <input type="radio" name="gallery-filter" value="all" checked="checked" (click)="getEvents(0)"/>All
               </label>
-              <label class="btn" *ngFor="let c of categories;" (click)="getEventByCategory(c.type)">
+              <label class="btn" *ngFor="let c of categories;" (click)="setCategoryType(c.type) ; type=1">
                 <input type="radio" name="gallery-filter" value="conference"/>{{c.type}}
               </label>
 
@@ -59,7 +59,7 @@
         <div class="col-md-12">
           <!--Pagination Start-->
           <div class="iqoniq-pagination text-center ml-2" *ngFor="let number of numbers">
-            <a class="page-numbers" (click)="getEvents(number-1)">{{ number }}</a>
+            <a class="page-numbers" (click)="setPageNumber(number-1) ; type = 0">{{ number }}</a>
           </div>
           <!--Pagination End-->
         </div>

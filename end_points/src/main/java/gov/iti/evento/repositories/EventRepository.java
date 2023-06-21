@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public interface EventRepository extends JpaRepository<Event,Integer> {
-    public List<Event> findByCategoryType(String categoryType);
-    public List<Event> findByStatus(String status);
-    public Page<Event> findAll(@PageableDefault(size = 2)Pageable pageable);
+    public List<Event> findByCategoryType(String categoryType , Pageable pageable);
+    public List<Event> findByStatus(String status ,Pageable pageable);
+    public Page<Event> findAll(@PageableDefault(size = 6)Pageable pageable);
 }

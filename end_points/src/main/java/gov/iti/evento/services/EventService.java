@@ -45,10 +45,11 @@ public class EventService {
         return list;
     }
 
-    public List<EventDto> getEventByCategoryType(String categoryType) throws Exception {
+    public List<EventDto> getEventByCategoryType(String categoryType, int page) throws Exception {
         Category category = categoryRepository.findCategoryByType(categoryType);
         if (category == null) throw new MessageException("Category Not Found");
-        List<Event> events = Collections.unmodifiableList(eventRepository.findByCategoryType(categoryType));
+        PageRequest pageRequest = PageRequest.of(page, 6);
+        List<Event> events = Collections.unmodifiableList(eventRepository.findByCategoryType(categoryType, pageRequest));
         List<EventDto> list = new ArrayList<>();
         for (Event event : events) {
             EventDto eventDto = eventMapper.INSTANCE.toDto(event);
@@ -57,8 +58,9 @@ public class EventService {
         return list;
     }
 
-    public List<EventDto> getEventBySpeaker(String speaker) throws Exception {
-        List<EventSpeaker> eventSpeakers = eventSpeakerRepository.findBySpeakerNameIgnoreCaseLike(speaker);
+    public List<EventDto> getEventBySpeaker(String speaker, int page) throws Exception {
+        PageRequest pageRequest = PageRequest.of(page, 6);
+        List<EventSpeaker> eventSpeakers = eventSpeakerRepository.findBySpeakerNameIgnoreCaseLike(speaker, pageRequest);
         List<Event> events = eventSpeakers.stream().map(EventSpeaker::getEvent).collect(Collectors.toList());
         List<EventDto> list = new ArrayList<>();
         for (Event event : events) {
@@ -68,8 +70,9 @@ public class EventService {
         return list;
     }
 
-    public List<EventDto> getEventByStatus(String status) throws Exception {
-        List<Event> events = Collections.unmodifiableList(eventRepository.findByStatus(status));
+    public List<EventDto> getEventByStatus(String status, int page) throws Exception {
+        PageRequest pageRequest = PageRequest.of(page, 6);
+        List<Event> events = Collections.unmodifiableList(eventRepository.findByStatus(status, pageRequest));
         List<EventDto> list = new ArrayList<>();
         for (Event event : events) {
             EventDto eventDto = eventMapper.INSTANCE.toDto(event);
