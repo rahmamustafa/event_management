@@ -38,3 +38,5 @@ evento/.vcode/
 #end-points
 end-points/.idea/
 end-points/target/
+end_points/src/main/resources/META-INF/persistence.xml
+end_points/src/main/resources/application.properties
