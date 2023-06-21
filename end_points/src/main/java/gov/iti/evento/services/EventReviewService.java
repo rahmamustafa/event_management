@@ -20,6 +20,7 @@ public class EventReviewService {
         this.eventReviewRepository=eventReviewRepository;
     }
     public List<EventReviewDto> getReviewByEventId(int id) {
+        System.out.println(id);
         List <EventReviewDto>eventReviewsDto=new ArrayList<>();
         List <EventReview>eventReviews=eventReviewRepository.getEventReviewByEvent_Id(id);
         for (EventReview e :eventReviews

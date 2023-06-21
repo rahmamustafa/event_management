@@ -13,7 +13,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 const routes: Routes = [
   {path: '',
       children: [
-  {path:'eventDetails/:id',component:EventDetailsComponent},
+ 
 
   {path:'home',component:HomeComponent},
   {path:'event/:id',component:EventDetailsComponent},

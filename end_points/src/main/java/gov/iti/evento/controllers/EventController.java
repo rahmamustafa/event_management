@@ -40,12 +40,14 @@ public class EventController {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
     private EventReviewService eventReviewService;
     @Autowired
     private EventTicketService eventTicketService;
 
     @GetMapping("event/{id}/reviews")
     public List<EventReviewDto> getEventReviews(@PathVariable("id") int id) {
+        System.out.println(id);
         return eventReviewService.getReviewByEventId(id);
     }
 
