@@ -6,6 +6,7 @@ import { EventComponent } from './components/event/event.component';
 // import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   
   {path:'home',component:HomeComponent},
   {path:'event/:id',component:EventDetailsComponent},
+  {path:'404',component:NotFoundComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'event',component:EventComponent},

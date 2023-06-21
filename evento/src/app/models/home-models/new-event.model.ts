@@ -1,6 +1,6 @@
 export class NewEvent{
     id:number;
     title:string;
-    date:any;
+    date:string;
     image:any;
 }

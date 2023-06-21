@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NewEvent } from 'src/app/models/home-models/new-event.model';
 import { ApiService } from 'src/app/services/api.service';
@@ -9,7 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class NewEventsComponent implements OnInit{
   events:NewEvent[]=[];
-  constructor(private apiService:ApiService) {
+  constructor(private apiService:ApiService,private datePipe: DatePipe) {
 
   }
   ngOnInit(): void {
@@ -18,6 +19,7 @@ export class NewEventsComponent implements OnInit{
       next:response=>{
         console.log(response);
         this.events =response;
+        
         console.log(this.events);
       },
       error:error=>{
@@ -26,6 +28,11 @@ export class NewEventsComponent implements OnInit{
     }
     );
   }
- 
-
+  formatDate(dateString: string): string|null{
+    const [day, month] = dateString.split('/');
+    const date = new Date();
+    date.setDate(parseInt(day, 10));
+    date.setMonth(parseInt(month, 10) - 1); // Month is zero-based in JavaScript
+    return this.datePipe.transform(date, 'dd MMM');
+  }
 }

@@ -13,13 +13,13 @@
 				<div class="schedule-tab">
 					<ul class="nav nav-pills text-center">
 					  <li class="nav-item">
-					    <a class="nav-link active" href="#today" data-toggle="pill" (click)="getTableData(currentDate)">
+					    <a class="nav-link active" href="#today" data-toggle="pill" (click)="getTableData(today)">
 					    	Today
-					    	<span>{{ currentDate }}</span>
+					    	<span>{{ today }}</span>
 					    </a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" href="#tomorrow" data-toggle="pill" (click)="getTableData(tomorrowDate)">
+					    <a class="nav-link"  href="#tomorrow" data-toggle="pill" (click)="getTableData(tomorrowDate)">
 							Tomorrow 
 					    	<span>{{ tomorrowDate }}</span>
 					    </a>
@@ -152,11 +152,29 @@
 					  </div>
 					</div>
 				</div>
-				<!-- <div>
-					<button (click)="getTableData(,currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
-					<span>Page {{ currentPage }} of {{ totalPages }}</span>
-					<button (click)="getTableData(,currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
-				  </div> -->
+				<div class="col-12 text-center">
+					<!-- Pagination -->
+					<nav class="d-flex justify-content-center">
+					  <ul class="pagination">
+						  <li class="page-item">
+						  <a class="page-link" href="#" aria-label="prev">
+							<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
+							<span class="sr-only">prev</span>
+						  </a>
+						</li> 
+
+						<li class="page-item " *ngFor="let num of getNumberRange(Pagination)">
+							<a class="page-link" (click)="handleButtonClick(num,$event)" [ngClass]="{ 'active': activeButton === num }" href="#">{{num}}</a>
+						</li>
+						<li class="page-item">
+						  <a class="page-link" href="#" aria-label="Next">
+							<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
+							<span class="sr-only">Next</span>
+						  </a>
+						</li>
+					  </ul>
+					</nav>
+				</div>
 			</div>
 		</div>
 	</div>
