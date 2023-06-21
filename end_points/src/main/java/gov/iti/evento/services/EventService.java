@@ -14,9 +14,11 @@ import gov.iti.evento.entites.Event;
 
 
 import gov.iti.evento.entites.EventSpeaker;
+import gov.iti.evento.entites.Subscription;
 import gov.iti.evento.repositories.CategoryRepository;
 import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.EventSpeakerRepository;
+import gov.iti.evento.repositories.SubscriptionRepository;
 import gov.iti.evento.services.dtos.EventByDateDto;
 import gov.iti.evento.services.dtos.EventDto;
 import gov.iti.evento.services.dtos.NewEventsDto;
@@ -24,18 +26,28 @@ import gov.iti.evento.services.mappers.EventMapper;
 import gov.iti.evento.services.util.exceptions.MessageException;
 import org.springframework.data.domain.PageRequest;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Service
 public class EventService {
     @Autowired
     EventRepository eventRepository;
+    
     @Autowired
     CategoryRepository categoryRepository;
+    
     @Autowired
     EventSpeakerRepository eventSpeakerRepository;
 
     @Autowired
     EventMapper eventMapper;
+
+    @Autowired
+    SubscriptionService subscriptionService;
+
+    @Autowired
+    SubscriptionRepository subscriptionRepository;
+
 
     public List<EventDto> getEvents(int page, int size) throws Exception {
         System.out.println("Page : " + page + " Size : " + size);
@@ -97,4 +109,18 @@ public class EventService {
 
         return events.stream().map(eventMapper.INSTANCE::toNewEventDto).toList();
     }
+    public void addEvent(Event event) {
+        Event savedEvent = eventRepository.save(event);
+
+        List<Subscription> subscribedEmails = getSubscribedEmails();
+
+        // Notify subscribers
+        subscriptionService.notifySubscribers(subscribedEmails, savedEvent.getTitle());
+    }
+
+    private List<Subscription> getSubscribedEmails() {
+       
+        return subscriptionRepository.findAll();
+    }
+  
 }

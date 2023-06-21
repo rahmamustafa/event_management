@@ -1,8 +1,10 @@
 package gov.iti.evento.controllers;
 
+import gov.iti.evento.entites.Category;
 import gov.iti.evento.entites.Event;
 import gov.iti.evento.repositories.CategoryRepository;
 import gov.iti.evento.repositories.EventRepository;
+import gov.iti.evento.services.CategoryService;
 import gov.iti.evento.services.EventReviewService;
 import gov.iti.evento.services.EventTicketService;
 import gov.iti.evento.services.dtos.eventReviews.EventReviewDto;
@@ -28,10 +30,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import java.lang.StackWalker.Option;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @RestController
@@ -43,19 +48,37 @@ public class EventController {
     @Autowired
     private EventTicketService eventTicketService;
 
-    @GetMapping("event/{id}/reviews")
-    public List<EventReviewDto> getEventReviews(@PathVariable("id") int id) {
-        return eventReviewService.getReviewByEventId(id);
-    }
-
     @Autowired
     EventService eventService;
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
 
-    public void m() {
+      @GetMapping("/events/create")
+     public  int createNewEvent(){
+    
+       
+         
+        Event event=new Event();
+        Optional<Category> A =categoryRepository.findById(1);
+        event.setCategory(A.get());
+        event.setDescription("null");
+        event.setIsOnline(Byte.parseByte("0"));
+        event.setLocation("null");
+        event.setEventDate(Timestamp.valueOf(LocalDateTime.now()));
+        event.setTitle(" for subscriptions");
+        event.setStatus("");
+        
+
+        eventService.addEvent(event);
+        return 1;
+     }
+
+    @GetMapping("event/{id}/reviews")
+    public List<EventReviewDto> getEventReviews(@PathVariable("id") int id) {
+        return eventReviewService.getReviewByEventId(id);
     }
-
+    
     @GetMapping("/events")
     public ResponseEntity<List<EventDto>> getEvents(@RequestParam("page") @DefaultValue("0") int page) throws Exception {
         System.out.println("rtyrtry : ");
@@ -108,4 +131,6 @@ public class EventController {
     public static int calculatePaginationSize(int totalItems, int itemsPerPage) {
         return (int) Math.ceil((double) totalItems / itemsPerPage);
     }
+
+  
 }
