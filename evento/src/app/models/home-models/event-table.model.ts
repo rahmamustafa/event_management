@@ -6,7 +6,7 @@ import { Time } from "@angular/common";
     image:any;
     category:string;
     online:boolean;
-    time:Time;
+    time:string;
     eventDate:any;
 
 }

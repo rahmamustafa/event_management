@@ -74,4 +74,17 @@ export class ScheduleComponent implements OnInit{
     this.setActiveButton(num);
     this.getTableData(this.currentDate,num);
   }
+  convertTo12HourFormat(time: string): string {
+    const [hours, minutes] = time.split(':');
+    let hour = parseInt(hours);
+    const suffix = hour >= 12 ? 'PM' : 'AM';
+    
+    if (hour === 0) {
+      hour = 12;
+    } else if (hour > 12) {
+      hour -= 12;
+    }
+
+    return `${hour}:${minutes} ${suffix}`;
+  }
 }
