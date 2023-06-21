@@ -9,7 +9,7 @@ import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-// import { MbscInputModule } from '@mobiscroll/angular';
+import { MbscInputModule } from '@mobiscroll/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +22,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 // import { EventDetailsComponent } from './event-details/event-details.component';
 import { SharedComponent } from './shared/shared.component';
-import { EventListComponent } from './components/event-list/event-list.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventReviewsComponent } from './components/event-details/event-reviews/event-reviews.component';
 import { EventTicketsComponent } from './components/event-details/event-tickets/event-tickets.component';
@@ -30,6 +29,7 @@ import { SubscriptionComponent } from './components/home/subscription/subscripti
 import { ScheduleComponent } from './components/home/schedule/schedule.component';
 import { SpeakersComponent } from './components/home/speakers/speakers.component';
 import { NewEventsComponent } from './components/home/new-events/new-events.component';
+import {EventListComponent} from './components/event-list/event-list.component'
 
 @NgModule({
   declarations: [
@@ -43,7 +43,6 @@ import { NewEventsComponent } from './components/home/new-events/new-events.comp
     FooterComponent,
     // EventDetailsComponent,
     SharedComponent,
-    EventListComponent
     EventDetailsComponent,
     EventReviewsComponent,
     EventTicketsComponent,
@@ -51,7 +50,8 @@ import { NewEventsComponent } from './components/home/new-events/new-events.comp
     ScheduleComponent,
     EventReviewsComponent,
     SpeakersComponent,
-    NewEventsComponent
+    NewEventsComponent,
+    EventListComponent
   ],
   imports: [
     MbscModule,
