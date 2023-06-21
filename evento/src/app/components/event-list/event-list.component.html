@@ -1,0 +1,70 @@
+<!--================================
+=            Page Title            =
+=================================-->
+<app-shared>
+  <section class="page-title bg-title overlay-dark event-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <div class="title">
+            <h3>Our Events</h3>
+          </div>
+          <ol class="breadcrumb justify-content-center p-0 m-0">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Our Events</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--====  End of Page Title  ====-->
+  <!--=============================
+  =            Gallery            =
+  ==============================-->
+
+  <section class="section gallery">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="controls">
+            <div class="btn-group btn-group-toggle d-block" data-toggle="buttons">
+              <label class="btn active">
+                <input type="radio" name="gallery-filter" value="all" checked="checked" (click)="getEvents(0)"/>All
+              </label>
+              <label class="btn" *ngFor="let c of categories;" (click)="setCategoryType(c.type) ; type=1">
+                <input type="radio" name="gallery-filter" value="conference"/>{{c.type}}
+              </label>
+
+            </div>
+          </div>
+          <div class="gallery-wrapper row">
+            <div class="gallery-item col-lg-4 col-md-6" data-groups="[&quot;meeting&quot;]" *ngFor="let e of events;">
+              <div class="image-block">
+                <div class="image">
+                  <img [src]="getImage(e.image)" alt="gallery-image" class="img-fluid">
+                  <div class="primary-overlay">
+                    <a class="image-popup" data-effect="mfp-with-zoom" href="images/gallery/gallery-popup-one.jpg"><i
+                      class="fa fa-picture-o"></i></a>
+                  </div>
+                </div>
+                <div class="content text-center">
+                  <h5><a>{{e.title}}</a></h5>
+                  <p>{{e.description}} </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <!--Pagination Start-->
+          <div class="iqoniq-pagination text-center ml-2" *ngFor="let number of numbers">
+            <a class="page-numbers" (click)="setPageNumber(number-1) ; type = 0">{{ number }}</a>
+          </div>
+          <!--Pagination End-->
+        </div>
+      </div>
+    </div>
+  </section>
+</app-shared>
+<!--====  End of Gallery  ====-->

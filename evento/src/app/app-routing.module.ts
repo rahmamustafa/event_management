@@ -6,34 +6,35 @@ import { EventComponent } from './components/event/event.component';
 // import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { SignupComponent } from './components/signup/signup.component';
+import {EventListComponent} from './components/event-list/event-list.component'
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 const routes: Routes = [
-  {path: '', 
+  {path: '',
       children: [
   {path:'eventDetails/:id',component:EventDetailsComponent},
-  
+
   {path:'home',component:HomeComponent},
   {path:'event/:id',component:EventDetailsComponent},
   {path:'404',component:NotFoundComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
-  {path:'event',component:EventComponent},
+  {path:'events',component:EventListComponent},
   {path:'',component:HomeComponent}
-  
+
   ]}
 
 
 ];
 // const routes: Routes = [
-//   {path: '', 
+//   {path: '',
 //       children: [
 //   {path:'home',component:HomeComponent},
 //   {path:'event',component:EventComponent},
 //  ]},
 //  {path:'',component:HomeComponent},
-      
+
 //     { path: 'login', component: LoginComponent },
 //     { path: '**', redirectTo: '' }
 

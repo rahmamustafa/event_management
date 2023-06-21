@@ -29,6 +29,7 @@ import { SubscriptionComponent } from './components/home/subscription/subscripti
 import { ScheduleComponent } from './components/home/schedule/schedule.component';
 import { SpeakersComponent } from './components/home/speakers/speakers.component';
 import { NewEventsComponent } from './components/home/new-events/new-events.component';
+import {EventListComponent} from './components/event-list/event-list.component'
 
 @NgModule({
   declarations: [
@@ -49,10 +50,11 @@ import { NewEventsComponent } from './components/home/new-events/new-events.comp
     ScheduleComponent,
     EventReviewsComponent,
     SpeakersComponent,
-    NewEventsComponent
+    NewEventsComponent,
+    EventListComponent
   ],
-  imports: [  
-    MbscModule,   
+  imports: [
+    MbscModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
