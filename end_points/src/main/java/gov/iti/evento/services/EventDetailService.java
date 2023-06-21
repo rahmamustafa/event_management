@@ -2,10 +2,9 @@ package gov.iti.evento.services;
 
 import gov.iti.evento.entites.Event;
 import gov.iti.evento.entites.EventSpeaker;
-import gov.iti.evento.entites.Speaker;
 import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.EventSpeakerRepository;
-import gov.iti.evento.services.dtos.EventSpeakersDto;
+import gov.iti.evento.services.dtos.SpeakersDto;
 import gov.iti.evento.services.dtos.EventoDetailesDTO;
 import gov.iti.evento.services.mappers.EventDisplayMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,20 +34,39 @@ public class EventDetailService {
         return eventDisplayMapper.eventToEventDetailsDTO(event);
     }
 
-    public List<EventSpeakersDto> getEventSpeakers(Integer eventId) {
-        List<EventSpeaker> eventSpeakers = eventSpeakerRepository.findByEventId(eventId);
-        List<EventSpeakersDto> eventSpeakersDTOList = new ArrayList<>();
+    public List<SpeakersDto> getEventSpeakers(Integer eventId) {
+//        event.setI;
+
+        List<EventSpeaker> eventSpeakers = eventSpeakerRepository.findByEvent(eventRepository.findById(eventId).get());
+        List<SpeakersDto> speakersDtoList = new ArrayList<>();
 
         for (EventSpeaker eventSpeaker : eventSpeakers) {
-            EventSpeakersDto eventSpeakersDTO = new EventSpeakersDto();
+            SpeakersDto speakersDto = convertToSpeakersDto(eventSpeaker);
+            speakersDtoList.add(speakersDto);
+
+            SpeakersDto eventSpeakersDTO = new SpeakersDto();
             eventSpeakersDTO.setId(eventSpeaker.getSpeaker().getId());
             eventSpeakersDTO.setName(eventSpeaker.getSpeaker().getName());
             eventSpeakersDTO.setJobTitle(eventSpeaker.getSpeaker().getJobTitle());
             eventSpeakersDTO.setDescription(eventSpeaker.getSpeaker().getDescription());
             eventSpeakersDTO.setImage(eventSpeaker.getSpeaker().getImage());
-            eventSpeakersDTOList.add(eventSpeakersDTO);
+            speakersDtoList.add(eventSpeakersDTO);
         }
-        return eventSpeakersDTOList;
+        return speakersDtoList;
+    }
+    private SpeakersDto convertToSpeakersDto(EventSpeaker eventSpeaker) {
+        // Assuming you have appropriate getter methods in the EventSpeaker class
+        Integer speakerId = eventSpeaker.getSpeaker().getId();
+        String speakerName = eventSpeaker.getSpeaker().getName();
+        String jobTitle = eventSpeaker.getSpeaker().getJobTitle();
+        String description = eventSpeaker.getSpeaker().getDescription();
+        String image = eventSpeaker.getSpeaker().getImage();
+
+        return new SpeakersDto(speakerId, speakerName, jobTitle, description, image);
+    }
+
+    public Event saveEvent (Event event){
+        return eventRepository.save(event);
     }
 }
 

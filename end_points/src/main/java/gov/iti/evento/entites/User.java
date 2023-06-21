@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.Value;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
 
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

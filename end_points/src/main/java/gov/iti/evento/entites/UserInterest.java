@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "user_interest")
-public class UserInterest {
+public class UserInterest implements Serializable {
     @EmbeddedId
     private UserInterestId id;
 

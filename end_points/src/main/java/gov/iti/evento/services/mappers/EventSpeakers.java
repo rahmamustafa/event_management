@@ -1,6 +1,6 @@
 package gov.iti.evento.services.mappers;
 import gov.iti.evento.entites.Speaker;
-import gov.iti.evento.services.dtos.EventSpeakersDto;
+import gov.iti.evento.services.dtos.SpeakersDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -17,7 +17,7 @@ public interface EventSpeakers {
     @Mapping(source = "image", target = "image")
     @Mapping(source="name",target = "name")
     @Mapping(source = "id", target="id")
-    EventSpeakersDto eventToEventDetailsDTO (Speaker speaker);
+    SpeakersDto eventToEventDetailsDTO (Speaker speaker);
 }
 
 

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -46,5 +47,8 @@ public class EventService {
         List<EventSpeaker> eventSpeakers = eventSpeakerRepository.findBySpeakerNameIgnoreCaseLike(speaker);
         List<Event> events = eventSpeakers.stream().map(EventSpeaker::getEvent).collect(Collectors.toList());
         return events.stream().map(eventMapper.INSTANCE::toDto).toList();
+    }
+    public Optional<Event> findEventById (Integer id){
+        return eventRepository.findById(id);
     }
 }

@@ -23,6 +23,14 @@ public class EventSpeakerId implements Serializable {
     @Column(name = "speaker_id", nullable = false)
     private Integer speakerId;
 
+
+//    public void setEventId(Integer eventId) {
+//        this.eventId = eventId;
+//    }
+//    public void setSpeakerId(Integer speakerId) {
+//        this.speakerId = speakerId;
+//    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

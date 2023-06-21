@@ -172,7 +172,7 @@
                             </button>
 					
 					
-                            <div class="slick-list draggable" style="padding: 0px 50px;">
+                            <!-- <div class="slick-list draggable" style="padding: 0px 50px;">
                                 <div class="slick-track" style="opacity: 1; width: 6670px; transform: translate3d(-2900px, 0px, 0px);">
                                     <div class="speaker-image slick-slide slick-cloned" *ngFor= "let speaker of speakers" tabindex="-1" style="width: 290px;" data-slick-index="-3" id="" aria-hidden="true">
                                     <img [src]="speaker.image" alt="{{ speaker.name }}"  class="img-fluid">
@@ -184,14 +184,26 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="slick-next slick-arrow" aria-label="Next" type="button" style="">
-                            Next
-                        </button>
-                    </div>
 
-
-
-               
+                    </div> -->
+                    <div class="speaker-image slick-slide" tabindex="-1" *ngFor= "let eventSpeaker of speakers" style="width: 290px;"  data-slick-index="5" aria-hidden="true">
+                        <img scr = "./20230301_154558.jpg" alt="{{ eventSpeaker.name }}"  class="img-fluid">
+                        <div class="primary-overlay text-center">
+                            <h5>{{ eventSpeaker.name }}</h5>
+                            <p>{{ eventSpeaker.jobTitle }}</p>
+                            <p>{{ eventSpeaker.description }}</p>
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><a href="https://themefisher.com/" tabindex="-1"><i class="fa fa-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="https://themefisher.com/" tabindex="-1"><i class="fa fa-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="https://themefisher.com/" tabindex="-1"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                       
+                    </div> 
+                    <button class="slick-next slick-arrow" aria-label="Next" type="button" style="">
+                        Next
+                    </button>
+            </div>
             </div>
             </div>
             </div>

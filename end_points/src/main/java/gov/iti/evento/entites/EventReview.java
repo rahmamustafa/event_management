@@ -6,13 +6,14 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "event_review")
-public class EventReview {
+public class EventReview implements Serializable {
     @EmbeddedId
     private EventReviewId id;
 

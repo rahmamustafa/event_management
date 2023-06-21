@@ -5,11 +5,13 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "event_ticket")
-public class EventTicket {
+public class EventTicket implements Serializable {
     @EmbeddedId
     private EventTicketId eventTicketId;
 

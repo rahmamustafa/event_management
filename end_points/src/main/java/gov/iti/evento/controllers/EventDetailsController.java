@@ -3,16 +3,12 @@ package gov.iti.evento.controllers;
 
 import gov.iti.evento.entites.Event;
 import gov.iti.evento.services.EventDetailService;
-import gov.iti.evento.services.dtos.EventSpeakersDto;
+import gov.iti.evento.services.dtos.SpeakersDto;
 import gov.iti.evento.services.dtos.EventoDetailesDTO;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
-import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,17 +25,20 @@ public class EventDetailsController {
     public EventoDetailesDTO getEvent(@PathVariable Integer eventId) {
         return eventDetailService.getEvent(eventId);
     }
-//    @GetMapping("/{title}")
-//    public Event savaEvent (String title, Event event){
+//    @PostMapping("/{title}")
+//    public Event savaEvent (String title){
+//        Event event= new Event();
 //        event.setDescription("en esto evento vamos a hablar sobre como el deporte puede afectar las emociones ");
-//        //  String imagePath = "deportistas";
-//        event.setImage("http://2.bp.blogspot.com/-8AAEYfC6BD4/UgFHZq62UWI/AAAAAAAAAYw/SsybCfdzSnc/s1600/musica-deporte.jpg");
-//        return eventDetailService.savaEvent(event);
+////        event.setEventDate();
+//        event.setTitle(title);
+////        event.setCategory("deports");
+//        event.setImage("../../../../resources/gallery-full-popup-sven.jpg");
+//        return eventDetailService.(event);
 //    }
 
     @GetMapping("/{eventId}/speakers")
-    public List<EventSpeakersDto> getEventSpeakers(@PathVariable Integer eventId){
+    public List<SpeakersDto> getEventSpeakers(@PathVariable Integer eventId){
         return  eventDetailService.getEventSpeakers(eventId);
     }
-   
+
 }
