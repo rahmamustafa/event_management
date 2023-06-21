@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Value;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -53,7 +52,7 @@ public class User implements Serializable {
     private String name;
 
     @NotNull
-    @Column(name = "creation_date", nullable = false)
+    @Column(name = "creation_date")
     private Instant creationDate;
 
     @Size(max = 45)

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.Instant;
 
 @Getter
@@ -33,6 +34,6 @@ public class EventReview implements Serializable {
 
     @NotNull
     @Column(name = "review_date", nullable = false)
-    private Instant reviewDate;
+    private Timestamp reviewDate;
 
 }

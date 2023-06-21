@@ -1,0 +1,70 @@
+<app-shared>
+  <section class="page-title bg-title overlay-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="title">
+                    <h3>{{ eventDetails.title }}</h3>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="news section">
+    <!-- Article -->
+
+    <!-- <section class="section single-speaker"> -->
+        <div class="container">
+            <div class="block">
+                <div class="row">
+                    <article class="blog-post single">
+                        <div class="image-block">
+                            <img [src]="image" class="img-fluid" alt="speaker">
+                        </div>
+                        <div class="post-content">
+                            <div class="date">
+                                <!-- <h4>{{eventDetails.eventDate}}<span>May</span></h4> -->
+                                <h4><span>{{ eventDetails.eventDate | date: 'MMM d' }}</span></h4>
+
+                            </div>
+                            <div class="post-title">
+                                <h3>{{eventDetails.location}}</h3>
+                            </div>
+                            <div class="post-meta">
+                            </div>
+                        </div>
+                    </article>
+                    <div class="col-lg-3 col-md-6 align-self-center text">
+                        <div class="content-block">
+                            <div class="name text">
+                                <h3>
+                                    {{eventDetails.title}}
+                                </h3>
+                            </div>
+                            <!-- <div class="profession text">
+                                                <h3>
+                                                    {{eventDetails.title}}
+                                                </h3>
+                                            </div> -->
+                            <div class="details">
+                                <p>{{eventDetails.description}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <p>{{currentDateTime}}</p>
+                <div *ngIf="eventDate < currentDateTime ; else elseBlock">
+                    <app-event-reviews></app-event-reviews>
+                  </div>
+                  <ng-template #elseBlock><app-event-tickets></app-event-tickets></ng-template>
+                
+            </div>
+        </div>
+    <!-- </section> -->
+    
+    </section>
+    </app-shared>

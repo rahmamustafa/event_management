@@ -13,6 +13,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import gov.iti.evento.entites.Speaker;
+import gov.iti.evento.services.SpeakerService;
+import gov.iti.evento.services.dtos.SpeakerMostSpeakingDto;
 
 @RestController
 @RequestMapping("/speakers")
@@ -25,10 +36,10 @@ public class SpeakerController {
 
 
     @Autowired
-    public SpeakerController(SpeakerServices speakerServices, SpeakerRepository speakerRepository, ImageConverter imageConverter, EventController eventController) {
+    public SpeakerController(SpeakerServices speakerServices, SpeakerRepository speakerRepository, EventController eventController) {
         this.speakerServices = speakerServices;
         this.speakerRepository = speakerRepository;
-        this.imageConverter = imageConverter;
+
         this.eventController = eventController;
     }
 
@@ -83,10 +94,19 @@ public class SpeakerController {
 
     }
 
-}
+
 
 
 //            return ResponseEntity.ok("Speaker added to the event successfully");
 //        } else {
 //            return ResponseEntity.notFound().build();
 
+     @Autowired
+    private SpeakerService speakerService;
+
+    @GetMapping("/most-speaking")
+     public ResponseEntity<List<SpeakerMostSpeakingDto>> getMostSpeakingSpeakers() {
+        List<SpeakerMostSpeakingDto> speakers = speakerService.getMostSpeakingSpeakersList();
+        return ResponseEntity.ok(speakers);
+    }
+}

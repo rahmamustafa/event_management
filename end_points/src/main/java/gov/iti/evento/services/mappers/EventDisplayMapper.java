@@ -1,11 +1,10 @@
 package gov.iti.evento.services.mappers;
 
 import gov.iti.evento.entites.Event;
+
 import gov.iti.evento.services.dtos.EventoDetailesDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import gov.iti.evento.services.util.converters.ImageConverter;
+import org.mapstruct.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +14,18 @@ import org.springframework.stereotype.Service;
 
 public interface EventDisplayMapper{
 
-    @Mapping(source = "title", target= "title")
-    @Mapping(source = "description", target = "description")
-    @Mapping(source = "image", target = "image")
-    @Mapping(source="isOnline",target = "isOnline")
-    @Mapping(source = "eventDate", target = "eventDate")
-    @Mapping(source= "location", target="location")
-//    @Mapping(source="location", target="location")
-    EventoDetailesDTO eventToEventDetailsDTO (Event event);
+
+    @Mappings({
+            @Mapping(target = "image", expression = "java(recoverImageFromUrl(event.getImage()))")
+    })
+    EventoDetailesDTO eventToEventDetailsDTO (Event event)throws Exception;
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Event partialUpdate(EventoDetailesDTO eventoDetailesDTO, @MappingTarget Event event);
+    default String mapByteArrayToString(byte[] bytes) {
+        return null;
+    }
+    default byte[] recoverImageFromUrl(String urlText) throws Exception {
+        return ImageConverter.recoverImageFromUrl(urlText);
+    }
 }

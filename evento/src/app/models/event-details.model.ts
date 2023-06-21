@@ -4,10 +4,10 @@ export class eventDetailsDTO {
     title: string;
     isOnline: boolean;
     location: string;
-    image: string;
+    image: any;
 
 
-    constructor(eventDate: Date, description: string, title: string, isOnline: boolean, image: string) {
+    constructor(eventDate: Date, description: string, title: string, isOnline: boolean, image: any) {
         this.eventDate = eventDate;
         this.description = description;
         this.title = title;

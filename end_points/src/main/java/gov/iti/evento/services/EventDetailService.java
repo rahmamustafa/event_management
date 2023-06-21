@@ -31,7 +31,11 @@ public class EventDetailService {
 
     public EventoDetailesDTO getEvent(Integer id) {
         Event event = eventRepository.findById(id).orElseThrow(() -> new NotFoundException("Event not found"));
-        return eventDisplayMapper.eventToEventDetailsDTO(event);
+        try {
+            return eventDisplayMapper.eventToEventDetailsDTO(event);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<SpeakersDto> getEventSpeakers(Integer eventId) {

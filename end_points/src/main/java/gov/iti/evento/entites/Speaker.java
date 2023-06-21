@@ -38,4 +38,5 @@ public class Speaker implements Serializable {
     @Size(max = 45)
     @Column(name = "image", length = 45)
     private String image;
+
 }
