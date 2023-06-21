@@ -17,6 +17,26 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
     ]
   }
+// import { EventDetailsComponent } from './event-details/event-details.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { SignupComponent } from './components/signup/signup.component';
+
+
+const routes: Routes = [
+  {path: '', 
+      children: [
+  {path:'eventDetails/:id',component:EventDetailsComponent},
+  
+  {path:'home',component:HomeComponent},
+  {path:'event/:id',component:EventDetailsComponent},
+  {path:'login',component:LoginComponent},
+  {path:'signup',component:SignupComponent},
+  {path:'event',component:EventComponent},
+  {path:'',component:HomeComponent}
+  
+  ]}
+
+
 ];
 // const routes: Routes = [
 //   {path: '',

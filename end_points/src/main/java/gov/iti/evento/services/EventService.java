@@ -1,12 +1,27 @@
 package gov.iti.evento.services;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import gov.iti.evento.entites.Category;
 import gov.iti.evento.entites.Event;
+
+
 import gov.iti.evento.entites.EventSpeaker;
 import gov.iti.evento.repositories.CategoryRepository;
 import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.EventSpeakerRepository;
+import gov.iti.evento.services.dtos.EventByDateDto;
 import gov.iti.evento.services.dtos.EventDto;
+import gov.iti.evento.services.dtos.NewEventsDto;
 import gov.iti.evento.services.mappers.EventMapper;
 import gov.iti.evento.services.util.exceptions.MessageException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,5 +94,18 @@ public class EventService {
             list.add(eventDto);
         }
         return list;
+    }
+  
+    
+    public Page<EventByDateDto> getEventsByDate(LocalDate date, Pageable pageable) {
+        Page<Event> eventPage=eventRepository.findByDate(date, pageable);
+    
+        return EventMapper.INSTANCE.map(eventPage);
+    }
+
+     public List<NewEventsDto> getLastNewEvents() {
+        List<Event> events= eventRepository.findTop3ByOrderByEventDateDesc();
+
+        return events.stream().map(eventMapper.INSTANCE::toNewEventDto).toList();
     }
 }

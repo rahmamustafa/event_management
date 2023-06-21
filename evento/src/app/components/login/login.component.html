@@ -40,74 +40,44 @@
                 <div class="registration-block bg-registration overlay-dark">
                     <div class="block">
                         <div class="title text-left">
-                            <h3>Register to <span class="alternate">Evento</span></h3>
+                            <h3>Login to <span class="alternate">Evento</span></h3>
                             <p>Strategic Events | Experiential Events Marketing | Virtual & Hybrid Event Experiences</p>
                         </div>
-                        <form class="row form-group" (ngSubmit)="register()"  [formGroup]="registerForm" >
-                            <div class="col-md-6">
-                                <input type="text" formControlName="name" class="form-control main bg-transparent "
-                                    name="name" placeholder="Name" required>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" formControlName="phone" class="form-control main bg-transparent "
-                                    name="phone" placeholder="Phone" required>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="email" formControlName="email"
+                        <form class="row form-group" (ngSubmit)="login()" enctype="multipart/form-data" [formGroup]="registerForm" >
+                         
+                            <div class="mb-2 col-md-10">
+                                <input (input)="validateEmail()" [(ngModel)]="email" [class.is-valid]="emailExists && !registerForm.controls['email'].errors" type="email" formControlName="email"
                                     class="text-white form-control main bg-transparent " name="email"
                                     placeholder="Email" required>
+                                   
+                                   
+                                    
                             </div>
-                            <div class="col-md-6">
-                                <input type="password" formControlName="password"
+                            <div class="mb-2 col-md-10">
+                                <input [class.is-valid]="!registerForm.controls['password'].errors" type="password" formControlName="password"
                                     class="form-control main bg-transparent " name="password" placeholder="Password"
                                     required>
+                                    <small class="form-text text-danger mt-20" *ngIf="(!emailExists || registerForm.controls['password'].errors
+                                    || registerForm.controls['email'].errors) && 
+                                    (registerForm.controls['password'].touched||  registerForm.controls['password'].dirty)">
+                                     enter valid data
+                            </small>
                             </div>
-                            <div class="btn-group col-md-6">
-                                <div>
-                                    <input id="male" type="radio" value="male" name="gender" formControlName="gender">
-                                    <label for="male" class="btn btn-orange">Male</label>
-                                 </div>
-                        
-                                 <div>
-                                    <input id="female" type="radio" value="female" name="gender" formControlName="gender">
-                                    <label for="female" class="btn btn-orange ">Female</label>
-                                 </div>
-                            </div>
+                            
+                           
 
-                            <div class="col-md-6">
-                                <input type="date" bsDatepicker formControlName="birthDate" id="birthDate"
-                                    class="form-control main bg-transparent " name="birthDate" placeholder="Birth Date"
-                                    required>
-                            </div>
-                            <div class=" mt-3 col-md-6">
-                                <label class="text-white" for="birthDate">Choose Your Image</label>
-                                <input type="file" accept="image/png, image/gif, image/jpeg" 
-                                (change)="onImageSelected($event)" class="form-control bg-transparent" 
-                                name="image" placeholder="Birth Date" required>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <mbsc-page class="bg-transparent">
-                                        <mbsc-select class="bg-transparent" [data]="countries"
-                                            display="anchored" [itemHeight]="40" [filter]="true"
-                                            label="Choose Your Country" [itemTemplate]="itemTemp" labelStyle="stacked"
-                                            inputStyle="box" placeholder="Please select..."
-                                            (onChange)="onChangeCountry($event)">
-                                        </mbsc-select>
-                                        <ng-template #itemTemp let-item>
-                                            <div class="md-country-picker-item">
-                                                <img class="md-country-picker-flag"
-                                                    [src]="'https://img.mobiscroll.com/demos/flags/' + item.data.value + '.png'" />
-                                                {{item.display}}
-                                            </div>
-                                        </ng-template>
-                                    </mbsc-page>
-                                </div>
-                            </div>
+                           
+                           
+                            
 
-                            <div class="col-12">
-                                <button type="submit"
-                                    class="btn orange-hover btn-white btn-white-md">Register Now</button>
+                            <div class="col-12 text-center">
+                                <button [disabled]="!emailExists || !registerForm.valid" type="submit"
+                                    class="btn orange-hover btn-white btn-white-md">Login</button>
+                            </div>
+                            <div class="mt-5 col-8 w-60">
+                                <label class="">Haven't an account</label>
+                                <button routerLink="/signup"
+                                    class="col-8 orange-hover btn-white ">Register Now</button>
                             </div>
                         </form>
                     </div>

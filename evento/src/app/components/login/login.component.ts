@@ -1,81 +1,77 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/models/login/user';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { EmailValidator } from 'src/app/services/email-validator';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
-  
-  constructor(private apiService:ApiService,private _formBuilder: FormBuilder , private http: HttpClient){
+
+  constructor(private apiService: ApiService, private _formBuilder: FormBuilder
+
+    , private http: HttpClient, private emailValidator: EmailValidator, private _router: Router) {
 
   }
-  selectedCountry :string;
+  selectedCountry: string;
   selectedImage: File
+  email: string;
+  emailExists: boolean;
   countries: any;
-  registerForm:FormGroup;
-  
+  registerForm: FormGroup;
+
 
   ngOnInit(): void {
-      this.http.get('https://trial.mobiscroll.com/content/countries.json').subscribe((resp: any) => {
-          const countries = [];
-          for (let i = 0; i < resp.length; ++i) {
-              const country = resp[i];
-              countries.push({ text: country.text, value: country.value });
-          }
-          this.countries = countries;
-      });
-      this.registerForm = this._formBuilder.group({
-        // name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-        // password: ['', [Validators.required, Validators.min(5),Validators.maxLength(20)]],
-        // email: ['', [Validators.required, Validators.email]],
-        // phone: ['', [Validators.required]], 
-        // image: [null,[Validators.required]], 
-        // country: ['',[Validators.required]], 
-        // gender: ['',[Validators.required]], 
-        // birthDate: [null,[Validators.required]] 
-          name: [''],
-        password: [''],
-        email: [''],
-        phone: [''], 
-        image:null,
-        country: [''], 
-        gender: [''], 
-        birthDate: [null]
-      });
+   
+    this.registerForm = this._formBuilder.group({
+      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
+      email: ['', [Validators.required, Validators.email]],
+   
+    });
 
   }
-  register(): void{
-    this.registerForm.controls["country"].setValue(this.selectedCountry);
-
-    const imageData = new FormData();
-    imageData.append('image', this.selectedImage, this.selectedImage.name);
-
-    this.registerForm.controls["image"].setValue(imageData.get('image'));
+  login(): void {
     const user = this.registerForm.value;
     console.log(user)
-    // this.apiService.get("/users")
-    // .subscribe({
-    //   next:response=>{
-    //     console.log(response._embedded)
-    //   },
-    //   error:error=>{}
-    // }
-    // );
+
+    this.apiService.post("api/users/login", user)
+      .subscribe({
+        next: response => {
+          console.log(response)
+          this._router.navigateByUrl('/home');
+        },
+        error: error => { }
+      }
+      );
   }
 
-  onChangeCountry(event: any) {
-    this.selectedCountry = event.valueText;
-    console.log('Selected Country:', event.valueText);
-  }
-  onImageSelected(event: any) {
-    this.selectedImage = event.target.files[0];
-  }
-  
+
+  validateEmail(){
+    console.log(this.email);
+    this.apiService.post("api/login/check",this.email)
+    .subscribe({
+      next:response=>{
+        console.log("resp " + response)
+        this.emailExists=response
+      },
+      error:error=>{
+        return null;
+      }
+    }
+    );
 }
+
+  // validateEmail() {
+  //   this.emailExists = this.emailValidator.validateEmail(this.email);
+
+  //  }
+}
+
+
 

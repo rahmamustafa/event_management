@@ -1,0 +1,165 @@
+<section class="section schedule">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="section-title">
+					<h3>Event <span class="alternate">Schedule</span></h3>
+					<p>Program Highlights: Explore the Event Schedule</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="schedule-tab">
+					<ul class="nav nav-pills text-center">
+					  <li class="nav-item">
+					    <a class="nav-link active" href="#today" data-toggle="pill" (click)="getTableData(currentDate)">
+					    	Today
+					    	<span>{{ currentDate }}</span>
+					    </a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" href="#tomorrow" data-toggle="pill" (click)="getTableData(tomorrowDate)">
+							Tomorrow 
+					    	<span>{{ tomorrowDate }}</span>
+					    </a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" href="#after" data-toggle="pill" (click)="getTableData(afterTomorrowDate)">
+							The Day After
+					    	<span>{{ afterTomorrowDate }}</span>
+					    </a>
+					  </li>
+					</ul>
+				</div>
+				<div class="schedule-contents bg-schedule">
+					<div class="tab-content" id="pills-tabContent">
+					  <div class="tab-pane fade show active schedule-item" id="today">
+					  	<!-- Headings -->
+					  	<ul class="m-0 p-0">
+					  		<li class="headings">
+					  			<div class="time">Time</div>
+					  			<div class="speaker">Event</div>
+								<div class="subject">Category</div>
+					  			<div class="venue">Venue</div>
+
+					  		</li>
+					  		<!-- Schedule Details -->
+							
+					  		<li  class="image-row" *ngFor="let event of events" class="schedule-details">
+					  			<div class="block">
+					  				<!-- time -->
+							  		<div class="time">
+							  			<i class="fa fa-clock-o"></i>
+							  			<span class="time">{{event.time}}</span>
+							  		</div>
+							  		<!-- Speaker -->
+							  		<div class="speaker">
+										<div *ngIf=event.image>
+											<img [src]="'data:image/jpeg;base64,' + event.image" class="img-fluid" alt="event Image">
+										    <span class="name">{{event.title}}</span>
+										</div>
+									
+							  		</div>
+							  		<!-- category -->
+							  		<div class="subject">{{event.category}}</div>
+							  		<!-- Venue -->
+							  		<div class="venue">
+										<p *ngIf="event.online; else elseBlock">online</p>
+												<ng-template #elseBlock>
+												<p> On-Premise</p>
+												</ng-template>
+									</div>
+					  			</div>
+					  		</li>
+					  	</ul>
+					  </div>
+					  <div class="tab-pane fade schedule-item" id="tomorrow">
+						<ul class="m-0 p-0">
+							<li class="headings">
+								<div class="time">Time</div>
+								<div class="speaker">Event</div>
+							  <div class="subject">Category</div>
+								<div class="venue">Venue</div>
+
+							</li>
+							<!-- Schedule Details -->
+							<li  class="image-row"*ngFor="let event of events" class="schedule-details">
+								<div class="block">
+									<!-- time -->
+									<div class="time">
+										<i class="fa fa-clock-o"></i>
+										<span class="time">{{event.time}}</span>
+									</div>
+									<!-- Speaker -->
+									<div class="speaker">
+									  <div *ngIf=event.image>
+										  <img [src]="'data:image/jpeg;base64,' + event.image" class="img-fluid" alt="event Image">
+										  <span class="name">{{event.title}}</span>
+									  </div>
+								  
+									</div>
+									<!-- category -->
+									<div class="subject">{{event.category}}</div>
+									<!-- Venue -->
+									<div class="venue">
+										<p *ngIf="event.online; else elseBlock">online</p>
+												<ng-template #elseBlock>
+												<p> On-Premise</p>
+												</ng-template>
+									</div>
+								</div>
+							</li>
+						</ul>
+					  </div>
+					  <div class="tab-pane fade schedule-item" id="after">
+						<ul class="m-0 p-0">
+							<li class="headings">
+								<div class="time">Time</div>
+								<div class="speaker">Event</div>
+							  <div class="subject">Category</div>
+								<div class="venue">Venue</div>
+
+							</li>
+							<!-- Schedule Details -->
+							<li  class="image-row"*ngFor="let event of events" class="schedule-details">
+								<div class="block">
+									<!-- time -->
+									<div class="time">
+										<i class="fa fa-clock-o"></i>
+										<span class="time">{{event.time}}</span>
+									</div>
+									<!-- Speaker -->
+									<div class="speaker">
+									  <div *ngIf=event.image>
+										  <img [src]="'data:image/jpeg;base64,' + event.image" class="img-fluid" alt="event Image">
+										  <span class="name">{{event.title}}</span>
+									  </div>
+								  
+									</div>
+									<!-- category -->
+									<div class="subject">{{event.category}}</div>
+									<!-- Venue -->
+									<div class="venue">
+										<p *ngIf="event.online; else elseBlock">online</p>
+												<ng-template #elseBlock>
+												<p> On-Premise</p>
+												</ng-template>
+									</div>
+								</div>
+							</li>
+						</ul>
+					  </div>
+					</div>
+				</div>
+				<!-- <div>
+					<button (click)="getTableData(,currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+					<span>Page {{ currentPage }} of {{ totalPages }}</span>
+					<button (click)="getTableData(,currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+				  </div> -->
+			</div>
+		</div>
+	</div>
+
+</section>
+

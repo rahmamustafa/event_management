@@ -1,5 +1,5 @@
 .my-7{
-    margin-bottom: 7.28rem!important;
+    margin-bottom: 50%!important;
 }
 .md-country-picker-item {
     position: relative;
@@ -15,4 +15,8 @@
 
 .mbsc-scroller-wheel-item-2d .md-country-picker-item {
     transform: scale(1.1);
+}
+.bg-transparent {
+    background-color: transparent !important;
+    color: #fff;
 }

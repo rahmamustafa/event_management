@@ -4,6 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class ImageConverter {
     public static byte[] recoverImageFromUrl(String urlText) throws Exception {
@@ -18,15 +21,16 @@ public class ImageConverter {
         }
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
+        String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/uploads";
+        Path imagePath = Paths.get(UPLOAD_DIRECTORY, urlText);
+        boolean fileExists = Files.exists(imagePath);
+        if (fileExists) {
+            byte[] imageBytes;
 
-        try (InputStream inputStream = url.openStream()) {
-            int n = 0;
-            byte [] buffer = new byte[ 1024 ];
-            while (-1 != (n = inputStream.read(buffer))) {
-                output.write(buffer, 0, n);
-            }
+            imageBytes = Files.readAllBytes(imagePath);
+
+            return imageBytes;
         }
-
-        return output.toByteArray();
+        return null;
     }
 }
