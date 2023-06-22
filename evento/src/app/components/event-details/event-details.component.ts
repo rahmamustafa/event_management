@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { ActivatedRoute } from '@angular/router';
 import { eventDetailsDTO } from 'src/app/models/event-details.model';
+import { eventSpeakersDTO } from 'src/app/models/event-speakers.model';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -14,7 +15,9 @@ import { ApiService } from 'src/app/services/api.service';
 
 export class EventDetailsComponent implements OnInit {
   eventDetails: eventDetailsDTO;
+  speakers : eventSpeakersDTO[];
   image:any;
+  speaker: any;
   currentDateTime:any;
   eventDate:any;
   // _activatedRoute: any;
@@ -27,6 +30,7 @@ export class EventDetailsComponent implements OnInit {
       const id = params.get('id');
       console.log(id);
       this.getEvent(id);
+      this.getEventSpeakers(id);
     });
   }
   
@@ -51,6 +55,31 @@ export class EventDetailsComponent implements OnInit {
             error: error => { }
           }
           );
-    
   }
+
+  
+  getEventSpeakers(id:any): void {
+   
+        this.apiService.get("eventDetails/" + id+ "/speakers")
+        .subscribe({
+          next: response => {
+            this.eventDetails = response;
+            console.log(response);
+            response.speakers.forEach(speaker => {
+              const bytes = new Uint8Array(speaker.image);
+              const base64 = btoa(String.fromCharCode(...bytes));
+              let objectURL = 'data:image/png;base64,' + base64;
+              speaker.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+            });
+    
+            console.log(response.speakers);
+            this.eventDate = this.datepipe.transform(response.eventDate, 'yyyy-MM-dd h:mm:ss');
+            console.log(this.eventDate);
+          },
+          error: error => { }
+        });
+  }
+  
+
+
 }

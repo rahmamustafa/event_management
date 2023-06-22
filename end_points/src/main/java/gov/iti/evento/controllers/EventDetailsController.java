@@ -25,16 +25,7 @@ public class EventDetailsController {
     public EventoDetailesDTO getEvent(@PathVariable Integer eventId) {
         return eventDetailService.getEvent(eventId);
     }
-//    @PostMapping("/{title}")
-//    public Event savaEvent (String title){
-//        Event event= new Event();
-//        event.setDescription("en esto evento vamos a hablar sobre como el deporte puede afectar las emociones ");
-////        event.setEventDate();
-//        event.setTitle(title);
-////        event.setCategory("deports");
-//        event.setImage("../../../../resources/gallery-full-popup-sven.jpg");
-//        return eventDetailService.(event);
-//    }
+
 
     @GetMapping("/{eventId}/speakers")
     public List<SpeakersDto> getEventSpeakers(@PathVariable Integer eventId){

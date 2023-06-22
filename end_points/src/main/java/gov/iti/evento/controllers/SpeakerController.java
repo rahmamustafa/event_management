@@ -86,21 +86,13 @@ public class SpeakerController {
             eventSpeakerId.setSpeakerId(speakerId);
             eventSpeaker.setId(eventSpeakerId);
             System.out.println(event.getCategory()+speaker.getName());
-//            eventSpeaker.setEvent(event);
-//            eventSpeaker.setSpeaker(speaker);
+            eventSpeaker.setEvent(event);
+            eventSpeaker.setSpeaker(speaker);
 
         }
         return speakerServices.saveEventSpeaker(eventSpeaker);
 
     }
-
-
-
-
-//            return ResponseEntity.ok("Speaker added to the event successfully");
-//        } else {
-//            return ResponseEntity.notFound().build();
-
      @Autowired
     private SpeakerService speakerService;
 

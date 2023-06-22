@@ -2,7 +2,7 @@ export class eventSpeakersDTO {
     
     description: string;
     jobTitle: string;
-    image: string;
+    image: any;
     name: string;
     id: number;
 
