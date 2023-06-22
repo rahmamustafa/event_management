@@ -66,6 +66,7 @@ export class EventDetailsComponent implements OnInit {
         this.apiService.get("eventDetails/" + id + "/speakers")
           .subscribe({
             next: response => {
+              console.log(response)
         if (response.speakers && response.speakers.length > 0) {
 
               response.speakers.forEach((eventSpeakersDTO: { image:any; }) => {
