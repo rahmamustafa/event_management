@@ -12,11 +12,14 @@ import org.springframework.stereotype.Service;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 @Component
 
+
 public interface EventDisplayMapper{
 
 
     @Mappings({
-            @Mapping(target = "image", expression = "java(recoverImageFromUrl(event.getImage()))")
+            @Mapping(target = "image", expression = "java(recoverImageFromUrl(event.getImage()))"),
+
+
     })
     EventoDetailesDTO eventToEventDetailsDTO (Event event)throws Exception;
 

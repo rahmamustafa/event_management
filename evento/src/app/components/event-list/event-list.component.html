@@ -42,7 +42,7 @@
             <div class="gallery-item col-lg-4 col-md-6" data-groups="[&quot;meeting&quot;]" *ngFor="let e of events;">
               <div class="image-block">
                 <div class="image">
-                  <img [src]="getImage(e.image)" alt="gallery-image" class="img-fluid">
+                  <img [src]="getImage(e.image)" alt="gallery-image" class="img-fluid" class="nav-link">
                   <div class="primary-overlay">
                     <a class="image-popup" data-effect="mfp-with-zoom" href="images/gallery/gallery-popup-one.jpg"><i
                       class="fa fa-picture-o"></i></a>
@@ -51,6 +51,9 @@
                 <div class="content text-center">
                   <h5><a>{{e.title}}</a></h5>
                   <p>{{e.description}} </p>
+                  <div>
+                    <a  [routerLink]="'/event-details/' + e.id">Go to Event Details</a>      
+                  </div>
                 </div>
               </div>
             </div>

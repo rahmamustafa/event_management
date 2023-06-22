@@ -43,7 +43,7 @@
                             <h3>Login to <span class="alternate">Evento</span></h3>
                             <p>Strategic Events | Experiential Events Marketing | Virtual & Hybrid Event Experiences</p>
                         </div>
-                        <form class="row form-group" (ngSubmit)="login()" enctype="multipart/form-data" [formGroup]="registerForm" >
+                        <!-- <form class="row form-group" (ngSubmit)="login()" enctype="multipart/form-data" [formGroup]="registerForm" >
                          
                             <div class="mb-2 col-md-10">
                                 <input [(ngModel)]="email" [class.is-valid]="!registerForm.controls['email'].errors" 
@@ -51,7 +51,7 @@
                                     class="text-white form-control main bg-transparent " name="email"
                                     placeholder="Email" required>
                                    
-                            </div>
+                            </div> -->
                             <div class="mb-2 col-md-10">
                                 <input [class.is-valid]="!registerForm.controls['password'].errors" type="password" formControlName="password"
                                     class="form-control main bg-transparent " name="password" placeholder="Password"
@@ -71,7 +71,7 @@
                                 <button routerLink="/signup"
                                     class="col-4 orange-hover btn btn-white btn-white-md ">Register Now</button>
                             </div>
-                        </form>
+                        <!-- </form> -->
                     </div>
                 </div>
             </div>

@@ -5,6 +5,7 @@ export class eventDetailsDTO {
     isOnline: boolean;
     location: string;
     image: any;
+    // id :number;
 
 
     constructor(eventDate: Date, description: string, title: string, isOnline: boolean, image: any) {

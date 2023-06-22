@@ -1,30 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { Event } from 'src/app/models/event/event';
 import { Category } from 'src/app/models/event/category';
+import { eventDetailsDTO } from 'src/app/models/event-details.model';
 
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.css']
+
 })
 export class EventListComponent implements OnInit {
+  eventDetails: eventDetailsDTO;
   events: Event[] = [];
   categories: Category[] = [];
   numbers: number[] = [1, 2, 3, 4, 5];
   image: any;
-  pageNumber:number = 0 ;
-  categoryType:string;
-  type:number;
+  pageNumber: number = 0;
+  categoryType: string;
+  type: number;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
-    private sanitizer: DomSanitizer
-  ) {}
+    private sanitizer: DomSanitizer,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.getEvents(0);
@@ -39,7 +43,7 @@ export class EventListComponent implements OnInit {
         console.log("ssssssss s");
         console.log(response);
       },
-      error: (error) => {}
+      error: (error) => { }
     });
   }
 
@@ -48,7 +52,7 @@ export class EventListComponent implements OnInit {
       next: (response: Category[]) => {
         this.categories = response;
       },
-      error: (error) => {}
+      error: (error) => { }
     });
   }
 
@@ -57,16 +61,16 @@ export class EventListComponent implements OnInit {
       next: (response: Event[]) => {
         this.events = response;
       },
-      error: (error) => {}
+      error: (error) => { }
     });
   }
 
-  getEventBySpeaker(speakerName: string ) {
+  getEventBySpeaker(speakerName: string) {
     this.apiService.get(`events/${speakerName}?page=${this.pageNumber}`).subscribe({
       next: (response: Event[]) => {
         this.events = response;
       },
-      error: (error) => {}
+      error: (error) => { }
     });
   }
 
@@ -75,26 +79,26 @@ export class EventListComponent implements OnInit {
       next: (response: Event[]) => {
         this.events = response;
       },
-      error: (error) => {}
+      error: (error) => { }
     });
   }
-  setPageNumber(page:number) {
-   this.pageNumber = page ;
-   if(this.type==1)
+  setPageNumber(page: number) {
+    this.pageNumber = page;
+    if (this.type == 1)
       this.getEventByCategory();
-   else if(this.type==0)
+    else if (this.type == 0)
       this.getEvents(page);
   }
-  setCategoryType(type:string) {
-   this.categoryType = type;
-   this.getEventByCategory();
+  setCategoryType(type: string) {
+    this.categoryType = type;
+    this.getEventByCategory();
   }
-  getImage(image:any):any {
-          const bytes = new Uint8Array(image);
-          const base64 = btoa(String.fromCharCode(...bytes));
-          let objectURL = 'data:image/png;base64,' + image;
-          let return_image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-          return return_image;
-    }
+  getImage(image: any): any {
+    const bytes = new Uint8Array(image);
+    const base64 = btoa(String.fromCharCode(...bytes));
+    let objectURL = 'data:image/png;base64,' + image;
+    let return_image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    return return_image;
+  }
 
 }
