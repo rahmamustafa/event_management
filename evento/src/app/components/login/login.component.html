@@ -48,13 +48,13 @@
                             <div class="mb-2 col-md-10">
                                 <input [(ngModel)]="email" [class.is-valid]="!registerForm.controls['email'].errors" 
                                     type="email" formControlName="email"
-                                    class="text-white form-control main bg-transparent " name="email"
+                                    class="col-8 text-white form-control main bg-transparent " name="email"
                                     placeholder="Email" required>
                                    
                             </div>
                             <div class="mb-2 col-md-10">
                                 <input [class.is-valid]="!registerForm.controls['password'].errors" type="password" formControlName="password"
-                                    class="form-control main bg-transparent " name="password" placeholder="Password"
+                                    class="col-8 form-control main bg-transparent " name="password" placeholder="Password"
                                     required>
                                     <small class="form-text text-danger mt-20" *ngIf="(registerForm.controls['password'].errors
                                     || registerForm.controls['email'].errors) && 
