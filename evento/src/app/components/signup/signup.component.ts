@@ -59,8 +59,10 @@ export class SignupComponent implements OnInit {
     this.apiService.post("auth/register", userData)
       .subscribe({
         next: response => {
-          console.log(response)
-          this._router.navigateByUrl('/home');
+            localStorage.setItem('username',this.registerForm.get('email')?.value);
+            let tokenStr= 'Bearer '+response.token;
+            localStorage.setItem('token', tokenStr);
+            this._router.navigateByUrl('/home');
 
         },
         error: error => { }
