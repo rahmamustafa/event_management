@@ -46,38 +46,30 @@
                         <form class="row form-group" (ngSubmit)="login()" enctype="multipart/form-data" [formGroup]="registerForm" >
                          
                             <div class="mb-2 col-md-10">
-                                <input (input)="validateEmail()" [(ngModel)]="email" [class.is-valid]="emailExists && !registerForm.controls['email'].errors" type="email" formControlName="email"
+                                <input [(ngModel)]="email" [class.is-valid]="!registerForm.controls['email'].errors" 
+                                    type="email" formControlName="email"
                                     class="text-white form-control main bg-transparent " name="email"
                                     placeholder="Email" required>
                                    
-                                   
-                                    
                             </div>
                             <div class="mb-2 col-md-10">
                                 <input [class.is-valid]="!registerForm.controls['password'].errors" type="password" formControlName="password"
                                     class="form-control main bg-transparent " name="password" placeholder="Password"
                                     required>
-                                    <small class="form-text text-danger mt-20" *ngIf="(!emailExists || registerForm.controls['password'].errors
+                                    <small class="form-text text-danger mt-20" *ngIf="(registerForm.controls['password'].errors
                                     || registerForm.controls['email'].errors) && 
                                     (registerForm.controls['password'].touched||  registerForm.controls['password'].dirty)">
                                      enter valid data
                             </small>
                             </div>
-                            
-                           
-
-                           
-                           
-                            
-
-                            <div class="col-12 text-center">
-                                <button [disabled]="!emailExists || !registerForm.valid" type="submit"
+                            <div class="mb-5 col-12 text-center">
+                                <button [disabled]="!registerForm.valid" type="submit"
                                     class="btn orange-hover btn-white btn-white-md">Login</button>
                             </div>
-                            <div class="mt-5 col-8 w-60">
+                            <div class="mt-5 col-9 w-60">
                                 <label class="">Haven't an account</label>
                                 <button routerLink="/signup"
-                                    class="col-8 orange-hover btn-white ">Register Now</button>
+                                    class="col-4 orange-hover btn btn-white btn-white-md ">Register Now</button>
                             </div>
                         </form>
                     </div>

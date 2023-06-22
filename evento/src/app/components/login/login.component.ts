@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
   selectedCountry: string;
   selectedImage: File
   email: string;
-  emailExists: boolean;
   countries: any;
   registerForm: FormGroup;
 
@@ -30,7 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
    
     this.registerForm = this._formBuilder.group({
-      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
+      password: ['', [Validators.required, Validators.maxLength(20)]],
       email: ['', [Validators.required, Validators.email]],
    
     });
@@ -39,38 +38,17 @@ export class LoginComponent implements OnInit {
   login(): void {
     const user = this.registerForm.value;
     console.log(user)
-
-    this.apiService.post("api/users/login", user)
+    this.apiService.post("api/login/check", user)
       .subscribe({
         next: response => {
           console.log(response)
-          this._router.navigateByUrl('/home');
+          if(response==true)
+            this._router.navigateByUrl('/home');
         },
         error: error => { }
       }
       );
   }
-
-
-  validateEmail(){
-    console.log(this.email);
-    this.apiService.post("api/login/check",this.email)
-    .subscribe({
-      next:response=>{
-        console.log("resp " + response)
-        this.emailExists=response
-      },
-      error:error=>{
-        return null;
-      }
-    }
-    );
-}
-
-  // validateEmail() {
-  //   this.emailExists = this.emailValidator.validateEmail(this.email);
-
-  //  }
 }
 
 
