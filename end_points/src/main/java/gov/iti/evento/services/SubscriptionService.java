@@ -2,8 +2,11 @@
 package gov.iti.evento.services;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import gov.iti.evento.entites.Subscription;
@@ -15,10 +18,12 @@ import gov.iti.evento.repositories.UserRepository;
 public class SubscriptionService {
     private final UserRepository userRepository;
     private final SubscriptionRepository subscriptionRepository;
+    private final JavaMailSender mailSender;
 
-    public SubscriptionService(UserRepository userRepository, SubscriptionRepository subscriptionRepository) {
+    public SubscriptionService(JavaMailSender mailSender,UserRepository userRepository, SubscriptionRepository subscriptionRepository) {
         this.userRepository = userRepository;
         this.subscriptionRepository = subscriptionRepository;
+        this.mailSender = mailSender;
     }
 
     public void createSubscriptionByuserId(Integer userId) {
@@ -40,4 +45,22 @@ public class SubscriptionService {
 
         subscriptionRepository.save(subscription);
     }
+      public void notifySubscribers(List<Subscription> emails, String eventName) {
+        String subject = "New Event: " + eventName;
+        String message = "A new event has been added: " + eventName;
+
+        for (Subscription email : emails) {
+            sendEmail(email.getEmail(), subject, message);
+        }
+    }
+
+    private void sendEmail(String to, String subject, String message) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(to);
+        mailMessage.setSubject(subject);
+        mailMessage.setText(message);
+
+        mailSender.send(mailMessage);
+    }
+
 }

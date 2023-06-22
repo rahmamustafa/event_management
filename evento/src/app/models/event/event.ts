@@ -3,4 +3,5 @@ export class Event{
     description:string;
     categoryType:string;
     image:any;
+    id:number;
 }

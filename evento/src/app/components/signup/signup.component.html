@@ -133,7 +133,7 @@
                                             inputStyle="box" placeholder="Please select..."
                                             (onChange)="onChangeCountry($event)">
                                         </mbsc-select>
-                                        <ng-template #itemTemp let-item>
+                                        <ng-template class="bg-transparent" #itemTemp let-item>
                                             <div class="md-country-picker-item">
                                                 <img class="md-country-picker-flag"
                                                     [src]="'https://img.mobiscroll.com/demos/flags/' + item.data.value + '.png'" />
@@ -144,14 +144,14 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 text-center">
+                            <div class="mb-5 col-12 text-center">
                                 <button [disabled]="emailExists || !registerForm.valid" type="submit"
                                     class="btn orange-hover btn-white btn-white-md">Register Now</button>
                             </div>
-                            <div class="mt-5 col-8 w-60">
+                            <div class="mt-5 col-9 w-60">
                                 <label class="">Have an account</label>
                                 <button routerLink="/login"
-                                    class="col-8 orange-hover btn-white ">Login</button>
+                                    class="col-4 orange-hover btn btn-white btn-white-md ">Login</button>
                             </div>
                         </form>
                     </div>

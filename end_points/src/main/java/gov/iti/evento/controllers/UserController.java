@@ -37,7 +37,7 @@ public class UserController {
     public boolean checkEmailValid(@RequestBody String email){
         return userService.checkEmailValid(email);
     }
-    @PostMapping("/api/login/check")
+    @PostMapping(value = "/api/login/check" , consumes = MediaType.APPLICATION_JSON_VALUE)
     public boolean checkUserValid(@RequestBody UserLoginDto user){
         return userService.checkUserValid(user);
     }
