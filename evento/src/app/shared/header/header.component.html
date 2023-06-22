@@ -2,42 +2,52 @@
 =            Navigation Section            =
 =========================================-->
 <nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
-    <div class="container-fluid p-0">
-      <!-- logo -->
-      <a class="navbar-brand" href="index.html">
-        <img class ="logo"src="./assets/images/logo.png" alt="logo">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="fa fa-bars"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item dropdown active">
-            <a class="nav-link" href="/home">Home 
-              <span>/</span>
-            </a>
+  <div class="container-fluid p-0">
+    <!-- logo -->
+    <a class="navbar-brand" href="index.html">
+      <img class="logo" src="./assets/images/logo.png" alt="logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item dropdown active">
+          <a class="nav-link" href="/home">Home
+            <span>/</span>
+          </a>
 
-          </li>
-         
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/events">Events
-              <span>/</span>
-            </a>
-          </li>
-        
-          <li class="nav-item">
-            <a class="nav-link" href="schedule.html">Schedule<span>/</span></a>
-          </li>
-        
-          
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-        </ul>
+        </li>
 
-      </div>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/events">Events
+            <span>/</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="schedule.html">Schedule<span>/</span></a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact<span>/</span></a>
+        </li>
+
+        <li *ngIf="!isUserLoggedIn" class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+
+        <li *ngIf="isUserLoggedIn" class="nav-item">
+          <a (click)="logOut()" class="nav-link nav-link-button">Logout</a>
+        </li>
+
+      </ul>
+
+
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!--====  End of Navigation Section  ====-->
+<!--====  End of Navigation Section  ====-->
