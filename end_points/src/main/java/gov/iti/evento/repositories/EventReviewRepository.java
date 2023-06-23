@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface EventReviewRepository extends JpaRepository<EventReview, EventReviewId> {
     public List<EventReview> getEventReviewByEvent_Id(int id);
-    Optional<EventReview> findByEventIdAndUserId( Integer userId,Integer eventId);
+    Optional<EventReview> findByEventIdAndUserId(Integer eventId, Integer userId);
 
 }

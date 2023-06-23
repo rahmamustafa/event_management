@@ -42,6 +42,7 @@ import { Router } from '@angular/router';
 import { ReviewFormComponent } from './components/event-details/event-reviews/review-form/review-form.component';
 import { GoogleMapsModule } from '@angular/google-maps'
 
+import { UserService } from './services/user.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +88,7 @@ import { GoogleMapsModule } from '@angular/google-maps'
     GoogleMapsModule
 
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
