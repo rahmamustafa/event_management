@@ -40,6 +40,7 @@ import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
 
 import { Router } from '@angular/router';
 import { ReviewFormComponent } from './components/event-details/event-reviews/review-form/review-form.component';
+import { UserService } from './services/user.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +85,7 @@ import { ReviewFormComponent } from './components/event-details/event-reviews/re
     MatDatetimepickerModule,
 
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

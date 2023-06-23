@@ -8,6 +8,9 @@ import gov.iti.evento.services.dtos.user.CreateUserDto;
 import gov.iti.evento.services.dtos.user.UserLoginDto;
 import gov.iti.evento.services.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;
+
+import java.util.Optional;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -52,6 +55,12 @@ public class UserService {
                 .orElseThrow();
         String jwtToken = jwtService.generateToken(user);
         return AuthResponse.builder().token(jwtToken).build();
+    }
+    public Integer getUserId(String email){
+        Optional<User> user = userRepository.findByEmail(email);
+        if(user.isPresent())
+            return user.get().getId() ;
+        return null;
     }
 
 }
