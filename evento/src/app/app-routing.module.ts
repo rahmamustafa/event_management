@@ -9,14 +9,10 @@ import {EventListComponent} from './components/event-list/event-list.component'
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AddEventComponent } from './components/admin/add-event/add-event.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { DatePipe } from '@angular/common';
 
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
-  // {path:'event-details/:id/speakers', component: EventSpeakersComponent},
-  { path: 'event-details/:id', component: EventDetailsComponent },
-  {path:'404',component:NotFoundComponent},
   {path:'event/:id',component:EventDetailsComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
@@ -31,8 +27,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  providers: [DatePipe]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
 
