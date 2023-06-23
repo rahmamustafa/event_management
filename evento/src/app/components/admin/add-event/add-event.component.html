@@ -100,38 +100,42 @@
                                         </div>
                                         
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-password">Password <span
+                                            <label class="col-lg-4 col-form-label" for="speakers">Speakers <span
                                                     class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="password" class="form-control" id="val-password"
-                                                    name="val-password" placeholder="Choose a safe one..">
+                                                <form [formGroup]="speakerForm">
+                                                    <div *ngFor="let item of speakers">
+                                                      <label>
+                                                        <input type="checkbox" [value]="item" formControlName="checkboxGroup">
+                                                        {{ item }}
+                                                      </label>
+                                                    </div>
+                                                  </form>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm
-                                                Password <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="password" class="form-control" id="val-confirm-password"
-                                                    name="val-confirm-password" placeholder="..and confirm it!">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-skill">Best Skill <span
-                                                    class="text-danger">*</span>
-                                            </label>
-                                           
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-currency">Currency <span
+                                            <label class="col-lg-4 col-form-label" for="PLATINUMTicket">PLATINUM Ticket Price<span
                                                     class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-currency"
-                                                    name="val-currency" placeholder="$21.60">
+                                                <input type="text" class="form-control" id="PLATINUMTicket"
+                                                    name="PLATINUMTicket" placeholder="$21.60">
                                             </div>
+                                            <label class="col-lg-4 col-form-label" for="STANDARDTicket">STANDARD Ticket Price<span
+                                                class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" id="STANDARDTicket"
+                                                name="STANDARDTicket" placeholder="$21.60">
+                                        </div>
+                                        <label class="col-lg-4 col-form-label" for="STARTERTicket">STARTER Ticket Price<span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="STARTERTicket"
+                                            name="STARTERTicket" placeholder="$21.60">
+                                    </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="val-website">Website <span
@@ -193,7 +197,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-lg-8 ml-auto">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <button (click)="submitForm()" class="btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </form>
