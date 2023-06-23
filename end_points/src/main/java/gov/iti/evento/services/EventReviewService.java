@@ -38,6 +38,7 @@ public class EventReviewService {
         
     }
     public EventReview createReview(EventReview eventReview){
+        System.out.println("review -> "+eventReview.getId());
         return eventReviewRepository.save(eventReview);
     }
 }
