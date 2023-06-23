@@ -80,9 +80,9 @@ import { ReviewFormComponent } from './components/event-details/event-reviews/re
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-  
     MatMomentDatetimeModule,
-    MatDatetimepickerModule
+    MatDatetimepickerModule,
+
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
             let tokenStr= 'Bearer '+response.token;
             localStorage.setItem('token', tokenStr);
             this._router.navigateByUrl('/home');
-
           }
         },
         error: error => { }
