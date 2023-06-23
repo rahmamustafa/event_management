@@ -38,17 +38,27 @@ export class LoginComponent implements OnInit {
   login(): void {
     const user = this.registerForm.value;
     console.log(user)
-    this.apiService.post("api/login/check", user)
+    this.apiService.post("auth/authenticate", user)
       .subscribe({
         next: response => {
-          console.log(response)
-          if(response==true)
+          console.log(response.token)
+          if(response!=null){
+            localStorage.setItem('username',this.registerForm.get('email')?.value);
+            let tokenStr= 'Bearer '+response.token;
+            localStorage.setItem('token', tokenStr);
             this._router.navigateByUrl('/home');
+
+          }
         },
         error: error => { }
       }
       );
   }
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem('username')
+    return !(user === null)
+  }
+
 }
 
 

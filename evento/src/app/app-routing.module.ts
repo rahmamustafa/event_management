@@ -7,7 +7,9 @@ import { EventDetailsComponent } from './components/event-details/event-details.
 import { SignupComponent } from './components/signup/signup.component';
 import {EventListComponent} from './components/event-list/event-list.component'
 import { NotFoundComponent } from './components/not-found/not-found.component';
-  
+import { AddEventComponent } from './components/admin/add-event/add-event.component';
+import { AdminComponent } from './components/admin/admin.component';
+
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -15,8 +17,12 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'events',component:EventListComponent},
+  {path:'admin',component:AdminComponent},
+  {path:'add-event',component:AddEventComponent},
   {path:'',component:HomeComponent},
   {path:'**',component:NotFoundComponent}
+
+
 ];
 
 @NgModule({
