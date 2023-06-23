@@ -40,6 +40,8 @@ import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
 
 import { Router } from '@angular/router';
 import { ReviewFormComponent } from './components/event-details/event-reviews/review-form/review-form.component';
+import { GoogleMapsModule } from '@angular/google-maps'
+
 import { UserService } from './services/user.service';
 import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
 @NgModule({
@@ -85,6 +87,7 @@ import { EventSpeakersComponent } from './components/event-details/event-speaker
     MatNativeDateModule,
     MatMomentDatetimeModule,
     MatDatetimepickerModule,
+    GoogleMapsModule
 
   ],
   providers: [DatePipe,UserService],

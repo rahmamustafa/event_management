@@ -38,10 +38,10 @@ public class FileStorageService {
 
     }
 
-    public String storeFile(MultipartFile file , String email) {
+    public String storeFile(MultipartFile file , String email , String folder) {
         // Normalize file name
 
-        String fileName = email +"."+ StringUtils.cleanPath(file.getContentType().split("/")[1]);
+        String fileName = folder + "/"+email +"."+ StringUtils.cleanPath(file.getContentType().split("/")[1]);
         try {
             // Check if the file's name contains valid  characters or not
             if (fileName.contains("..")) {
@@ -49,7 +49,7 @@ public class FileStorageService {
             }
 
             // Copy file to the target place (Replacing existing file with the same name)
-            Path targetLocation = this.fileStorageLocation.resolve(fileName);
+            Path targetLocation = this.fileStorageLocation.resolve( fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
             return fileName;
         } catch (IOException ex) {
