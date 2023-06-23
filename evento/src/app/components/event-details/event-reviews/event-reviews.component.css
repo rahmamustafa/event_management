@@ -1,0 +1,4 @@
+.scrollable-section {
+    height: 300px; /* Set the desired height for the scrollable section */
+    overflow: auto; /* Enable scrolling */
+  }

@@ -1,14 +1,18 @@
 package gov.iti.evento.services.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.io.Serializable;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor
-@Data
-public class EventReviewCreateDto {
-    Integer userId;
+@ToString
+public class EventReviewCreateDto{
+    int id;
     String review;
-    
+    int user_id;
 }

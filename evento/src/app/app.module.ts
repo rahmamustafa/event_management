@@ -84,9 +84,9 @@ import { TicketSucessComponent } from './components/ticket-registeration/ticket-
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-  
     MatMomentDatetimeModule,
-    MatDatetimepickerModule
+    MatDatetimepickerModule,
+
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

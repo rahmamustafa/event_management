@@ -16,7 +16,7 @@ import gov.iti.evento.services.dtos.EventReviewCreateDto;
 import gov.iti.evento.services.dtos.ticket.EventTicketDto;
 import gov.iti.evento.services.dtos.NewEventsDto;
 import gov.iti.evento.services.util.exceptions.MessageException;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.bind.DefaultValue;
@@ -115,28 +115,37 @@ public class EventController {
         }
         return eventTicketService.getEventTicketDetails(eventId);
     }
-    @PostMapping("events/{id}/review")
-    public ResponseEntity<?> saveReview (@PathVariable  Integer id,@RequestParam("review") EventReviewCreateDto createDto) {
-       Optional<User> user =userRepository.findById(createDto.getUserId());
+    @PostMapping(value = "events/{id}/review",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> saveReview (@RequestBody EventReviewCreateDto eventReview,@PathVariable("id")  Integer id) {
+        System.out.println("review ->"+eventReview);
+        System.out.println("id ->"+id);
+        Optional<User> user =userRepository.findById(eventReview.getUser_id());
+
        if(user.isPresent()){
             // Check if the user has already reviewed the event
-            boolean hasReviewed = eventReviewService.hasUserReviewedEvent(createDto.getUserId(), id);
+            boolean hasReviewed = eventReviewService.hasUserReviewedEvent(eventReview.getUser_id(), id);
             if (hasReviewed) {
                 return ResponseEntity.badRequest().body("You have already reviewed this event.");
             }
             Optional <Event> event = eventService.findEventById(id);
             
-            EventReview eventReview = new EventReview();
-            eventReview.setReview(createDto.getReview());
-            eventReview.setUser(user.get());
-            eventReview.setEvent(event.get());
+            EventReview review = new EventReview();
+            review.setReview(eventReview.getReview());
+            review.setUser(user.get());
+            review.setEvent(event.get());
             
-            EventReview createdReview = eventReviewService.createReview(eventReview);
+            EventReview createdReview = eventReviewService.createReview(review);
             return ResponseEntity.ok(createdReview);
         }
         return ResponseEntity.badRequest().body("this user does not exist,login first.");
     }
-
+    @GetMapping("/events/{id}/review")
+    public ResponseEntity<Boolean> isReviewed (@RequestParam("user") int userId,@PathVariable("id") int eventId){
+        System.out.println("user event  ->"+userId+" "+eventId );
+        Boolean isExist = eventReviewService.hasUserReviewedEvent(userId, eventId);
+        
+        return ResponseEntity.ok(isExist);
+    }
     @GetMapping("/events/status/{status}")
     public List<EventDto> getEventByStatus(@PathVariable("status") String status, @RequestParam("page") @DefaultValue("0") int page) throws Exception {
         System.out.println("speaker : " + status);
