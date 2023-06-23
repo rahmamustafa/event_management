@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     @Autowired
@@ -33,11 +34,11 @@ public class UserController {
         System.out.println(createUserDto);
         userService.saveUser(createUserDto);
     }
-    @PostMapping("/api/email/check")
+    @PostMapping("/api/auth/email/check")
     public boolean checkEmailValid(@RequestBody String email){
         return userService.checkEmailValid(email);
     }
-    @PostMapping(value = "/api/login/check" , consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/api/auth/login/check" , consumes = MediaType.APPLICATION_JSON_VALUE)
     public boolean checkUserValid(@RequestBody UserLoginDto user){
         return userService.checkUserValid(user);
     }
