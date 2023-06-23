@@ -366,7 +366,7 @@
   /* enable for pause on hover */ 
 }
 #slider figure img {
-	width: 33.333333333%;
-	height : 50%;
+	width: 40%;
+	height : 300%;
 	float: left;
 }
