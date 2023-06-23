@@ -6,6 +6,8 @@ import gov.iti.evento.entites.Speaker;
 import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.EventSpeakerRepository;
 import gov.iti.evento.repositories.SpeakerRepository;
+import gov.iti.evento.services.dtos.SpeakersDto;
+import gov.iti.evento.services.mappers.EventSpeakersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,19 +24,28 @@ public class SpeakerServices {
    @Autowired
     EventRepository eventRepository;
 
+    @Autowired
+    EventSpeakersMapper eventSpeakersMapper;
+
 
     public SpeakerServices(){
 
     }
-
-    public Speaker saveSpeaker (Speaker speaker){
-        return speakerRepository.save(speaker);
+    public SpeakersDto saveSpeaker (Speaker speaker)throws Exception{
+        speaker=speakerRepository.save(speaker);
+        return eventSpeakersMapper.INSTANCE.toDto(speaker);
     }
-//    public EventSpeaker addSpeakerToEvent (EventSpeaker eventSpeaker){
-//        return eventSpeakerRepository.save(eventSpeaker);
-//    }
 
-    public Optional<Speaker> findById (Integer id){
+    public SpeakersDto findById (Integer id)throws Exception{
+        Optional<Speaker>speakerOptional = speakerRepository.findById(id);
+        Speaker speaker= new Speaker();
+        if (speakerOptional.isPresent()) {
+            speaker = speakerOptional.get();
+        }
+        return eventSpeakersMapper.INSTANCE.toDto(speaker);
+    }
+
+    public Optional<Speaker> getSpeakerById (Integer id){
         return speakerRepository.findById(id);
     }
 

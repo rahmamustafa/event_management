@@ -42,7 +42,6 @@ import {EventListComponent} from './components/event-list/event-list.component';
     HeaderComponent,
     NotFoundComponent,
     FooterComponent,
-    // EventDetailsComponent,
     SharedComponent,
     EventDetailsComponent,
     EventReviewsComponent,
@@ -52,8 +51,8 @@ import {EventListComponent} from './components/event-list/event-list.component';
     EventReviewsComponent,
     SpeakersComponent,
     NewEventsComponent,
-    EventListComponent
-    // EventSpeakersComponent
+    EventListComponent,
+      
   ],
   imports: [
     MbscModule,
@@ -63,6 +62,7 @@ import {EventListComponent} from './components/event-list/event-list.component';
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
+    
     // MatSnackBarModule,
     DatePipe,
     MbscInputModule,

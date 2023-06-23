@@ -7,6 +7,7 @@ import gov.iti.evento.entites.EventSpeakerId;
 import gov.iti.evento.entites.Speaker;
 import gov.iti.evento.repositories.SpeakerRepository;
 import gov.iti.evento.services.SpeakerServices;
+import gov.iti.evento.services.dtos.SpeakersDto;
 import gov.iti.evento.services.util.converters.ImageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -67,7 +68,7 @@ public class SpeakerController {
         return ResponseEntity.ok("Speaker deleted successfully");
     }
 
-    public Optional<Speaker> getSpeakerById(@PathVariable Integer id) {
+    public SpeakersDto getSpeakerById(@PathVariable Integer id) throws Exception{
         return speakerServices.findById(id);
     }
 
@@ -75,7 +76,7 @@ public class SpeakerController {
     @PostMapping("/eventSpeaker/{eventId}/{speakerId}")
     public EventSpeaker addSpeakerToEvent(@PathVariable("eventId") Integer eventId, @PathVariable("speakerId") Integer speakerId) {
         Optional<Event> eventOptional = eventController.getEventById(eventId);
-        Optional<Speaker> speakerOptional = getSpeakerById(speakerId);
+        Optional<Speaker> speakerOptional = speakerServices.getSpeakerById(speakerId);
         EventSpeaker eventSpeaker = new EventSpeaker();
         EventSpeakerId eventSpeakerId = new EventSpeakerId();
 

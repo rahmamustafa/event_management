@@ -16,16 +16,14 @@ import java.util.List;
 
 @Service
 public class EventDetailService {
-    private EventRepository eventRepository;
+    private final EventSpeakerRepository eventSpeakerRepository;
+    private final EventRepository eventRepository;
     @Autowired
     private EventDisplayMapper eventDisplayMapper;
-    private final EventSpeakerRepository eventSpeakerRepository;
 
     @Autowired
-    public EventDetailService(EventRepository eventRepository,
-                              EventSpeakerRepository eventSpeakerRepository) {
+    public EventDetailService(EventRepository eventRepository, EventSpeakerRepository eventSpeakerRepository) {
         this.eventRepository = eventRepository;
-        // this.eventDisplayMapper=eventDisplayMapper;
         this.eventSpeakerRepository = eventSpeakerRepository;
     }
 
@@ -47,29 +45,27 @@ public class EventDetailService {
         for (EventSpeaker eventSpeaker : eventSpeakers) {
             SpeakersDto speakersDto = convertToSpeakersDto(eventSpeaker);
             speakersDtoList.add(speakersDto);
-
             SpeakersDto eventSpeakersDTO = new SpeakersDto();
             eventSpeakersDTO.setId(eventSpeaker.getSpeaker().getId());
             eventSpeakersDTO.setName(eventSpeaker.getSpeaker().getName());
             eventSpeakersDTO.setJobTitle(eventSpeaker.getSpeaker().getJobTitle());
             eventSpeakersDTO.setDescription(eventSpeaker.getSpeaker().getDescription());
-            eventSpeakersDTO.setImage(eventSpeaker.getSpeaker().getImage());
             speakersDtoList.add(eventSpeakersDTO);
         }
         return speakersDtoList;
     }
+
     private SpeakersDto convertToSpeakersDto(EventSpeaker eventSpeaker) {
-        // Assuming you have appropriate getter methods in the EventSpeaker class
         Integer speakerId = eventSpeaker.getSpeaker().getId();
         String speakerName = eventSpeaker.getSpeaker().getName();
         String jobTitle = eventSpeaker.getSpeaker().getJobTitle();
         String description = eventSpeaker.getSpeaker().getDescription();
-        String image = eventSpeaker.getSpeaker().getImage();
+//        byte[] image = eventSpeaker.getSpeaker().getImage();
 
-        return new SpeakersDto(speakerId, speakerName, jobTitle, description, image);
+        return new SpeakersDto(speakerId, speakerName, jobTitle, description);
     }
 
-    public Event saveEvent (Event event){
+    public Event saveEvent(Event event) {
         return eventRepository.save(event);
     }
 }

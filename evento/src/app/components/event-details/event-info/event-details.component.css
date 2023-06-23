@@ -146,59 +146,6 @@
     margin-bottom: 12cm;
   }
   
-  /*
-element.style {
-    opacity: 1;
-    width: 6670px;
-    transform: translate3d(-2320px, 0px, 0px);
-}
-.slick-slider .slick-track, .slick-slider .slick-list {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-}
-.slick-track {
-    position: relative;
-    top: 0;
-    left: 0;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-*, ::after, ::before {
-    box-sizing: border-box;
-} */
-/*
-.slick-prev, .slick-next {
-font-size: 0;
-line-height: 0;
-position: absolute;
-top: 50%;
-display: block;
-width: 20px;
-height: 20px;
-padding: 0;
-transform: translate(0, -50%);
-    cursor: pointer;
-    color: transparent;
-    border: none;
-    outline: none;
-    background: transparent;
-
-}*/
-/* ******************************************************************************* */
-
-/* Slider */
-/* .slick-loading .slick-list
-{
-    background: #fff url('./ajax-loader.gif') center center no-repeat;
-} */
-
-/* Icons */
-
-/* Arrows */
 .slick-prev,
 .slick-next
 {
@@ -297,10 +244,17 @@ transform: translate(0, -50%);
 }
 
 /* Dots */
-.slick-dotted.slick-slider
+/* .slick-dotted.slick-slider
 {
     margin-bottom: 30px;
-}
+} */
+
+/* .slideConfig = {  
+  "slidesToShow": 3,  
+  "slidesToScroll": 3,  
+  "dots": true,  
+  "infinite": true  
+};  */
 
 .slick-dots
 {
@@ -385,4 +339,34 @@ transform: translate(0, -50%);
     opacity: .75;
     color: black;
 }
+/* ***************************************************************************** */
 
+
+#slider {
+	overflow: hidden;
+}
+
+@keyframes slider {
+	0% { left: 0; }
+	30% { left: 0; }
+	33% { left: -100%; }
+	63% { left: -100%; }
+	66% { left: -200%; }
+	95% { left: -200%; }
+	100% { left: 0; }
+}
+#slider figure {
+	width:100%;
+	position: relative;
+	animation: 10s slider infinite;
+}
+
+#slider figure:hover {
+	 animation-play-state: paused; 
+  /* enable for pause on hover */ 
+}
+#slider figure img {
+	width: 33.333333333%;
+	height : 100%;
+	float: left;
+}

@@ -1,0 +1,53 @@
+<section class="speakers-full-width">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-12">
+                <!-- Speaker Slider -->
+                <div class="speaker-slider">
+                    <!-- ***************************************************************************** -->
+
+                    <div class="speaker-slider slick-initialized slick-slider">
+                        <button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="">
+                            Previous
+                        </button>
+                
+                
+                        <div class="slick-list draggable" style="padding: 0px 50px;">
+                            <div class="slick-track" style="opacity: 1; width: 6670px; transform: translate3d(-2900px, 0px, 0px);">
+                                <div class="speaker-image slick-slide slick-cloned" *ngFor= "let speaker of speakers" tabindex="-1" style="width: 290px;" data-slick-index="-3" id="" aria-hidden="true">
+                                <img [src]="speaker.image" alt="{{ speaker.name }}"  class="img-fluid">
+                                <div class="primary-overlay text-center">
+                                    <h5>{{ speaker.name }}</h5>
+                                    <p>{{ speaker.jobTitle }}</p>
+                                    <p>{{ speaker.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <div class="speaker-image slick-slide" tabindex="-1" *ngFor= "let eventSpeaker of speakers" style="width: 290px;"  data-slick-index="5" aria-hidden="true">
+                    <img scr = "{}" alt="{{ eventSpeaker.name }}"  class="img-fluid">
+                    <div class="primary-overlay text-center">
+                        <h5>{{ eventSpeaker.name }} hollaaa</h5>
+                        <p>{{ eventSpeaker.jobTitle }}</p>
+                        <p>{{ eventSpeaker.description }}</p>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a href="https://themefisher.com/" tabindex="-1"><i class="fa fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="https://themefisher.com/" tabindex="-1"><i class="fa fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="https://themefisher.com/" tabindex="-1"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                   
+                </div>  -->
+                <button class="slick-next slick-arrow" aria-label="Next" type="button" style="">
+                    Next
+                </button>
+        </div>
+        </div>
+        </div>
+        </div>
+    <!-- </div> -->
+</section>
+
+
