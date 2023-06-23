@@ -23,10 +23,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.time.LocalDate;
@@ -36,6 +33,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class EventController {
     @Autowired
     CategoryRepository categoryRepository;
