@@ -49,33 +49,32 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form class="form-valide" action="#" method="post">
+                                    <form class="form-valide" (ngSubmit)="submitForm()" enctype="multipart/form-data" [formGroup]="eventForm">
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="title">Title<span
-                                                    class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="title">Title
                                             </label>
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="title" name="title"
-                                                    placeholder="Enter a username..">
+                                                    placeholder="Enter a username.." formControlName="title">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="description">Description<span
-                                                    class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="description">Description
                                             </label>
                                             <div class="col-lg-6">
                                                 <textarea class="form-control" id="description" name="description"
-                                                    rows="5" placeholder="What would you like to see?"></textarea>
+                                                    rows="5" placeholder="What would you like to see?"
+                                                    formControlName="description"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="categeory">Categeory <span
-                                                    class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="category">Category
                                             </label>
                                             <div class="col-lg-6">
-                                                <select class="form-control" [(ngModel)]="selectedCategeory" id="categeory" name="categeory">
-                                                    <option *ngFor="let categeory of categeories" 
-                                                    [value]="categeory">{{categeory}}</option>
+                                                <select class="form-control" [(ngModel)]="selectedCategory"
+                                                    id="category" name="category" formControlName="category">
+                                                    <option *ngFor="let category of categeories" [value]="category">
+                                                        {{category}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -98,106 +97,108 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="speakers">Speakers <span
-                                                    class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="speakers">Speakers
                                             </label>
                                             <div class="col-lg-6">
-                                                <form [formGroup]="speakerForm">
-                                                    <div *ngFor="let item of speakers">
-                                                      <label>
-                                                        <input type="checkbox" [value]="item" formControlName="checkboxGroup">
-                                                        {{ item }}
-                                                      </label>
-                                                    </div>
-                                                  </form>
+                                                <div *ngFor="let choice of speakers; let i=index" class="col-md-2">
+                                                    <label>
+                                                      <input type="checkbox" [value]="choice.id" (change)="onCheckChange($event)">
+                                                      {{choice.name}}
+                                                    </label>
+                                                  </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="PLATINUMTicket">PLATINUM Ticket Price<span
-                                                    class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="PLATINUMTicket"
-                                                    name="PLATINUMTicket" placeholder="$21.60">
+                                            <label class="col-lg-4 col-form-label" for="PLATINUMTicket">PLATINUM
+                                                Ticket</label>
+                                            <div class="col-lg-3">
+                                                <input type="number" min="0" formControlName="ticketPrice" class="form-control"
+                                                    id="STANDARDTicket" name="STANDARDTicket" placeholder="price"
+                                                    [(ngModel)]="ticketPrice['PLATINUM']"
+                                                    (input)="updateTicketPrice('PLATINUM', $event)">
                                             </div>
-                                            <label class="col-lg-4 col-form-label" for="STANDARDTicket">STANDARD Ticket Price<span
-                                                class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control" id="STANDARDTicket"
-                                                name="STANDARDTicket" placeholder="$21.60">
-                                        </div>
-                                        <label class="col-lg-4 col-form-label" for="STARTERTicket">STARTER Ticket Price<span
-                                            class="text-danger">*</span>
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="STARTERTicket"
-                                            name="STARTERTicket" placeholder="$21.60">
-                                    </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-website">Website <span
-                                                    class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-website"
-                                                    name="val-website" placeholder="http://example.com">
+                                            <div class="col-lg-3">
+                                                <input type="number" min="1" formControlName="ticketNumber" class="form-control"
+                                                    id="STANDARDTicket" name="STANDARDTicket" placeholder="number"
+                                                    [(ngModel)]="ticketNumber['PLATINUM']"
+                                                    (input)="updateTicketNumber('PLATINUM', $event)">
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-phoneus">Phone (US) <span
-                                                    class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-phoneus"
-                                                    name="val-phoneus" placeholder="212-999-0000">
+                                            <label class="col-lg-4 col-form-label" for="STANDARDTicket">STANDARD
+                                                Ticket</label>
+                                            <div class="col-lg-3">
+                                                <input type="number" min="0" formControlName="ticketPrice" class="form-control"
+                                                    id="STANDARDTicket" name="STANDARDTicket" placeholder="price"
+                                                    [(ngModel)]="ticketPrice['STANDARD']"
+                                                    (input)="updateTicketPrice('STANDARD', $event)">
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-digits">Digits <span
-                                                    class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-digits"
-                                                    name="val-digits" placeholder="5">
+                                            <div class="col-lg-3">
+                                                <input type="number" min="1" formControlName="ticketNumber" class="form-control"
+                                                    id="STANDARDTicket" name="STANDARDTicket" placeholder="number"
+                                                    [(ngModel)]="ticketNumber['STANDARD']"
+                                                    (input)="updateTicketNumber('STANDARD', $event)">
+                                            </div>
+                                            <label class="col-lg-4 col-form-label" for="STARTERTicket">STARTER
+                                                Ticket</label>
+                                            <div class="col-lg-3">
+                                                <input type="number" min="0" formControlName="ticketPrice" class="form-control"
+                                                    id="STANDARDTicket" name="STANDARDTicket" placeholder="price"
+                                                    [(ngModel)]="ticketPrice['STARTER']"
+                                                    (input)="updateTicketPrice('STARTER', $event)">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <input type="number" min="1" formControlName="ticketNumber" class="form-control"
+                                                    id="STANDARDTicket" name="STANDARDTicket" placeholder="number"
+                                                    [(ngModel)]="ticketNumber['STARTER']"
+                                                    (input)="updateTicketNumber('STARTER', $event)">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-number">Number <span
-                                                    class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="location">Location
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-number"
-                                                    name="val-number" placeholder="5.0">
+                                                <input type="text" class="form-control" id="location" name="location"
+                                                    placeholder="Location" formControlName="location">
+                                            </div>
+                                        </div>
+                                        <!-- <div>
+                                            <google-map height="400px" width="750px" [center]="center" [zoom]="zoom"
+                                                (mapClick)="moveMap($event)" (mapMousemove)="move($event)">
+                                            </google-map>
+
+                                            <div>Latitude: {{display?.lat}}</div>
+                                            <div>Longitude: {{display?.lng}}</div>
+                                        </div> -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="online">Avilable Online
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <div class="radio mb-3">
+                                                    <label>
+                                                        <input type="radio" name="online" formControlName="isOnline"
+                                                            value="0">No</label>
+                                                </div>
+                                                <div class="radio mb-3">
+                                                    <label>
+                                                        <input type="radio" name="online" formControlName="isOnline"
+                                                            value="1">Yes</label>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-range">Range [1, 5] <span
-                                                    class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="image">Event
+                                                Image
                                             </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-range" name="val-range"
-                                                    placeholder="4">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label"><a href="#">Terms &amp;
-                                                    Conditions</a> <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-8">
-                                                <label class="css-control css-control-primary css-checkbox"
-                                                    for="val-terms">
-                                                    <input type="checkbox" class="css-control-input" id="val-terms"
-                                                        name="val-terms" value="1"> <span
-                                                        class="css-control-indicator"></span> I agree to the
-                                                    terms</label>
+                                            <div class=" mt-3 col-md-6">
+                                                <input type="file" accept="image/png, image/gif, image/jpeg"
+                                                    formControlName="image" (change)="onImageSelected($event)"
+                                                    class="form-control" name="image" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-lg-8 ml-auto">
-                                                <button (click)="submitForm()" class="btn btn-primary">Submit</button>
+                                                <button  class="btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </form>

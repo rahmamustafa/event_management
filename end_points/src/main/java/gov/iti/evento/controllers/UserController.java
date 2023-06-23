@@ -28,7 +28,7 @@ public class UserController {
         CreateUserDto createUserDto;
 
         createUserDto = objectMapper.readValue(userDto , CreateUserDto.class);
-        String userImageName = fileStorageService.storeFile(userImage , createUserDto.getEmail());
+        String userImageName = fileStorageService.storeFile(userImage , createUserDto.getEmail() , "Users");
         createUserDto.setImage(userImageName);
 
         System.out.println(createUserDto);

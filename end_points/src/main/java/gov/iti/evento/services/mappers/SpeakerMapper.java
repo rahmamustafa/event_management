@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 
+import gov.iti.evento.services.speaker.SpeakerDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -26,6 +27,8 @@ public interface SpeakerMapper {
 
     @Mapping(source = "image", target = "image", qualifiedByName = "toPath")
     SpeakerMostSpeakingDto toDto(Speaker speaker);
+    SpeakerDto toSpeakerDto(Speaker speaker);
+
     
     @Named("toPath")
     default String toPath(String image) {

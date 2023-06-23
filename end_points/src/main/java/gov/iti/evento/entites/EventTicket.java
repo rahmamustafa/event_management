@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Table(name = "event_ticket")
 public class EventTicket implements Serializable {
     @EmbeddedId
-    private EventTicketId eventTicketId;
+    private EventTicketId eventTicketId = new EventTicketId();
 
     @MapsId("eventId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -28,7 +28,6 @@ public class EventTicket implements Serializable {
     @Column(name = "price")
     private Float price;
 
-    @NotNull
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

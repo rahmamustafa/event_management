@@ -3,6 +3,7 @@ package gov.iti.evento.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import gov.iti.evento.services.speaker.SpeakerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,10 @@ public class SpeakerService {
         List<Speaker> speakers= speakerRepository.findTop8ByEventCount();
         
         return speakers.stream().map(SpeakerMapper.INSTANCE::toDto).toList();
+    }
+
+    public List<SpeakerDto> getAllSpeakerName() {
+        List<Speaker> speakers= speakerRepository.findAll();
+        return speakers.stream().map(SpeakerMapper.INSTANCE::toSpeakerDto).toList();
     }
 }

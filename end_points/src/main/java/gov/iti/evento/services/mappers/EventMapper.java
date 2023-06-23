@@ -1,31 +1,20 @@
 package gov.iti.evento.services.mappers;
 
 import gov.iti.evento.entites.Event;
-import gov.iti.evento.entites.Category;
-import gov.iti.evento.entites.Event;
-import gov.iti.evento.services.dtos.CategoryCreateDto;
 import gov.iti.evento.services.dtos.EventByDateDto;
 import gov.iti.evento.services.dtos.EventDto;
+import gov.iti.evento.services.dtos.event.AddEventDto;
 import gov.iti.evento.services.util.converters.ImageConverter;
 import gov.iti.evento.services.dtos.NewEventsDto;
-import lombok.val;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.Base64;
 
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
@@ -36,6 +25,10 @@ public interface EventMapper {
 
     @Mapping(source = "categoryType", target = "category.type")
     Event toEntity(EventDto eventDto);
+
+    @Mapping(source = "category", target = "category.type")
+    @Mapping(source = "status", target = "status")
+    Event toEntity(AddEventDto eventDto);
 
     // @Mappings({
     // @Mapping(target = "image", expression =
