@@ -1,6 +1,7 @@
 package gov.iti.evento.services;
 
 import gov.iti.evento.entites.EventTicket;
+import gov.iti.evento.entites.EventTicketId;
 import gov.iti.evento.repositories.EventTicketRepository;
 import gov.iti.evento.services.dtos.ticket.EventTicketDto;
 import gov.iti.evento.services.mappers.ticket.EventTicketMapper;
@@ -26,6 +27,10 @@ public class EventTicketService {
             eventTicketDtos.add(eventTicketMapper.toDto(e));
         }
         return eventTicketDtos;
+    }
+    public EventTicket getEventTicketPrice(int eventId,int ticketId) {
+        EventTicketId eventTicketId=new EventTicketId(eventId, ticketId);
+        return eventTicketRepository.getPriceByEventTicketId(eventTicketId);
     }
 
 }

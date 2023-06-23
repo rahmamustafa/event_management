@@ -1,0 +1,9 @@
+{
+    "/paypal": {
+      "target": "https://www.sandbox.paypal.com",
+      "secure": true,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  

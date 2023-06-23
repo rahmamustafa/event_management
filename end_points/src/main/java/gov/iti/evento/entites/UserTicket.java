@@ -25,4 +25,7 @@ public class UserTicket implements Serializable {
     @JoinColumn(name = "event_ticket_id", nullable = false, referencedColumnName = "id")
     private EventTicket eventTicket;
 
+    @Column(name = "quantity")
+    private int quantity;
+
 }

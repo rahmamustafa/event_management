@@ -29,7 +29,8 @@ import { SubscriptionComponent } from './components/home/subscription/subscripti
 import { ScheduleComponent } from './components/home/schedule/schedule.component';
 import { SpeakersComponent } from './components/home/speakers/speakers.component';
 import { NewEventsComponent } from './components/home/new-events/new-events.component';
-import {EventListComponent} from './components/event-list/event-list.component'
+import {EventListComponent} from './components/event-list/event-list.component';
+import { TicketRegisterationComponent } from './components/ticket-registeration/ticket-registeration.component'
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {EventListComponent} from './components/event-list/event-list.component'
     EventReviewsComponent,
     SpeakersComponent,
     NewEventsComponent,
-    EventListComponent
+    EventListComponent,
+    TicketRegisterationComponent
   ],
   imports: [
     MbscModule,

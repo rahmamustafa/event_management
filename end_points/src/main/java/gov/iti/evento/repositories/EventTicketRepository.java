@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface EventTicketRepository extends JpaRepository<EventTicket, EventTicketId> {
     public List<EventTicket> getEventTicketByEvent_Id(int id);
+    public EventTicket getPriceByEventTicketId(EventTicketId eventTicketId);
 
 }

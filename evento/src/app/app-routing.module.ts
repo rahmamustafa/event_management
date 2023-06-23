@@ -8,15 +8,17 @@ import { EventDetailsComponent } from './components/event-details/event-details.
 import { SignupComponent } from './components/signup/signup.component';
 import {EventListComponent} from './components/event-list/event-list.component'
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { TicketRegisterationComponent } from './components/ticket-registeration/ticket-registeration.component';
 
 
 const routes: Routes = [
   {path: '',
       children: [
  
-
+  {path:'event/register',component:TicketRegisterationComponent},
   {path:'home',component:HomeComponent},
   {path:'event/:id',component:EventDetailsComponent},
+ 
   {path:'404',component:NotFoundComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},

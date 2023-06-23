@@ -23,10 +23,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.time.LocalDate;
@@ -117,4 +114,8 @@ public class EventController {
     public static int calculatePaginationSize(int totalItems, int itemsPerPage) {
         return (int) Math.ceil((double) totalItems / itemsPerPage);
     }
+//    @PostMapping(value = "event/{eventId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public boolean registerEvent(@PathVariable("eventId") int eventId,@RequestParam("userId") int userId,@RequestBody UserLoginDto user){
+//        return true;
+//    }
 }

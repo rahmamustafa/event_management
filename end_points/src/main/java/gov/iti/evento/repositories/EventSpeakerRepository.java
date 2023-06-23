@@ -18,7 +18,7 @@ import java.util.List;
 
 @Repository
 public interface EventSpeakerRepository extends JpaRepository<EventSpeaker, EventSpeakerId> {
-    List<EventSpeaker> findBySpeakerNameIgnoreCaseLike (String speaker);
+//    List<EventSpeaker> findBySpeakerNameIgnoreCaseLike (String speaker);
     List<EventSpeaker> findByEvent(Event event);
 //    @Query("SELECT es.speaker FROM EventSpeaker es WHERE es.eventId = :eventId")
 //    List<Speaker> findSpeakersByEventId(@Param("eventId") Integer eventId);
