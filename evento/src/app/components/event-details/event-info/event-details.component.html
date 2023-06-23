@@ -51,25 +51,10 @@
             </div>
 
             <!-- ****************************************************************************************** -->
-
-            <!-- <app-event-speakers></app-event-speakers> -->
-
-            <p>event-speakers works!</p>
-            <!-- <section> 
-                 <div 
-                    style="width: 290px;" *ngFor="let eventSpeaker of speakers"> 
-                     <img scr="./20230301_154558.jpg" alt="name"> 
-                    <div>
-                        <h5>name</h5>
-                        <p>jobTitle</p>
-                        <p>description</p>
-                    </div>
-                </div>
-            </section> -->
             <section *ngFor="let eventSpeaker of speakers">
                 <div id="slider">
                     <figure>
-                        <div class="gallery-wrapper row" >
+                        <div class="gallery-wrapper row">
                             <div class="gallery-item col-lg-4 col-md-6" data-groups="[&quot;meeting&quot;]">
                                 <div class="image-block">
                                     <div class="image">
@@ -98,43 +83,7 @@
                 </app-event-tickets>
             </ng-template>
 
-            <!-- </div> -->
         </div>
     </section>
 
 </app-shared>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- **************************************************************************************************** -->
-<!-- <section>
-    <div class="speaker-image slick-slide" tabindex="-1" *ngFor="let eventSpeaker of speakers"
-        style="width: 290px;" data-slick-index="5" aria-hidden="true">
-        <img scr="./20230301_154558.jpg" alt="{{ eventSpeaker.name }}" class="img-fluid">
-        <div class="text-center">
-            <h5>{{ eventSpeaker.name }} hollaaa</h5>
-            <p>{{ eventSpeaker.jobTitle }}</p>
-            <p>{{ eventSpeaker.description }}</p>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="https://themefisher.com/" tabindex="-1"><i
-                            class="fa fa-facebook"></i></a></li>
-                <li class="list-inline-item"><a href="https://themefisher.com/" tabindex="-1"><i
-                            class="fa fa-twitter"></i></a></li>
-                <li class="list-inline-item"><a href="https://themefisher.com/" tabindex="-1"><i
-                            class="fa fa-linkedin"></i></a></li>
-            </ul>
-        </div>
-    </div>
-</section> -->
