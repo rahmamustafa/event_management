@@ -23,6 +23,8 @@
     "@mat-datetimepicker/core": "^12.0.0",
     "@mat-datetimepicker/moment": "^12.0.0",
     "@mobiscroll/angular": "https://npm.mobiscroll.com/@mobiscroll/angular-ivy-trial/-/angular-ivy-trial-5.25.1.tgz",
+    "@paypal/payouts-sdk": "^1.1.1",
+    "creditcardpayments": "^1.0.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -39,6 +41,5 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "typescript": "~5.0.2"
-    
   }
 }

@@ -3,10 +3,11 @@
 <div class="row">
     <div class="col-75">
       <div class="container">
-        <form (ngSubmit)="register()" enctype="multipart/form-data" [formGroup]="registerForm">
+        <div #paypalRef></div>
+        <!-- <form  enctype="multipart/form-data" [formGroup]="registerForm">
           <input formControlName="userId">
           <input formControlName="quantity">
-         
+          -->
 
 
           <!-- <div [formGroup]="registerForm">
@@ -68,8 +69,9 @@
           <label>
             <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
           </label> -->
-          <input type="submit" value="Continue to checkout" class="btn">
-        </form>
+          <input  value="Continue to checkout" class="btn" id="paypalBtn">
+        <!-- </form> -->
+        <div></div>
       </div>
     </div>
   </div>

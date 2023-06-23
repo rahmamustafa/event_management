@@ -41,6 +41,7 @@ import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
 
 import { Router } from '@angular/router';
 import { ReviewFormComponent } from './components/event-details/event-reviews/review-form/review-form.component';
+import { TicketSucessComponent } from './components/ticket-registeration/ticket-sucess/ticket-sucess.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,8 @@ import { ReviewFormComponent } from './components/event-details/event-reviews/re
     AdminComponent,
     AddEventComponent,
     SideBarComponent,
-    ReviewFormComponent
+    ReviewFormComponent,
+    TicketSucessComponent
   ],
   imports: [
     MbscModule,

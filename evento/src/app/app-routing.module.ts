@@ -10,10 +10,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { TicketRegisterationComponent } from './components/ticket-registeration/ticket-registeration.component';
 import { AddEventComponent } from './components/admin/add-event/add-event.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { TicketSucessComponent } from './components/ticket-registeration/ticket-sucess/ticket-sucess.component';
 
 
  
 const routes: Routes = [
+   {path:'pay/success',component:TicketSucessComponent},
   {path:'event/register',component:TicketRegisterationComponent},
   
   {path:'404',component:NotFoundComponent},

@@ -4,16 +4,13 @@ import com.paypal.api.payments.*;
 
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Service
@@ -58,23 +55,13 @@ public class PaypalService {
         return payment.create(apiContext);
     }
 
-    public Map<String, Object> executePayment(HttpServletRequest req) throws PayPalRESTException{
-        Map<String, Object> response = new HashMap<>();
+    public Payment executePayment(String paymentId, String payerId) throws PayPalRESTException{
+        System.out.println("hiiiiiiii");
         Payment payment = new Payment();
-        payment.setId(req.getParameter("paymentId"));
-
-        PaymentExecution paymentExecution = new PaymentExecution();
-        paymentExecution.setPayerId(req.getParameter("PayerID"));
-        try {
-//            APIContext context = new APIContext(clientId, clientSecret, "sandbox");
-            Payment createdPayment = payment.execute(apiContext, paymentExecution);
-            if(createdPayment!=null){
-                response.put("status", "success");
-                response.put("payment", createdPayment);
-            }
-        } catch (PayPalRESTException e) {
-            System.err.println(e.getDetails());
-        }
-        return response;}
+        payment.setId(paymentId);
+        PaymentExecution paymentExecute = new PaymentExecution();
+        paymentExecute.setPayerId(payerId);
+        return payment.execute(apiContext, paymentExecute);
+    }
 
 }
