@@ -11,32 +11,15 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  private getuserEmail(): any {
+   getuserEmail(): any {
     const token = localStorage.getItem(this.TOKEN_KEY);
     if (token) {
       const payload = token.split('.')[1]; 
       const decodedPayload = atob(payload); 
-      return JSON.parse(decodedPayload); 
+      return JSON.parse(decodedPayload).sub; 
     }
     return null;
   }
-   UserId(callback: (val:any) => void): void {
-  
-    let email = this.getuserEmail();
-
-    this.http.post<any>("http://localhost:8888/user",{"email":email.sub})
-    .subscribe({
-      next:response=>{
-        callback( response);
-      },
-      error:error=>{
-        callback( null);
-      }
-    }
-    );
-  }
-  getUserId(userId:any):any{
-    this.userId =userId;
-    console.log(this.userId);
-  }
+   
+ 
 }

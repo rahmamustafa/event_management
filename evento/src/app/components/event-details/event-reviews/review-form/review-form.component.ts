@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import {  EventReviewCreateDto } from 'src/app/models/event-details-models/review-models/event-review-create-dto.model';
 import { ApiService } from 'src/app/services/api.service';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-review-form',
   templateUrl: './review-form.component.html',
@@ -21,7 +22,12 @@ export class ReviewFormComponent {
   showSection = false;
   eventId: string;
   isReviewed:boolean;
-  constructor(private _form:FormBuilder, private apiService: ApiService,private http: HttpClient,private route: ActivatedRoute){}
+  userId:any;
+  constructor(private _form:FormBuilder, private apiService: ApiService,private http: HttpClient,private route: ActivatedRoute,private userService:UserService){
+    
+  }
+ 
+  
   ngOnInit(): void {
    
 
@@ -41,17 +47,32 @@ export class ReviewFormComponent {
     );
   }
 
-  addReview(userId:number){
+  addReview(){
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
+      //get User Data
+      let email = this.userService.getuserEmail();
+  
+      this.http.post<any>("http://localhost:8888/user",{"email":email})
+      .subscribe({
+        next:response=>{
+        this.userId=response;
+        },
+        error:error=>{
+          this.userId=null;
+        }
+      }
+      );
+      // end 
     console.log("clicked ->"+this.eventId);
     let userReview = this.reviewForm.get("Review")?.value;
     let eventReview = new EventReviewCreateDto();
     eventReview.review=userReview;
-    eventReview.user_id=1;
+    eventReview.user_id=this.userId;
+    console.log("userId ->"+this.userId);
 
     this.http.post<any>(`http://localhost:8888/events/${this.eventId}/review`, eventReview)
     .subscribe({

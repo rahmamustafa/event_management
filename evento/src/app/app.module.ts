@@ -41,6 +41,7 @@ import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
 import { Router } from '@angular/router';
 import { ReviewFormComponent } from './components/event-details/event-reviews/review-form/review-form.component';
 import { UserService } from './services/user.service';
+import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,8 @@ import { UserService } from './services/user.service';
     AdminComponent,
     AddEventComponent,
     SideBarComponent,
-    ReviewFormComponent
+    ReviewFormComponent,
+    EventSpeakersComponent
   ],
   imports: [
     MbscModule,
