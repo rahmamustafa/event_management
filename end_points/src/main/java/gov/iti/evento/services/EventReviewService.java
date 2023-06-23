@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import javax.swing.text.html.Option;
 
 @Service
 public class EventReviewService {
@@ -28,5 +31,13 @@ public class EventReviewService {
             eventReviewsDto.add(eventReviewMapper.toDto(e));
         }
         return eventReviewsDto;
+    }
+    public Boolean hasUserReviewedEvent(Integer userId,Integer eventId){
+        Optional<EventReview> isExist = eventReviewRepository.findByEventIdAndUserId(userId, eventId);
+        return isExist.isPresent();
+        
+    }
+    public EventReview createReview(EventReview eventReview){
+        return eventReviewRepository.save(eventReview);
     }
 }

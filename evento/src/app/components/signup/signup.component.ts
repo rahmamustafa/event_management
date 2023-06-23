@@ -56,11 +56,13 @@ export class SignupComponent implements OnInit {
     const userData = new FormData();
     userData.append('image', this.selectedImage);
     userData.append('user', JSON.stringify(user));
-    this.apiService.post("api/users", userData)
+    this.apiService.post("auth/register", userData)
       .subscribe({
         next: response => {
-          console.log(response)
-          this._router.navigateByUrl('/home');
+            localStorage.setItem('username',this.registerForm.get('email')?.value);
+            let tokenStr= 'Bearer '+response.token;
+            localStorage.setItem('token', tokenStr);
+            this._router.navigateByUrl('/home');
 
         },
         error: error => { }
@@ -78,7 +80,7 @@ export class SignupComponent implements OnInit {
 
   validateEmail(){
     console.log(this.email);
-    this.apiService.post("api/email/check",this.email)
+    this.apiService.post("auth/email/check",this.email)
     .subscribe({
       next:response=>{
         console.log("resp " + response)

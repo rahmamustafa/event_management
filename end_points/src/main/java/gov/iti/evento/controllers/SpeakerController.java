@@ -28,6 +28,7 @@ import gov.iti.evento.services.dtos.SpeakerMostSpeakingDto;
 
 @RestController
 @RequestMapping("/speakers")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SpeakerController {
 
     SpeakerServices speakerServices;

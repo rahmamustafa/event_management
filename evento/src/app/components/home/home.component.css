@@ -1,0 +1,17 @@
+.left-animation {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.5s, transform 1s;
+  }
+  
+  .right-animation {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.5s, transform s;
+  }
+  
+  .animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  

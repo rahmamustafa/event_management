@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/eventDetails")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EventDetailsController {
 
     private EventDetailService eventDetailService;
