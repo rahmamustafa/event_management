@@ -1,0 +1,35 @@
+
+
+:host {
+  display: block;
+}
+
+.fadeInOut {
+  transition: opacity 0.3s;
+}
+
+.fadeInOut.ng-enter {
+  opacity: 0;
+}
+
+.fadeInOut.ng-enter-active {
+  opacity: 1;
+}
+
+.fadeInOut.ng-leave {
+  opacity: 1;
+}
+
+.fadeInOut.ng-leave-active {
+  opacity: 0;
+}
+.btn {
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    transition: all 0.3s ease;
+    padding: 25px 45px;
+    border-radius: 3px;
+    background: #ff6600;
+    color: #fff;
+    outline: none;
+  }

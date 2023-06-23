@@ -5,7 +5,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-// import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -20,7 +19,6 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
-// import { EventDetailsComponent } from './event-details/event-details.component';
 import { SharedComponent } from './shared/shared.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventReviewsComponent } from './components/event-details/event-reviews/event-reviews.component';
@@ -30,7 +28,8 @@ import { ScheduleComponent } from './components/home/schedule/schedule.component
 import { SpeakersComponent } from './components/home/speakers/speakers.component';
 import { NewEventsComponent } from './components/home/new-events/new-events.component';
 import {EventListComponent} from './components/event-list/event-list.component'
-
+import { Router } from '@angular/router';
+import { ReviewFormComponent } from './components/event-details/event-reviews/review-form/review-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +40,6 @@ import {EventListComponent} from './components/event-list/event-list.component'
     HeaderComponent,
     NotFoundComponent,
     FooterComponent,
-    // EventDetailsComponent,
     SharedComponent,
     EventDetailsComponent,
     EventReviewsComponent,
@@ -51,7 +49,8 @@ import {EventListComponent} from './components/event-list/event-list.component'
     EventReviewsComponent,
     SpeakersComponent,
     NewEventsComponent,
-    EventListComponent
+    EventListComponent,
+    ReviewFormComponent
   ],
   imports: [
     MbscModule,
@@ -61,7 +60,6 @@ import {EventListComponent} from './components/event-list/event-list.component'
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
-    // MatSnackBarModule,
     DatePipe,
     MbscInputModule,
     BrowserAnimationsModule

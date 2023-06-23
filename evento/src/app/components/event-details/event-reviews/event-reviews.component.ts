@@ -11,6 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class EventReviewsComponent implements OnInit {
   reviews: EventReview[] = [];
   image: any;
+  
   constructor(private _activatedRoute: ActivatedRoute, private apiService: ApiService, private sanitizer: DomSanitizer) {
 
   }
@@ -45,21 +46,3 @@ export class EventReviewsComponent implements OnInit {
   }
 
 }
-//   ngOnInit(): void {
-//     this._activatedRoute.paramMap
-//     .subscribe(parms=>{
-//       let id=parms.get('id');
-//       console.log(id);
-//       this.apiService.get("event/"+id+"/reviews")
-//       .subscribe({
-//         next:response=>{
-//         console.log(response._embedded);
-//       },
-//       error:error=>{}
-//     }
-//     );
-//   }
-//     );
-
-// }
-// }

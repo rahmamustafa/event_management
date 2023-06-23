@@ -1,17 +1,22 @@
 package gov.iti.evento.controllers;
 
 import gov.iti.evento.entites.Event;
+import gov.iti.evento.entites.EventReview;
+import gov.iti.evento.entites.User;
 import gov.iti.evento.repositories.CategoryRepository;
 import gov.iti.evento.repositories.EventRepository;
+import gov.iti.evento.repositories.UserRepository;
 import gov.iti.evento.services.EventReviewService;
 import gov.iti.evento.services.EventTicketService;
 import gov.iti.evento.services.dtos.eventReviews.EventReviewDto;
 import gov.iti.evento.services.EventService;
 import gov.iti.evento.services.dtos.EventByDateDto;
 import gov.iti.evento.services.dtos.EventDto;
+import gov.iti.evento.services.dtos.EventReviewCreateDto;
 import gov.iti.evento.services.dtos.ticket.EventTicketDto;
 import gov.iti.evento.services.dtos.NewEventsDto;
 import gov.iti.evento.services.util.exceptions.MessageException;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.bind.DefaultValue;
@@ -25,6 +30,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,8 +48,12 @@ public class EventController {
 
     @Autowired
     private EventReviewService eventReviewService;
+
     @Autowired
     private EventTicketService eventTicketService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("event/{id}/reviews")
     public List<EventReviewDto> getEventReviews(@PathVariable("id") int id) {
@@ -107,6 +117,27 @@ public class EventController {
         }
         return eventTicketService.getEventTicketDetails(eventId);
     }
+    @PostMapping("events/{id}/review")
+    public ResponseEntity<?> saveReview (@PathVariable  Integer id,@RequestParam("review") EventReviewCreateDto createDto) {
+       Optional<User> user =userRepository.findById(createDto.getUserId());
+       if(user.isPresent()){
+            // Check if the user has already reviewed the event
+            boolean hasReviewed = eventReviewService.hasUserReviewedEvent(createDto.getUserId(), id);
+            if (hasReviewed) {
+                return ResponseEntity.badRequest().body("You have already reviewed this event.");
+            }
+            Optional <Event> event = eventService.findEventById(id);
+            
+            EventReview eventReview = new EventReview();
+            eventReview.setReview(createDto.getReview());
+            eventReview.setUser(user.get());
+            eventReview.setEvent(event.get());
+            
+            EventReview createdReview = eventReviewService.createReview(eventReview);
+            return ResponseEntity.ok(createdReview);
+        }
+        return ResponseEntity.badRequest().body("this user does not exist,login first.");
+    }
 
     @GetMapping("/events/status/{status}")
     public List<EventDto> getEventByStatus(@PathVariable("status") String status, @RequestParam("page") @DefaultValue("0") int page) throws Exception {
@@ -117,4 +148,6 @@ public class EventController {
     public static int calculatePaginationSize(int totalItems, int itemsPerPage) {
         return (int) Math.ceil((double) totalItems / itemsPerPage);
     }
+
+   
 }
