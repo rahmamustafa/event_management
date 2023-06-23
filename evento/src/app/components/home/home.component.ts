@@ -1,14 +1,22 @@
-import { Component  ,ElementRef, Renderer2, AfterViewInit } from '@angular/core';
+import { Component  ,ElementRef, Renderer2, AfterViewInit, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements AfterViewInit {
-  constructor(private elRef: ElementRef, private renderer: Renderer2) {}
+export class HomeComponent implements AfterViewInit ,OnInit{
 
-  ngAfterViewInit() {
+  userId:any;
+  constructor(private elRef: ElementRef, private renderer: Renderer2,private userService: UserService) {
+   this.userService.UserId(this.getId);
+  }
+  ngOnInit(): void {}
+  getId(id:any){
+    console.log("id"+ id);
+  }
+   ngAfterViewInit() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -17,7 +25,7 @@ export class HomeComponent implements AfterViewInit {
         }
       });
     });
-
+    
     const sections = this.elRef.nativeElement.querySelectorAll('section');
     sections.forEach((section:any) => {
       this.renderer.addClass(section, 'left-animation');
