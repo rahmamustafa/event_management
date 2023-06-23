@@ -82,6 +82,7 @@ public class EventService {
         }
         return list;
     }
+    
 
     public List<EventDto> getEventByStatus(String status, int page) throws Exception {
         PageRequest pageRequest = PageRequest.of(page, 6);

@@ -138,7 +138,13 @@ public class EventController {
         }
         return ResponseEntity.badRequest().body("this user does not exist,login first.");
     }
-
+    @GetMapping("/events/{id}/review")
+    public ResponseEntity<Boolean> isReviewed (@RequestParam("user") int userId,@PathVariable("id") int eventId){
+        System.out.println("user event  ->"+userId+" "+eventId );
+        Boolean isExist = eventReviewService.hasUserReviewedEvent(userId, eventId);
+        
+        return ResponseEntity.ok(isExist);
+    }
     @GetMapping("/events/status/{status}")
     public List<EventDto> getEventByStatus(@PathVariable("status") String status, @RequestParam("page") @DefaultValue("0") int page) throws Exception {
         System.out.println("speaker : " + status);

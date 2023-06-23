@@ -20,14 +20,25 @@ export class ReviewFormComponent {
   reviewForm:FormGroup;
   showSection = false;
   eventId: string;
-  constructor(private _form:FormBuilder,private http: HttpClient,private route: ActivatedRoute){}
+  isReviewed:boolean;
+  constructor(private _form:FormBuilder, private apiService: ApiService,private http: HttpClient,private route: ActivatedRoute){}
   ngOnInit(): void {
+   
+
     this.reviewForm=this._form.group({
       Review:['',[Validators.required, Validators.min(4)]]
     });
     this.route.params.subscribe(params => {
       this.eventId = params['id'];
     });
+    this.apiService.get(`events/${this.eventId}/review?user=1`)
+    .subscribe({
+      next: response => {
+        this.isReviewed = response;
+      },
+      error: error => { }
+    }
+    );
   }
 
   addReview(userId:number){
@@ -49,7 +60,7 @@ export class ReviewFormComponent {
         this.reviewForm = this._form.group({
           Review: ''
         });
-        
+
       },
       error:error=>{
         console.log("error->"+error);

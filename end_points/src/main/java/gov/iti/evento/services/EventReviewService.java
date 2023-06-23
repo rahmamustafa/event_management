@@ -33,7 +33,7 @@ public class EventReviewService {
         return eventReviewsDto;
     }
     public Boolean hasUserReviewedEvent(Integer userId,Integer eventId){
-        Optional<EventReview> isExist = eventReviewRepository.findByEventIdAndUserId(userId, eventId);
+        Optional<EventReview> isExist = eventReviewRepository.findByEventIdAndUserId(eventId,userId);
         return isExist.isPresent();
         
     }
@@ -41,4 +41,6 @@ public class EventReviewService {
         System.out.println("review -> "+eventReview.getId());
         return eventReviewRepository.save(eventReview);
     }
+
+   
 }

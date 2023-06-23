@@ -1,5 +1,5 @@
 <div class="comment-form">
-    <button (click)="toggleSection()" class="btn btn-main-md">Leave A Comment</button>
+    <button (click)="toggleSection()" class="btn btn-main-md" [disabled]="isReviewed">Leave A Comment</button>
 <div *ngIf="showSection">
     
     <div [formGroup]="reviewForm" class="row">
@@ -13,7 +13,7 @@
         </div>
         <div class="col-12">
             <!-- how to know the event of this review -->
-            <button class="btn btn-main-md" type="submit" (click)="addReview(1)">Submit Now</button>
+            <button [disabled]="reviewForm.invalid" class="btn btn-main-md" type="submit" (click)="addReview(1)">Submit Now</button>
         </div>
     </div>
 </div>
