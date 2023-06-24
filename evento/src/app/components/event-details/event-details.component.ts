@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { eventDetailsDTO } from 'src/app/models/event-details.model';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -17,17 +17,20 @@ export class EventDetailsComponent implements OnInit {
   image:any;
   currentDateTime:any;
   eventDate:any;
+  value:any;
   // _activatedRoute: any;
-  constructor(private route: ActivatedRoute, private apiService: ApiService,private sanitizer: DomSanitizer, public datepipe: DatePipe) {
-    this.currentDateTime =this.datepipe.transform((new Date), 'yyyy-MM-dd h:mm:ss');
-    console.log(this.currentDateTime);
-   }
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute,private router: Router, private apiService: ApiService,private sanitizer: DomSanitizer, public datepipe: DatePipe) {
+   
     this.route.paramMap.subscribe((params:any) => {
       const id = params.get('id');
       console.log(id);
       this.getEvent(id);
     });
+    this.currentDateTime =this.datepipe.transform((new Date), 'yyyy-MM-dd h:mm:ss');
+    console.log(this.currentDateTime);
+   }
+  ngOnInit(): void {
+    
   }
   
   getEvent(id:any): void {
