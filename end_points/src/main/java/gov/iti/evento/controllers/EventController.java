@@ -171,7 +171,7 @@ public class EventController {
         return eventTicketService.getNumberOfAvailableTickets(eventId,ticketId);
     }
 
-    @PostMapping(value = "/events/register", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/api/events/register", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void bookTicket(@RequestBody UserTicketDto userTicketDto) {
         System.out.println("******");
          ticketBookingService.bookEvent(userTicketDto);

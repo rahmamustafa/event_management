@@ -40,22 +40,7 @@ export class TicketRegisterationComponent  implements OnInit{
       // this.totalPrice=this.quantity*(this.tickets[this.ticketId-1].price);
     
   }
-  // getId(id:any){
-   
-  //   console.log("userId"+id)
-  //   this.userTicket.eventId=this.eventId;
-  //   this.userTicket.quantity=this.quantity;
-  //   this.userTicket.userId=id;
-  //   this.userTicket.ticketId=this.ticketId;
-  //   this.apiService.post("api/events/register", this.userTicket)
-  //   .subscribe({
-  //     next: response => {
-        
-  //     },
-  //     error: error => { }
-  //   }
-  //   );
-  // }
+
   @ViewChild('paypalRef',{static:true}) private paypalRef:ElementRef;
 //   userTicket:UserTicket;
   ngOnInit() {
@@ -73,14 +58,7 @@ export class TicketRegisterationComponent  implements OnInit{
    this.paypalService();
     console.log(window.paypal)
    
-  // render({
-  //   id: "#paypalBtn",
-  //   currency: "USD",
-  //   value: "100.00",
-  //   onApprove: (details) => {
-  //     alert("Transaction successful");
-  //   }
-  // });
+  
 }
 paypalService(){
   paypal
@@ -125,7 +103,7 @@ registerTicket() {
   this.setUserId();
   this.setUserTicket();
   console.log("hi")
-  this.apiService.post("events/register", this.userTicket)
+  this.apiService.post("api/events/register", this.userTicket)
   .subscribe({
     next: response => {
       
@@ -222,75 +200,5 @@ getNumberOfAvailableTickets():any{
     
 }
 }
-//     // Initialize the registerForm with FormGroup and FormControls
-//     this.registerForm = this._formBuilder.group({
-      
-//       userId:new FormControl(''),
-//       quantity:new FormControl('')
-      
-     
 
-//       // Add other form controls here
-//     });
-//   }
-//   registerForm: FormGroup;
-//   register(): void {
-//     this.makePayment();
-//     // var response1;
-//     // this.userTicket = this.registerForm.value;
-//     // console.log("->>>>>>>>>>>"+this.userTicket)
-//     // this.userTicket.eventId=1;
-//     // this.userTicket.ticketId=1;
-//     // this.apiService.post("pay", this.userTicket)
-//     //   .subscribe({
-//     //     next: response => {
-//     //       console.log(response)
-//     //       response1=response;
-//     //       // if(response==true)
-//     //       //   this._router.navigateByUrl('/home');
-//     //     },
-//     //     error: error => { }
-//     //   }
-//     //   );
-//       // this.apiService(response1)
-//       // .subscribe({
-//       //   next: response => {
-//       //     console.log(response)
-//       //     response1=response;
-//       //     // if(response==true)
-//       //     //   this._router.navigateByUrl('/home');
-//       //   },
-//       //   error: error => { }
-//       // }
-//       // );
-//   }
-//   makePayment() {
-//      this.userTicket = this.registerForm.value;
-//     console.log("->>>>>>>>>>>"+this.userTicket)
-//     this.userTicket.eventId=1;
-//     this.userTicket.ticketId=1;
-//     this.apiService.post("pay", this.userTicket)
-//       .subscribe({
-//         next: response => {
-//           console.log(response.redirect_url)
-//           // this._router.navigateByUrl(response.redirect_url);
-//           window.location.href=response.redirect_url;
-//           // if(response==true)
-//           //   this._router.navigateByUrl('/home');
-//           // this.http.get<any>(response.redirect_url).subscribe({
-//           //   next: response => {
-//           //     console.log(response)
-//           //   }
-//           // });
-//           },
-        
-         
-          
-       
-//         error: error => { }
-//       }
-//       );
-      
-//   }
-// }
 
