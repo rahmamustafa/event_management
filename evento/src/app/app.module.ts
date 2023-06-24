@@ -60,6 +60,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { CountryComponent } from './components/admin/country/country.component';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { TotalRevenueComponent } from './components/admin/total-revenue/total-revenue.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +92,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
     RevenueComponent,
     CalendarComponent,
     CountryComponent,
-    RevenueComponent
+    RevenueComponent,
+    TotalRevenueComponent
   ],
   imports: [
     MbscModule,

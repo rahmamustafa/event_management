@@ -27,7 +27,6 @@ const routes: Routes = [
   {path:'events',component:EventListComponent},
   {path:'admin',component:AdminComponent},
   {path:'add-event',component:AddEventComponent},
-  {path:'revenue',component:RevenueComponent},
   {path:'calendar',component:CalendarComponent},
   {path:'',component:HomeComponent},
   {path:'**',component:NotFoundComponent}
