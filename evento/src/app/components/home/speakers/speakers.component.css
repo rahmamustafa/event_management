@@ -1,0 +1,132 @@
+/* .slider{
+    position: relative;
+    width: 100%;
+    height: 300px; Set the desired height of the slider */
+    /* overflow: hidden; */
+    
+  /* }
+  .slider:hover .slides {
+    animation-play-state: paused;
+  }
+   */
+  /* .slides {
+    display: flex;
+    width: 100%; /* Adjust the width based on the number of slides */
+    /* animation: slideAnimation 30s infinite; Adjust the duration based on the number of slides */
+  /* }
+  
+  .slide .slides {
+    flex: 1;
+    width: 100%;
+    height: 50%;
+  } */
+   /* 
+  .slide img {
+    width: 80%;
+    height: 70%;
+    object-fit: cover; Adjust the image to fit the slide
+    
+    cursor:pointer;
+  } */
+  
+  /* input[type="radio"] {
+    display: none;
+  } */
+  
+  /* .navigation {
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .navigation label {
+    display: inline-block;
+    width: 12px;
+    height: 1px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 4px;
+    cursor: pointer;
+  }
+  
+  input[type="radio"]:checked + .navigation label {
+    background-color: #000;
+  }
+   */
+  /* @keyframes slideAnimation {
+    0% {
+        margin-left: 100%; Start from right edge
+      }
+      33% {
+        margin-left: 0; Move to the center
+      } */
+      /* 66% {
+        margin-left: -100%; /* Move to the left */
+      /* }   */ 
+      /* 100% {
+        margin-left: 100%; Return to the right edge
+      }
+      0% {
+        margin-left: -100%; Return to the right edge
+      }
+       */
+    
+  /* }
+  .slider:hover .slide {
+    animation-play-state: paused;
+  } */
+
+  @import url(https://fonts.googleapis.com/css?family=Istok+Web);
+@keyframes slidy {
+0% { left: 0%; }
+20% { left: 0%; }
+25% { left: -100%; }
+45% { left: -100%; }
+50% { left: -200%; }
+70% { left: -200%; }
+75% { left: -300%; }
+95% { left: -300%; }
+100% { left: -400%; }
+20% { left: 0%; }
+}
+* {
+  box-sizing: border-box;
+}
+body, figure { 
+  margin: 0; 
+  background:scroll;
+  font-family: Istok Web, sans-serif;
+  font-weight: 100;
+}
+div#captioned-gallery { 
+  width: 100%;
+  height: 50%;
+  overflow: hidden; 
+}
+figure.slider { 
+  position: relative; 
+  width: 500%;
+  height: 70%;
+  font-size: 0; 
+  animation: 30s slidy infinite; 
+}
+figure.slider figure { 
+  width: 20%; 
+  height: 20%;
+ display:inline-flex;  
+  /*  position: inherit;  */
+}
+figure.slider img {
+   width: 60%; height: 50%; 
+  }
+figure.slider figure figcaption{ 
+  position:sticky; 
+  /* bottom: 0; */
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+   width: 70%;
+  font-size: 9rem; 
+  padding: 9rem; 
+}
+

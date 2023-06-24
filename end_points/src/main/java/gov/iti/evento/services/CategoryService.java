@@ -22,4 +22,8 @@ public class CategoryService {
         List<Category> events = Collections.unmodifiableList(categoryRepository.findAll());
         return events.stream().map(categoryMapper.INSTANCE::toDto).toList();
     }
+
+    public Category saveCategory(Category category){
+        return categoryRepository.save(category);
+    }
 }

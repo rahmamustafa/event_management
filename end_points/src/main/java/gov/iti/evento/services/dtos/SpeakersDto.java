@@ -11,12 +11,12 @@ public class SpeakersDto implements Serializable {
     private String jobTitle;
     private String name;
     private String description;
-    byte[] image;
+    private String image;
 
 
     public SpeakersDto (Integer speakerId, String speakerName, String jobTitle, String description){
         this.description =description;
-//        this.image =image;
+        this.image =image;
         this.id =speakerId;
         this.jobTitle=jobTitle;
         this.name =speakerName;

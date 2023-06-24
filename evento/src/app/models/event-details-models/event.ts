@@ -1,6 +1,6 @@
 export class Event{
-    title:string ;
     description:string;
+    title:string ;
     categoryType:string;
     image:any;
     id:number;

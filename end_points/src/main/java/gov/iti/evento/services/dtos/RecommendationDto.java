@@ -13,7 +13,7 @@ public class RecommendationDto implements Serializable {
     private String title;
     private String location;
     private String categoryType;
-    byte[] image;
+    private String image;
 
 
     public RecommendationDto() {

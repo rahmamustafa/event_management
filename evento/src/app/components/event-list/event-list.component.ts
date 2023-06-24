@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { Event } from 'src/app/models/event/event';
+import { Event } from 'src/app/models/event-details-models/event';
 import { Category } from 'src/app/models/event/category';
 import { eventDetailsDTO } from 'src/app/models/event-details.model';
 

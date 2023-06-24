@@ -16,29 +16,6 @@ import { ApiService } from 'src/app/services/api.service';
 export class EventDetailsComponent implements OnInit {
   eventDetails: eventDetailsDTO;
   speakers: eventSpeakersDTO[];
-  imageObject = [{
-    image: 'https://sanjayv.github.io/ng-image-slider/contents/assets/img/slider/5.jpg',
-    thumbImage: 'https://sanjayv.github.io/ng-image-slider/contents/assets/img/slider/5.jpg',
-    title: 'Hummingbirds are amazing creatures'
-}, {
-    image: 'https://sanjayv.github.io/ng-image-slider/contents/assets/img/slider/9.jpg',
-    thumbImage: 'https://sanjayv.github.io/ng-image-slider/contents/assets/img/slider/9.jpg'
-}, {
-    image: 'https://sanjayv.github.io/ng-image-slider/contents/assets/img/slider/4.jpg',
-    thumbImage: 'https://sanjayv.github.io/ng-image-slider/contents/assets/img/slider/4.jpg',
-    title: 'Example with title.'
-},{
-    image: 'https://sanjayv.github.io/ng-image-slider/contents/assets/img/slider/7.jpg',
-    thumbImage: 'https://sanjayv.github.io/ng-image-slider/contents/assets/img/slider/7.jpg',
-    title: 'Hummingbirds are amazing creatures'
-}, {
-    image: 'https://sanjayv.github.io/ng-image-slider/contents/assets/img/slider/1.jpg',
-    thumbImage: 'https://sanjayv.github.io/ng-image-slider/contents/assets/img/slider/1.jpg'
-}, {
-    image: 'https://sanjayv.github.io/ng-image-slider/contents/assets/img/slider/2.jpg',
-    thumbImage: 'https://sanjayv.github.io/ng-image-slider/contents/assets/img/slider/2.jpg',
-    title: 'Example two with title.'
-}];
   image: any;
   id: any;
   currentDateTime: any;
@@ -97,6 +74,7 @@ export class EventDetailsComponent implements OnInit {
                     const base64 = btoa(String.fromCharCode(...bytes));
                     let objectURL = 'data:image/png;base64,' + base64;
                     speaker.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+                    console.log(this.image);
                   });
 
                   console.log(response.speakers);

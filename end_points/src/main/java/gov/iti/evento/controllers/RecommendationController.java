@@ -14,7 +14,7 @@ public class RecommendationController {
 
     @Autowired
     RecommendationService recommendationService;
-    @GetMapping("/recommendation/{userId}")
+    @GetMapping("recommendation/{userId}")
     public List<RecommendationDto>  getUserRecommendationByUserId (@PathVariable Integer userId) throws Exception{
         return recommendationService.getUserRecommendationByUserId(userId);
     }
