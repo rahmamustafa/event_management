@@ -87,8 +87,8 @@ public class EventController {
     }
 
 
-    @GetMapping ("/events/{eventId}")
-    public Optional<Event> getEventById (@PathVariable Integer eventId){
+    @GetMapping("/events/{eventId}")
+    public Optional<Event> getEventById(@PathVariable Integer eventId) {
         return eventService.findEventById(eventId);
     }
 
@@ -116,37 +116,40 @@ public class EventController {
         }
         return eventTicketService.getEventTicketDetails(eventId);
     }
-    @PostMapping(value = "events/{id}/review",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> saveReview (@RequestBody EventReviewCreateDto eventReview,@PathVariable("id")  Integer id) {
-        System.out.println("review ->"+eventReview);
-        System.out.println("id ->"+id);
-        Optional<User> user =userRepository.findById(eventReview.getUser_id());
 
-       if(user.isPresent()){
+    @PostMapping(value = "events/{id}/review", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> saveReview(@RequestBody EventReviewCreateDto eventReview, @PathVariable("id") Integer id) {
+        System.out.println("review ->" + eventReview);
+        System.out.println("id ->" + id);
+        Optional<User> user = userRepository.findById(eventReview.getUser_id());
+
+        if (user.isPresent()) {
             // Check if the user has already reviewed the event
             boolean hasReviewed = eventReviewService.hasUserReviewedEvent(eventReview.getUser_id(), id);
             if (hasReviewed) {
                 return ResponseEntity.badRequest().body("You have already reviewed this event.");
             }
-            Optional <Event> event = eventService.findEventById(id);
-            
+            Optional<Event> event = eventService.findEventById(id);
+
             EventReview review = new EventReview();
             review.setReview(eventReview.getReview());
             review.setUser(user.get());
             review.setEvent(event.get());
-            
+
             EventReview createdReview = eventReviewService.createReview(review);
             return ResponseEntity.ok(createdReview);
         }
         return ResponseEntity.badRequest().body("this user does not exist,login first.");
     }
+
     @GetMapping("/events/{id}/review")
-    public ResponseEntity<Boolean> isReviewed (@RequestParam("user") int userId,@PathVariable("id") int eventId){
-        System.out.println("user event  ->"+userId+" "+eventId );
+    public ResponseEntity<Boolean> isReviewed(@RequestParam("user") int userId, @PathVariable("id") int eventId) {
+        System.out.println("user event  ->" + userId + " " + eventId);
         Boolean isExist = eventReviewService.hasUserReviewedEvent(userId, eventId);
-        
+
         return ResponseEntity.ok(isExist);
     }
+
     @GetMapping("/events/status/{status}")
     public List<EventDto> getEventByStatus(@PathVariable("status") String status, @RequestParam("page") @DefaultValue("0") int page) throws Exception {
         System.out.println("speaker : " + status);

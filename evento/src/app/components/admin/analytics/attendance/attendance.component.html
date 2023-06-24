@@ -1,0 +1,15 @@
+<div class="container-fluid mt-3">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Single Bar Chart</h4>
+        <canvas width="500" height="250" baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
