@@ -19,7 +19,7 @@ export class TicketSucessComponent  implements OnInit{
     console.log("hiiii")
     this.apiService.get("pay/success")
       .subscribe({
-        next: response => {
+        next: (response: any) => {
           console.log(response)
         
     }

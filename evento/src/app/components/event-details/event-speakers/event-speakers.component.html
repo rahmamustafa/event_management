@@ -2,131 +2,30 @@
 <section class="speakers-full-width">
 	<div class="container-fluid p-0">
 		<div class="row">
-			<div class="col-12">
-				<!-- Speaker Slider -->
+			<div >
 				<div class="speaker-slider">
-					<div class="speaker-image">
-						<img src="images/speakers/speaker-full-one.jpg" alt="speaker" class="img-fluid">
-						<div class="primary-overlay text-center">
-							<h5>GEORGE G. HERNANDEZ</h5>
-							<p>CEO Rancom Motor</p>
-							<ul class="list-inline">
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-facebook"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-twitter"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
+					<p-carousel class="carousel" [value]="speakers" [autoplayInterval]="3000" [numVisible]="3" [circular]="true"
+					[responsiveOptions]="responsiveOptions" >
+					<ng-template  let-speaker pTemplate="item">
+						<div class="speaker-image"  >
+							<img [src]="'data:image/jpeg;base64,' + speaker.image"  alt="speaker">
+							<div class="primary-overlay text-center">
+								<h5>{{speaker.name}}</h5>
+								<p>{{speaker.jobTitle}}</p>
+								<ul class="list-inline">
+									<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-facebook"></i></a></li>
+									<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-twitter"></i></a></li>
+									<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-linkedin"></i></a></li>
+								</ul>
+							</div>
 						</div>
-					</div>
-					<div class="speaker-image">
-						<img src="images/speakers/speaker-full-two.jpg" alt="speaker" class="img-fluid">
-						<div class="primary-overlay text-center">
-							<h5>GEORGE G. HERNANDEZ</h5>
-							<p>CEO Rancom Motor</p>
-							<ul class="list-inline">
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-facebook"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-twitter"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="speaker-image">
-						<img src="images/speakers/speaker-full-three.jpg" alt="speaker" class="img-fluid">
-						<div class="primary-overlay text-center">
-							<h5>GEORGE G. HERNANDEZ</h5>
-							<p>CEO Rancom Motor</p>
-							<ul class="list-inline">
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-facebook"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-twitter"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="speaker-image">
-						<img src="images/speakers/speaker-full-four.jpg" alt="speaker" class="img-fluid">
-						<div class="primary-overlay text-center">
-							<h5>GEORGE G. HERNANDEZ</h5>
-							<p>CEO Rancom Motor</p>
-							<ul class="list-inline">
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-facebook"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-twitter"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="speaker-image">
-						<img src="images/speakers/speaker-full-five.jpg" alt="speaker" class="img-fluid">
-						<div class="primary-overlay text-center">
-							<h5>GEORGE G. HERNANDEZ</h5>
-							<p>CEO Rancom Motor</p>
-							<ul class="list-inline">
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-facebook"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-twitter"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="speaker-image">
-						<img src="images/speakers/speaker-full-one.jpg" alt="speaker" class="img-fluid">
-						<div class="primary-overlay text-center">
-							<h5>GEORGE G. HERNANDEZ</h5>
-							<p>CEO Rancom Motor</p>
-							<ul class="list-inline">
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-facebook"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-twitter"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="speaker-image">
-						<img src="images/speakers/speaker-full-two.jpg" alt="speaker" class="img-fluid">
-						<div class="primary-overlay text-center">
-							<h5>GEORGE G. HERNANDEZ</h5>
-							<p>CEO Rancom Motor</p>
-							<ul class="list-inline">
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-facebook"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-twitter"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="speaker-image">
-						<img src="images/speakers/speaker-full-three.jpg" alt="speaker" class="img-fluid">
-						<div class="primary-overlay text-center">
-							<h5>GEORGE G. HERNANDEZ</h5>
-							<p>CEO Rancom Motor</p>
-							<ul class="list-inline">
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-facebook"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-twitter"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="speaker-image">
-						<img src="images/speakers/speaker-full-four.jpg" alt="speaker" class="img-fluid">
-						<div class="primary-overlay text-center">
-							<h5>GEORGE G. HERNANDEZ</h5>
-							<p>CEO Rancom Motor</p>
-							<ul class="list-inline">
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-facebook"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-twitter"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="speaker-image">
-						<img src="images/speakers/speaker-full-five.jpg" alt="speaker" class="img-fluid">
-						<div class="primary-overlay text-center">
-							<h5>GEORGE G. HERNANDEZ</h5>
-							<p>CEO Rancom Motor</p>
-							<ul class="list-inline">
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-facebook"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-twitter"></i></a></li>
-								<li class="list-inline-item"><a href="https://themefisher.com/"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
+					</ng-template>
+				</p-carousel>
+				 
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+ 
+

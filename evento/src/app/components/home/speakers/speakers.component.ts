@@ -16,12 +16,12 @@ export class SpeakersComponent implements OnInit{
   ngOnInit(): void {
     this.apiService.get(`speakers/most-speaking`)
     .subscribe({
-      next:response=>{
+      next:(response: any)=>{
         console.log(response);
         this.speakers =response;
         console.log(this.speakers);
       },
-      error:error=>{
+      error:(error: any)=>{
         console.log("error->"+error);
       }
     }

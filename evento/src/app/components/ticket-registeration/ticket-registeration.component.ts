@@ -31,7 +31,7 @@ export class TicketRegisterationComponent  implements OnInit{
     constructor(private _activatedRoute:ActivatedRoute,private userService: UserService,private apiService: ApiService, public datepipe: DatePipe) {
       this.tickets=[];
       this.userService.UserId(this.getId);
-      this._activatedRoute.paramMap.subscribe((params) => {
+      this._activatedRoute.paramMap.subscribe((params: { get: (arg0: string) => any; }) => {
         this.eventId = params.get('eventId');
         this.ticketId = params.get('ticketId');
         console.log("event id="+ this.eventId);
@@ -104,7 +104,7 @@ getEvent(id:any): void {
    
   this.apiService.get("eventDetails/" + id)
     .subscribe({
-      next: response => {
+      next: (response: eventDetailsDTO) => {
         this.eventDetails = response;
         console.log(response);
        
@@ -113,7 +113,7 @@ getEvent(id:any): void {
         console.log(this.eventDate);
     
       },
-      error: error => { }
+      error: (error: any) => { }
     }
     );
 
@@ -122,12 +122,12 @@ getTickets(id:any) {
   
   this.apiService.get("event/"+id+"/tickets")
   .subscribe({
-    next:response=>{
+    next:(response: EventTicket[])=>{
       this.tickets=response;
       this.totalPrice=this.quantity*(this.tickets[this.ticketId-1].price);
       console.log(response);
   },
-  error:error=>{}
+  error:(error: any)=>{}
 }
     );
  
@@ -149,13 +149,13 @@ getNumberOfAvailableTickets():any{
   
   this.apiService.get("events/"+this.eventId+"/availableTickets/"+this.ticketId)
   .subscribe({
-    next:response=>{
+    next:(response: any)=>{
       
       console.log(response);
       this.availableTickets=response;
       
   },
-  error:error=>{}
+  error:(error: any)=>{}
 }
     );
     

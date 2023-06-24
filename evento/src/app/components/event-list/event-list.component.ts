@@ -34,48 +34,48 @@ export class EventListComponent implements OnInit {
 
   getEvents(page: number) {
     this.apiService.get(`events?page=${this.pageNumber}&size=6`).subscribe({
-      next: (response: Event[]) => {
+      next: (response: any) => {
         this.events = response;
         console.log("ssssssss s");
         console.log(response);
       },
-      error: (error) => {}
+      error: (error: any) => {}
     });
   }
 
   getCategories() {
     this.apiService.get("categories").subscribe({
-      next: (response: Category[]) => {
+      next: (response: any) => {
         this.categories = response;
       },
-      error: (error) => {}
+      error: (error: any) => {}
     });
   }
 
   getEventByCategory() {
     this.apiService.get(`events/category/${this.categoryType}?page=${this.pageNumber}`).subscribe({
-      next: (response: Event[]) => {
+      next: (response: any) => {
         this.events = response;
       },
-      error: (error) => {}
+      error: (error: any) => {}
     });
   }
 
   getEventBySpeaker(speakerName: string ) {
     this.apiService.get(`events/${speakerName}?page=${this.pageNumber}`).subscribe({
-      next: (response: Event[]) => {
+      next: (response:any) => {
         this.events = response;
       },
-      error: (error) => {}
+      error: (error: any) => {}
     });
   }
 
   getEventByStatus(status: string) {
     this.apiService.get(`events/status/${status}?page=${this.pageNumber}`).subscribe({
-      next: (response: Event[]) => {
+      next: (response: any) => {
         this.events = response;
       },
-      error: (error) => {}
+      error: (error: any) => {}
     });
   }
   setPageNumber(page:number) {

@@ -34,13 +34,13 @@ export class ScheduleComponent implements OnInit{
     
     this.apiService.get(`events/dates?date=${date}&page=${page-1}&size=4`)
     .subscribe({
-      next:response=>{
+      next:(response: any)=>{
         console.log(response.content);
         this.events =response.content;
         this.Pagination =response.totalPages;
         console.log(this.events);
       },
-      error:error=>{
+      error:(error: any)=>{
         console.log("error->"+error);
       }
     }

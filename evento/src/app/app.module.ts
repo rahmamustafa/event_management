@@ -38,8 +38,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
 import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
+import { CarouselModule } from 'primeng/carousel';
 
 import { Router } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { ReviewFormComponent } from './components/event-details/event-reviews/review-form/review-form.component';
 import { TicketSucessComponent } from './components/ticket-registeration/ticket-sucess/ticket-sucess.component';
 import { GoogleMapsModule } from '@angular/google-maps'
@@ -91,7 +94,10 @@ import { EventSpeakersComponent } from './components/event-details/event-speaker
     MatNativeDateModule,
     MatMomentDatetimeModule,
     MatDatetimepickerModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    NgbModule,
+    CarouselModule
+    
 
   ],
   providers: [DatePipe,UserService],

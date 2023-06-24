@@ -13,11 +13,11 @@ export class EmailValidator {
       console.log(email);
       this.apiService.post("api/email/check",email)
       .subscribe({
-        next:response=>{
+        next:(response: boolean)=>{
           console.log("resp " + response)
           this.isExist =  response;
         },
-        error:error=>{
+        error:(error: any)=>{
           return null;
         }
       }

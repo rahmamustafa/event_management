@@ -35,20 +35,20 @@ export class AddEventComponent implements OnInit {
   ngOnInit() {
     this.apiService.get("categories")
     .subscribe({
-      next: response => {
+      next: (response: any) => {
          console.log("all cate" + response);
          this.categeories = response.forEach((cat:any) => cat.get('type'));
       },
-      error: error => { }
+      error: (error: any) => { }
     }
     );
 
     this.apiService.get("speakers/all-speakers")
     .subscribe({
-      next: response => {
+      next: (response: { id: number; name: string; }[]) => {
          this.speakers = response;
       },
-      error: error => { }
+      error: (error: any) => { }
     }
     );
 
@@ -97,12 +97,12 @@ export class AddEventComponent implements OnInit {
     eventDate.append('event',JSON.stringify(event));
     this.apiService.post("apii/events", eventDate)
       .subscribe({
-        next: response => {
+        next: (response: any) => {
            
           console.log("success")
 
         },
-        error: error => { }
+        error: (error: any) => { }
       }
       );
 

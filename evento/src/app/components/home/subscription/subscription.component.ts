@@ -28,7 +28,7 @@ export class SubscriptionComponent implements OnInit {
 
     this.emailSubscriptionService.subscribeEmail(email) 
       .subscribe({
-      next:response=>{ 
+      next:(response: any)=>{ 
         // this.snackBar.open('Success!', 'Close', {
         //   duration: 1000, 
         //   panelClass: ['success-snackbar'] 
@@ -37,7 +37,7 @@ export class SubscriptionComponent implements OnInit {
           Email: ''
         });
       },
-      error:error=>{
+      error:(error: any)=>{
         console.log('unsuccessful');
       }
     }

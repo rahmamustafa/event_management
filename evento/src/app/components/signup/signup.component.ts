@@ -58,14 +58,14 @@ export class SignupComponent implements OnInit {
     userData.append('user', JSON.stringify(user));
     this.apiService.post("auth/register", userData)
       .subscribe({
-        next: response => {
+        next: (response: { token: string; }) => {
             localStorage.setItem('username',this.registerForm.get('email')?.value);
             let tokenStr= 'Bearer '+response.token;
             localStorage.setItem('token', tokenStr);
             this._router.navigateByUrl('/home');
 
         },
-        error: error => { }
+        error: (error: any) => { }
       }
       );
   }
@@ -82,11 +82,11 @@ export class SignupComponent implements OnInit {
     console.log(this.email);
     this.apiService.post("auth/email/check",this.email)
     .subscribe({
-      next:response=>{
+      next:(response: any)=>{
         console.log("resp " + response)
         this.emailExists=response
       },
-      error:error=>{
+      error:(error: any)=>{
         return null;
       }
     }
