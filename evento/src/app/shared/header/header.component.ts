@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit{
   ngOnInit(): void {
     this.isUserLoggedIn = this.authService.isUserLoggedIn();
     this.isAdmin();
+    this.userService.getUserIdToken();
   }
 
   logOut() {
@@ -22,8 +23,8 @@ export class HeaderComponent implements OnInit{
     console.log("logout")
     this.isUserLoggedIn = false;
   }
-  isAdmin(){
-     this.userService.getUserRole();
+  isAdmin():boolean{
+     return this.userService.getUserRole();
   }
 
 
