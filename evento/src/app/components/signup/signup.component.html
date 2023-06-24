@@ -126,13 +126,18 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="mt-3 text-white" for="birthDate">Select Country</label>
                                     <mbsc-page class="bg-transparent">
-                                        <mbsc-select class="bg-transparent" [data]="countries"
+                                        <!-- <mbsc-select class="bg-transparent" [data]="countries"
                                             display="anchored" [itemHeight]="40" [filter]="true"
                                             label="Choose Your Country" [itemTemplate]="itemTemp" formControlName="country" labelStyle="stacked"
                                             inputStyle="box" placeholder="Please select..."
                                             (onChange)="onChangeCountry($event)">
-                                        </mbsc-select>
+                                        </mbsc-select> -->
+                                        <select class="form-control" name="country" [(ngModel)]="selectedCountry" formControlName="country" id="country">
+                                            <option value="" disabled selected>Select Country</option>
+                                            <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+                                       </select>
                                         <ng-template class="bg-transparent" #itemTemp let-item>
                                             <div class="md-country-picker-item">
                                                 <img class="md-country-picker-flag"
