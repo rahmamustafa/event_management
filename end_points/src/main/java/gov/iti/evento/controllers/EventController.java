@@ -15,6 +15,7 @@ import gov.iti.evento.services.dtos.eventReviews.EventReviewDto;
 import gov.iti.evento.services.EventService;
 import gov.iti.evento.services.dtos.ticket.EventTicketDto;
 import gov.iti.evento.services.util.exceptions.MessageException;
+import io.swagger.v3.core.util.Json;
 import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -167,8 +168,11 @@ public class EventController {
         return eventTicketService.getNumberOfAvailableTickets(eventId,ticketId);
     }
 
-    @PostMapping(value = "/api/events/register")
-    public boolean bookTicket(@RequestBody UserTicketDto userTicketDto) {
-        return ticketBookingService.bookEvent(userTicketDto);
+    @PostMapping(value = "/events/register", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void bookTicket(@RequestBody UserTicketDto userTicketDto) {
+        System.out.println("******");
+         ticketBookingService.bookEvent(userTicketDto);
+        System.out.println("******");
+
     }
 }
