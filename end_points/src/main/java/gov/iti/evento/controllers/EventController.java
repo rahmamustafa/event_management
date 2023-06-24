@@ -11,6 +11,7 @@ import gov.iti.evento.services.EventReviewService;
 import gov.iti.evento.services.EventTicketService;
 import gov.iti.evento.services.TicketBookingService;
 import gov.iti.evento.services.dtos.*;
+import gov.iti.evento.services.dtos.event.EventCalendarDto;
 import gov.iti.evento.services.dtos.eventReviews.EventReviewDto;
 import gov.iti.evento.services.EventService;
 import gov.iti.evento.services.dtos.ticket.EventTicketDto;
@@ -178,5 +179,10 @@ public class EventController {
         System.out.println("******");
         return true;
 
+    }
+
+    @GetMapping("/all-events")
+    public List<EventCalendarDto> checkEmailValid(){
+        return eventService.findAllEvents();
     }
 }
