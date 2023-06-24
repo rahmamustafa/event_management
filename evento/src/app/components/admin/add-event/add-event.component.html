@@ -101,7 +101,7 @@
                                         <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="speakers">Speakers
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-8">
                                                 <div *ngFor="let choice of speakers; let i=index" class="col-md-2">
                                                     <label>
                                                       <input type="checkbox" [value]="choice.id" (change)="onCheckChange($event)">

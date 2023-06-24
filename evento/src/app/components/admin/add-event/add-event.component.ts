@@ -95,7 +95,7 @@ export class AddEventComponent implements OnInit {
     const eventDate = new FormData();
     eventDate.append('image', this.selectedImage);
     eventDate.append('event',JSON.stringify(event));
-    this.apiService.post("apii/events", eventDate)
+    this.apiService.post("api/admin/events", eventDate)
       .subscribe({
         next: response => {
            
