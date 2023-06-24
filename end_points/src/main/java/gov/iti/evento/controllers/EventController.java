@@ -1,5 +1,6 @@
 package gov.iti.evento.controllers;
 
+import gov.iti.evento.entites.AvailableTicketId;
 import gov.iti.evento.entites.Event;
 import gov.iti.evento.entites.EventReview;
 import gov.iti.evento.entites.User;
@@ -8,13 +9,11 @@ import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.UserRepository;
 import gov.iti.evento.services.EventReviewService;
 import gov.iti.evento.services.EventTicketService;
+import gov.iti.evento.services.TicketBookingService;
+import gov.iti.evento.services.dtos.*;
 import gov.iti.evento.services.dtos.eventReviews.EventReviewDto;
 import gov.iti.evento.services.EventService;
-import gov.iti.evento.services.dtos.EventByDateDto;
-import gov.iti.evento.services.dtos.EventDto;
-import gov.iti.evento.services.dtos.EventReviewCreateDto;
 import gov.iti.evento.services.dtos.ticket.EventTicketDto;
-import gov.iti.evento.services.dtos.NewEventsDto;
 import gov.iti.evento.services.util.exceptions.MessageException;
 import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.websocket.server.PathParam;
@@ -52,7 +51,8 @@ public class EventController {
 
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private TicketBookingService ticketBookingService;
     @GetMapping("event/{id}/reviews")
     public List<EventReviewDto> getEventReviews(@PathVariable("id") int id) {
         System.out.println(id);
@@ -160,5 +160,15 @@ public class EventController {
 //        return true;
 //    }
 
-   
+    @GetMapping("/events/{eventId}/availableTickets/{ticketId}")
+
+    public int getNumberOfAvailableTickets(@PathVariable int eventId,@PathVariable int ticketId) {
+
+        return eventTicketService.getNumberOfAvailableTickets(eventId,ticketId);
+    }
+
+    @PostMapping(value = "/api/events/register")
+    public boolean bookTicket(@RequestBody UserTicketDto userTicketDto) {
+        return ticketBookingService.bookEvent(userTicketDto);
+    }
 }

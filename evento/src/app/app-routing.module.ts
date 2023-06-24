@@ -16,7 +16,7 @@ import { TicketSucessComponent } from './components/ticket-registeration/ticket-
  
 const routes: Routes = [
    {path:'pay/success',component:TicketSucessComponent},
-  {path:'event/register',component:TicketRegisterationComponent},
+  {path:'event/:eventId/register/:ticketId',component:TicketRegisterationComponent},
   
   {path:'404',component:NotFoundComponent},
   {path:'home',component:HomeComponent},

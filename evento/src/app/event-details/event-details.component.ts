@@ -7,8 +7,7 @@ import { eventSpeakersDTO } from '../models/event-speakers.model';
 
 @Component({
   selector: 'app-event-details',
-  templateUrl: './event-details.component.html',
-  styleUrls: ['./event-details.component.css']
+  templateUrl: './event-details.component.html'
   // providers: [DatePipe]
 })
 

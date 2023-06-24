@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventTicket } from 'src/app/models/event-details-models/ticket-model/event-ticket.model';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-event-tickets',
@@ -12,13 +13,15 @@ export class EventTicketsComponent implements OnInit{
 
  tickets:EventTicket[];
   
-  constructor(private _activatedRoute:ActivatedRoute,private apiService:ApiService){
+  constructor(private _activatedRoute:ActivatedRoute,private apiService:ApiService,private authService:AuthService,
+    private router:Router){
   
   }
-  
+  eventId:any;
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
+      this.eventId=id;
       console.log(id);
       this.getTickets(id);
     });
@@ -36,6 +39,14 @@ export class EventTicketsComponent implements OnInit{
     }
         );
      
+}
+buyTicket(id:any) {
+  if (this.authService.isUserLoggedIn()) {
+    this.router.navigate(['/event/'+this.eventId+'/register/'+id]);
+   }
+   else{
+    this.router.navigate(['/login']);
+   }
 }
   
 }

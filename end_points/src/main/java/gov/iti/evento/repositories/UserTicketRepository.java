@@ -5,4 +5,6 @@ import gov.iti.evento.entites.UserTicketId;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserTicketRepository extends JpaRepository<UserTicket, UserTicketId> {
+    public boolean existsById(UserTicketId userTicketId);
+
 }
