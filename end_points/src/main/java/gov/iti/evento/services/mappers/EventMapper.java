@@ -4,6 +4,7 @@ import gov.iti.evento.entites.Event;
 import gov.iti.evento.services.dtos.EventByDateDto;
 import gov.iti.evento.services.dtos.EventDto;
 import gov.iti.evento.services.dtos.event.AddEventDto;
+import gov.iti.evento.services.dtos.event.EventCalendarDto;
 import gov.iti.evento.services.util.converters.ImageConverter;
 import gov.iti.evento.services.dtos.NewEventsDto;
 
@@ -42,6 +43,8 @@ public interface EventMapper {
 
     @Mapping(source = "image", target = "image", qualifiedByName = "toPath")
     NewEventsDto toNewEventDto(Event event);
+    @Mapping(source = "eventDate", target = "date")
+    EventCalendarDto toEventCalendarDto(Event event);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(source = "categoryType", target = "category.type")

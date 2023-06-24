@@ -12,6 +12,7 @@ import { AddEventComponent } from './components/admin/add-event/add-event.compon
 import { AdminComponent } from './components/admin/admin.component';
 import { TicketSucessComponent } from './components/ticket-registeration/ticket-sucess/ticket-sucess.component';
 import { RevenueComponent } from './components/admin/revenue/revenue.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 
  
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path:'admin',component:AdminComponent},
   {path:'add-event',component:AddEventComponent},
   {path:'revenue',component:RevenueComponent},
+  {path:'calendar',component:CalendarComponent},
   {path:'',component:HomeComponent},
   {path:'**',component:NotFoundComponent}
 
