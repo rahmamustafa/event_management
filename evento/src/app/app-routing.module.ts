@@ -11,6 +11,7 @@ import { TicketRegisterationComponent } from './components/ticket-registeration/
 import { AddEventComponent } from './components/admin/add-event/add-event.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { TicketSucessComponent } from './components/ticket-registeration/ticket-sucess/ticket-sucess.component';
+import { RevenueComponent } from './components/admin/revenue/revenue.component';
 
 
  
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path:'events',component:EventListComponent},
   {path:'admin',component:AdminComponent},
   {path:'add-event',component:AddEventComponent},
+  {path:'revenue',component:RevenueComponent},
   {path:'',component:HomeComponent},
   {path:'**',component:NotFoundComponent}
 

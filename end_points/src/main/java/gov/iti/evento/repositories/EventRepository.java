@@ -17,6 +17,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -33,7 +35,6 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
     @Query("SELECT e FROM Event e WHERE DATE(e.eventDate) = DATE(:date)")
     Page<Event> findByDate(@Param("date") LocalDate date, Pageable pageable);
 
-//    public List<Event> findByCategoryType(String categoryType);
-
     public List<Event> findTop3ByOrderByEventDateDesc();
+
 }
