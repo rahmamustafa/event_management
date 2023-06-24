@@ -44,12 +44,12 @@
                 <div class="image">
                   <img [src]="getImage(e.image)" alt="gallery-image" class="img-fluid">
                   <div class="primary-overlay">
-                    <a class="image-popup" data-effect="mfp-with-zoom" href="images/gallery/gallery-popup-one.jpg"><i
+                    <a class="image-popup" data-effect="mfp-with-zoom" routerLink="/event/{{e.id}}"><i
                       class="fa fa-picture-o"></i></a>
                   </div>
                 </div>
                 <div class="content text-center">
-                  <h5><a>{{e.title}}</a></h5>
+                  <h5><a routerLink="/event/{{e.id}}">{{e.title}}</a></h5>
                   <p>{{e.description}} </p>
                 </div>
               </div>

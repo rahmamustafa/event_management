@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import gov.iti.evento.services.dtos.UserTicketDto;
+import gov.iti.evento.services.dtos.event.EventCalendarDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import gov.iti.evento.entites.*;
 import gov.iti.evento.repositories.*;
@@ -138,5 +139,9 @@ public class EventService {
     public boolean checkTitleValid(String title) {
         return eventRepository.existsByTitleIgnoreCase(title);
 
+    }
+
+    public List<EventCalendarDto> findAllEvents() {
+         return eventRepository.findAll().stream().map(eventMapper.INSTANCE::toEventCalendarDto).toList();
     }
 }

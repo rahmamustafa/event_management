@@ -57,7 +57,7 @@
 							  		<div class="speaker">
 										<div *ngIf=event.image>
 											<img [src]="'data:image/jpeg;base64,' + event.image" class="img-fluid" alt="event Image">
-										    <span class="name">{{event.title}}</span>
+										    <span class="name"><a routerLink="/event/{{event.id}}">{{event.title}}</a></span>
 										</div>
 									
 							  		</div>
@@ -95,7 +95,7 @@
 									<div class="speaker">
 									  <div *ngIf=event.image>
 										  <img [src]="'data:image/jpeg;base64,' + event.image" class="img-fluid" alt="event Image">
-										  <span class="name">{{event.title}}</span>
+										  <span class="name"><a routerLink="/event/{{event.id}}">{{event.title}}</a></span>
 									  </div>
 								  
 									</div>
@@ -133,7 +133,7 @@
 									<div class="speaker">
 									  <div *ngIf=event.image>
 										  <img [src]="'data:image/jpeg;base64,' + event.image" class="img-fluid" alt="event Image">
-										  <span class="name">{{event.title}}</span>
+										  <span class="name"><a routerLink="/event/{{event.id}}">{{event.title}}</a></span>
 									  </div>
 								  
 									</div>

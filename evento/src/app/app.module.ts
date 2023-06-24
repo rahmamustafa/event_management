@@ -54,6 +54,10 @@ import { EventSpeakersComponent } from './components/event-details/event-speaker
 import { AuthService } from './services/auth.service';
 import { RevenueComponent } from './components/admin/revenue/revenue.component';
 import { AttendanceComponent } from './components/admin/attendance/attendance.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+
+import { FullCalendarModule } from '@fullcalendar/angular';
+
 import { CountryComponent } from './components/admin/country/country.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 @NgModule({
@@ -84,6 +88,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
     TicketSucessComponent,
     EventSpeakersComponent,
     AttendanceComponent,
+    RevenueComponent,
+    CalendarComponent,
     CountryComponent,
     RevenueComponent
   ],
@@ -110,9 +116,10 @@ import { NgApexchartsModule } from "ng-apexcharts";
     NgChartsModule,
     ChartModule,
     CanvasJSAngularChartsModule,
+    FullCalendarModule,
     NgApexchartsModule
   ],
-  providers: [DatePipe,UserService,
+  providers: [DatePipe,UserService,SharedComponent,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthService,
