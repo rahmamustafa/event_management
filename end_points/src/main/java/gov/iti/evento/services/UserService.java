@@ -39,6 +39,7 @@ public class UserService {
         System.out.println(user.getId());
         Map<String,Object> claims = new HashMap<>();
         claims.put("isAdmin",user.getIsAdmin());
+        claims.put("id",user.getId());
         String jwtToken = jwtService.generateToken(claims,user);
         return AuthResponse.builder().token(jwtToken).build();
     }
@@ -60,6 +61,7 @@ public class UserService {
                 .orElseThrow();
         Map<String,Object> claims = new HashMap<>();
         claims.put("isAdmin",user.getIsAdmin());
+        claims.put("id",user.getId());
         String jwtToken = jwtService.generateToken(claims,user);
         return AuthResponse.builder().token(jwtToken).build();
     }
