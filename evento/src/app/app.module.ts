@@ -57,6 +57,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
+import { CountryComponent } from './components/admin/country/country.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +88,9 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     EventSpeakersComponent,
     AttendanceComponent,
     RevenueComponent,
-    CalendarComponent
+    CalendarComponent,
+    CountryComponent,
+    RevenueComponent
   ],
   imports: [
     MbscModule,
@@ -109,7 +113,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     NgbModule,
     CarouselModule,
     NgChartsModule,
-    FullCalendarModule
+    FullCalendarModule,
+    NgApexchartsModule
   ],
   providers: [DatePipe,UserService,SharedComponent,
     {
