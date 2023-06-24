@@ -25,15 +25,7 @@ export class CalendarComponent implements OnInit {
   ];
 
   eventInput: EventInput[] = [];
-  // oneEventInput: any = [
-  //   { title: "Event 1", date: '2023-06-23' },
-  //   { title: "Event 2", date: '2023-06-23T00:00:00' },
-  // ];
-
-  // oneEventInput: EventByDate[] = [];
-
-  // events: EventByDate[] = [];
-  // eventDate: any;
+  
   date: any;
   test:any[];
 
@@ -42,7 +34,7 @@ export class CalendarComponent implements OnInit {
   calendarVisible = signal(true);
 
   currentEvents = signal<EventApi[]>([]);
-  
+
   calendarOptions:CalendarOptions;
 
 
