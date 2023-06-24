@@ -51,6 +51,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { UserService } from './services/user.service';
 import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
 import { AuthService } from './services/auth.service';
+import { AttendanceComponent } from './components/admin/attendance/attendance.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +78,8 @@ import { AuthService } from './services/auth.service';
     SideBarComponent,
     ReviewFormComponent,
     TicketSucessComponent,
-    EventSpeakersComponent
+    EventSpeakersComponent,
+    AttendanceComponent
   ],
   imports: [
     MbscModule,
