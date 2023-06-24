@@ -53,6 +53,7 @@ import { EventSpeakersComponent } from './components/event-details/event-speaker
 import { AuthService } from './services/auth.service';
 import { RevenueComponent } from './components/admin/revenue/revenue.component';
 import { AttendanceComponent } from './components/admin/attendance/attendance.component';
+
 import { CountryComponent } from './components/admin/country/country.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 @NgModule({
@@ -106,6 +107,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
     GoogleMapsModule,
     NgbModule,
     CarouselModule,
+    NgChartsModule
+    ],
     NgChartsModule,
     NgApexchartsModule
   ],
