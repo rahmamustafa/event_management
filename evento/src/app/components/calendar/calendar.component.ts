@@ -42,9 +42,7 @@ export class CalendarComponent implements OnInit {
   calendarVisible = signal(true);
 
   currentEvents = signal<EventApi[]>([]);
-  // calendarOptions: CalendarOptions;
-
-
+  
   calendarOptions:CalendarOptions;
 
 
@@ -75,7 +73,7 @@ export class CalendarComponent implements OnInit {
       selectable: true,
       selectMirror: true,
       dayMaxEvents: true,
-      events: [] // Initialize with an empty array
+      events: [] 
     };
 
       this.apiService.get('all-events').subscribe({
@@ -88,11 +86,6 @@ export class CalendarComponent implements OnInit {
           }));
           console.log('Converted Events:', convertedEvents);
           this.calendarOptions.events = convertedEvents;
-          // this.eventInput = convertedEvents;
-        
-          // this.date = this.test[0].start;
-          // this.test[0].start = new Date(this.date).toISOString().replace(/T.*$/, '') + 'T00:00:00';
-          // this.oneEventInput.push(this.events[0]);
 
           this.eventApi=this.test;
           this.currentEvents.set(this.eventApi);
@@ -103,49 +96,6 @@ export class CalendarComponent implements OnInit {
       });
 
     };
-
-
-
-  // fetchEventData(): Promise<any[]> {
-  //   return new Promise<any[]>((resolve) => {
-  //     setTimeout(() => {
-  //       this.apiService.get(`apiCalendar`).subscribe({
-  //         next: (response: EventByDate[]) => {
-  //           this.events = response;
-  //           // console.log(this.eventInput);
-  //           // console.log(response);
-  //           this.date = this.events[0].start;
-  //           this.events[0].start = new Date(this.date).toISOString().replace(/T.*$/, '') + 'T00:00:00';
-  //           this.oneEventInput.push(this.events[0]);
-
-  //         },
-  //         error: (error) => { }
-  //       });
-
-  //       console.log(this.oneEventInput);
-
-  //       // Mock event data
-  //       const eventData = this.oneEventInput;
-  //       console.log("eventData");
-  //       console.log(eventData);
-
-  //       this.eventInput = eventData;
-  //       resolve(this.eventInput);
-  //     }); // Simulating a 1-second delay
-  //   });
-  // }
-
-  // mapData() {
-  //   this.fetchEventData().then((data) => {
-  //     console.log("data");
-  //     console.log(data);
-
-  //     this.eventInput = data;
-
-  //     console.log("eventInput");
-  //     console.log(this.eventInput);
-  //   });
-  // }
 
 
 
