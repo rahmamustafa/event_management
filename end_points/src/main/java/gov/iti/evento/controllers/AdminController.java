@@ -34,4 +34,8 @@ public class AdminController {
         System.out.println(eventDto);
 
     }
+    @PostMapping("/event-title/exist")
+    public boolean checkEmailValid(@RequestBody String title){
+        return eventService.checkTitleValid(title);
+    }
 }

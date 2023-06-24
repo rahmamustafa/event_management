@@ -52,6 +52,7 @@ import { UserService } from './services/user.service';
 import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
 import { AuthService } from './services/auth.service';
 import { RevenueComponent } from './components/admin/revenue/revenue.component';
+import { AttendanceComponent } from './components/admin/attendance/attendance.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +80,7 @@ import { RevenueComponent } from './components/admin/revenue/revenue.component';
     ReviewFormComponent,
     TicketSucessComponent,
     EventSpeakersComponent,
+    AttendanceComponent,
     RevenueComponent
   ],
   imports: [
