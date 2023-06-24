@@ -52,6 +52,7 @@ import { UserService } from './services/user.service';
 import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
 import { AuthService } from './services/auth.service';
 import { AttendanceComponent } from './components/admin/attendance/attendance.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,7 +103,7 @@ import { AttendanceComponent } from './components/admin/attendance/attendance.co
     NgbModule,
     CarouselModule,
     NgChartsModule
-  ],
+    ],
   providers: [DatePipe,UserService,
     {
       provide: HTTP_INTERCEPTORS,
