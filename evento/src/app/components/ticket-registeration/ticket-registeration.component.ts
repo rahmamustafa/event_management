@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 import { eventDetailsDTO } from 'src/app/models/event-details.model';
 import { DatePipe } from '@angular/common';
 import { EventTicket } from 'src/app/models/event-registration/event-ticket.model';
+import th from '@mobiscroll/angular/dist/js/i18n/th';
 @Component({
   selector: 'app-ticket-registeration',
   templateUrl: './ticket-registeration.component.html',
@@ -27,34 +28,48 @@ export class TicketRegisterationComponent  implements OnInit{
     quantity:any=1;
     eventId:any;
     availableTickets:any;
-    userTicket:UserTicket;
-    constructor(private _activatedRoute:ActivatedRoute,private userService: UserService,private apiService: ApiService, public datepipe: DatePipe) {
+    userTicket:UserTicket=new UserTicket();
+    constructor(private _activatedRoute:ActivatedRoute,private userService: UserService,
+      private http: HttpClient,private apiService: ApiService, public datepipe: DatePipe) {
       this.tickets=[];
-      this.userService.UserId(this.getId);
-      this._activatedRoute.paramMap.subscribe((params) => {
-        this.eventId = params.get('eventId');
-        this.ticketId = params.get('ticketId');
-        console.log("event id="+ this.eventId);
-        console.log("user id="+  this.userId);
-        console.log("ticket id="+  this.ticketId);
-        this.getEvent( this.eventId);
-        this.getTickets( this.eventId);
-        
-      });
+      // this.userService.UserId(this.getId);
+      
       this.quantity=1;
       // console.log(this.quantity)
       // console.log(this.tickets[this.ticketId-1].price)
       // this.totalPrice=this.quantity*(this.tickets[this.ticketId-1].price);
     
   }
-  getId(id:any){
+  // getId(id:any){
    
-    this.userId=id;
-  }
+  //   console.log("userId"+id)
+  //   this.userTicket.eventId=this.eventId;
+  //   this.userTicket.quantity=this.quantity;
+  //   this.userTicket.userId=id;
+  //   this.userTicket.ticketId=this.ticketId;
+  //   this.apiService.post("api/events/register", this.userTicket)
+  //   .subscribe({
+  //     next: response => {
+        
+  //     },
+  //     error: error => { }
+  //   }
+  //   );
+  // }
   @ViewChild('paypalRef',{static:true}) private paypalRef:ElementRef;
 //   userTicket:UserTicket;
   ngOnInit() {
-
+    this._activatedRoute.paramMap.subscribe((params) => {
+      this.eventId = params.get('eventId');
+      this.ticketId = params.get('ticketId');
+      console.log("event id="+ this.eventId);
+      console.log("user id="+  this.userId);
+      console.log("ticket id="+  this.ticketId);
+      this.getEvent( this.eventId);
+      this.getTickets( this.eventId);
+      
+      
+    });
    this.paypalService();
     console.log(window.paypal)
    
@@ -75,6 +90,9 @@ paypalService(){
     },
     createOrder: (data: any, actions: any) => {
 
+     
+     
+      // if(!validQuantity)
       return actions.order.create({
         purchase_units: [{
           amount: {
@@ -82,6 +100,7 @@ paypalService(){
            
             currency_code: 'USD',
           },
+       
         }],
       });
     },
@@ -91,7 +110,9 @@ paypalService(){
       const transactionStatus = captureResult.status;
 
       if (transactionStatus === 'COMPLETED') {
+        this.registerTicket();
         alert('Transaction successful');
+        
       } else {
         alert('Transaction failed');
       }
@@ -99,6 +120,45 @@ paypalService(){
   })
   .render(this.paypalRef.nativeElement);
 
+}
+registerTicket() {
+  this.setUserId();
+  this.setUserTicket();
+  console.log("hi")
+  this.apiService.post("events/register", this.userTicket)
+  .subscribe({
+    next: response => {
+      
+    },
+    error: error => { }
+  }
+  );
+
+}
+setUserId() {
+  let email = this.userService.getuserEmail();
+
+  this.http.post<any>("http://localhost:8888/user",{"email":email.sub})
+  .subscribe({
+    next:response=>{
+      console.log("->>>>>>"+response)
+      this.userId=response;
+      console.log("->>>>>>"+this.userId)
+      
+    },
+    error:error=>{
+     
+    }
+  }
+  );
+}
+setUserTicket() {
+  console.log("event idddd="+this.eventId)
+  this.userTicket.eventId=this.eventId;
+  this.userTicket.quantity=this.quantity;
+  this.userTicket.userId=this.userId;
+  this.userTicket.ticketId=this.ticketId;
+ 
 }
 getEvent(id:any): void {
    

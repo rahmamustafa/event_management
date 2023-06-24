@@ -12,5 +12,7 @@ public interface EventTicketRepository extends JpaRepository<EventTicket, EventT
     public EventTicket getPriceByEventTicketId(EventTicketId eventTicketId);
     @Query("select e.id from EventTicket e where e.eventTicketId =?1")
     public int getIdById(EventTicketId eventTicketId);
+    public EventTicket getEventTicketByEventTicketId(EventTicketId eventTicketId);
+
 
 }

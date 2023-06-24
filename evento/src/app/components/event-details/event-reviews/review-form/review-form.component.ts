@@ -54,19 +54,7 @@ export class ReviewFormComponent {
       })
     };
       //get User Data
-      let email = this.userService.getuserEmail();
-  
-      this.http.post<any>("http://localhost:8888/user",{"email":email})
-      .subscribe({
-        next:response=>{
-        this.userId=response;
-        },
-        error:error=>{
-          this.userId=null;
-        }
-      }
-      );
-      // end 
+     
     console.log("clicked ->"+this.eventId);
     let userReview = this.reviewForm.get("Review")?.value;
     let eventReview = new EventReviewCreateDto();

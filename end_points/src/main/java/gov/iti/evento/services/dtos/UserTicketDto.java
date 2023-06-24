@@ -13,7 +13,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class UserTicketDto implements Serializable {
     Integer userId;
-    Integer eventId;
+
     Integer ticketId;
+    Integer eventId;
     int quantity;
 }

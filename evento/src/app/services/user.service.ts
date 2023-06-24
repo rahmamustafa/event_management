@@ -11,7 +11,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  private getuserEmail(): any {
+  public getuserEmail(): any {
     const token = localStorage.getItem(this.TOKEN_KEY);
     if (token) {
       const payload = token.split('.')[1]; 
