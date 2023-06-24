@@ -45,7 +45,7 @@ export class UserService {
     console.log(this.userId);
   }
    
-  getuserRole(): any {
+  getUserRole(): any {
     const token = localStorage.getItem(this.TOKEN_KEY);
     if (token) {
       console.log("Role   " + this.getClaim(token, "isAdmin"));
