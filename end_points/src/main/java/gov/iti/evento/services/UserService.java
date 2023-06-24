@@ -58,7 +58,9 @@ public class UserService {
         );
         User user = userRepository.findByEmailIgnoreCase(userLoginDto.getEmail())
                 .orElseThrow();
-        String jwtToken = jwtService.generateToken(user);
+        Map<String,Object> claims = new HashMap<>();
+        claims.put("isAdmin",user.getIsAdmin());
+        String jwtToken = jwtService.generateToken(claims,user);
         return AuthResponse.builder().token(jwtToken).build();
     }
     public Integer getUserId(String email){

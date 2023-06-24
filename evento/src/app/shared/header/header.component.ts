@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit{
     this.isUserLoggedIn = false;
   }
   isAdmin(){
-     this.userService.getuserRole();
+     this.userService.getUserRole();
   }
 
 

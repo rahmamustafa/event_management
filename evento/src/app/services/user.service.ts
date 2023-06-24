@@ -11,8 +11,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class UserService {
   userId:any ;
   private readonly TOKEN_KEY = 'token';
-
-  constructor(private http: HttpClient ,  private jwtHelper: JwtHelperService) { }
+  jwtHelper: JwtHelperService;
+  constructor(private http: HttpClient) {
+    this.jwtHelper =  new JwtHelperService();
+   }
 
   public getuserEmail(): any {
     const token = localStorage.getItem(this.TOKEN_KEY);
@@ -43,7 +45,7 @@ export class UserService {
     console.log(this.userId);
   }
    
-  getuserRole(): any {
+  getUserRole(): any {
     const token = localStorage.getItem(this.TOKEN_KEY);
     if (token) {
       console.log("Role   " + this.getClaim(token, "isAdmin"));
