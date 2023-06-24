@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import gov.iti.evento.entites.Speaker;
 import gov.iti.evento.services.dtos.SpeakerMostSpeakingDto;
+import gov.iti.evento.services.dtos.SpeakersDto;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 @Component
@@ -29,6 +30,8 @@ public interface SpeakerMapper {
     SpeakerMostSpeakingDto toDto(Speaker speaker);
     SpeakerDto toSpeakerDto(Speaker speaker);
 
+    @Mapping(source = "image", target = "image", qualifiedByName = "toPath")
+    SpeakersDto toSpeakersDto(Speaker speaker);
     
     @Named("toPath")
     default String toPath(String image) {

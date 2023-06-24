@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     console.log(user)
     this.apiService.post("auth/authenticate", user)
       .subscribe({
-        next: response => {
+        next: (response:any) => {
           console.log(response.token)
           if(response!=null){
             localStorage.setItem('username',this.registerForm.get('email')?.value);
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
             this._router.navigateByUrl('/home');
           }
         },
-        error: error => { }
+        error: (error: any) => { }
       }
       );
   }

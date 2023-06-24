@@ -23,7 +23,7 @@ export class EventDetailsComponent implements OnInit {
     console.log(this.currentDateTime);
    }
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
+    this.route.paramMap.subscribe((params:any) => {
       const id = params.get('id');
       console.log(id);
       this.getEvent(id);
@@ -34,7 +34,7 @@ export class EventDetailsComponent implements OnInit {
    
         this.apiService.get("eventDetails/" + id)
           .subscribe({
-            next: response => {
+            next: (response:any) => {
               this.eventDetails = response;
               console.log(response);
               const bytes = new Uint8Array(this.eventDetails.image);
@@ -48,7 +48,7 @@ export class EventDetailsComponent implements OnInit {
               console.log(this.eventDate);
           
             },
-            error: error => { }
+            error: (error:any) => { }
           }
           );
     

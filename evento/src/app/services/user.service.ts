@@ -16,7 +16,7 @@ export class UserService {
     if (token) {
       const payload = token.split('.')[1]; 
       const decodedPayload = atob(payload); 
-      return JSON.parse(decodedPayload); 
+      return JSON.parse(decodedPayload).sub; 
     }
     return null;
   }
@@ -26,10 +26,10 @@ export class UserService {
 
     this.http.post<any>("http://localhost:8888/user",{"email":email.sub})
     .subscribe({
-      next:response=>{
+      next:(response: any)=>{
         callback( response);
       },
-      error:error=>{
+      error:(error: any)=>{
         callback( null);
       }
     }

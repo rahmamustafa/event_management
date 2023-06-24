@@ -2,11 +2,15 @@ package gov.iti.evento.services;
 
 import gov.iti.evento.entites.Event;
 import gov.iti.evento.entites.EventSpeaker;
+import gov.iti.evento.entites.Speaker;
 import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.EventSpeakerRepository;
+import gov.iti.evento.repositories.SpeakerRepository;
 import gov.iti.evento.services.dtos.SpeakersDto;
 import gov.iti.evento.services.dtos.EventoDetailesDTO;
 import gov.iti.evento.services.mappers.EventDisplayMapper;
+import gov.iti.evento.services.mappers.SpeakerMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
@@ -16,19 +20,18 @@ import java.util.List;
 
 @Service
 public class EventDetailService {
+    @Autowired
     private EventRepository eventRepository;
     @Autowired
     private EventDisplayMapper eventDisplayMapper;
-    private final EventSpeakerRepository eventSpeakerRepository;
 
     @Autowired
-    public EventDetailService(EventRepository eventRepository,
-                              EventSpeakerRepository eventSpeakerRepository) {
-        this.eventRepository = eventRepository;
-        // this.eventDisplayMapper=eventDisplayMapper;
-        this.eventSpeakerRepository = eventSpeakerRepository;
-    }
+    private  SpeakerRepository speakerRepository;
+    
+    @Autowired
+    private  EventSpeakerRepository eventSpeakerRepository;
 
+   
     public EventoDetailesDTO getEvent(Integer id) {
         Event event = eventRepository.findById(id).orElseThrow(() -> new NotFoundException("Event not found"));
         try {
@@ -41,33 +44,16 @@ public class EventDetailService {
     public List<SpeakersDto> getEventSpeakers(Integer eventId) {
 //        event.setI;
 
-        List<EventSpeaker> eventSpeakers = eventSpeakerRepository.findByEvent(eventRepository.findById(eventId).get());
+        List<Speaker> eventSpeakers = speakerRepository.findAllEventSpeakers(eventId);
         List<SpeakersDto> speakersDtoList = new ArrayList<>();
 
-        for (EventSpeaker eventSpeaker : eventSpeakers) {
-            SpeakersDto speakersDto = convertToSpeakersDto(eventSpeaker);
+        for (Speaker eventSpeaker : eventSpeakers) {
+            SpeakersDto speakersDto = SpeakerMapper.INSTANCE.toSpeakersDto(eventSpeaker);
             speakersDtoList.add(speakersDto);
-
-            SpeakersDto eventSpeakersDTO = new SpeakersDto();
-            eventSpeakersDTO.setId(eventSpeaker.getSpeaker().getId());
-            eventSpeakersDTO.setName(eventSpeaker.getSpeaker().getName());
-            eventSpeakersDTO.setJobTitle(eventSpeaker.getSpeaker().getJobTitle());
-            eventSpeakersDTO.setDescription(eventSpeaker.getSpeaker().getDescription());
-            eventSpeakersDTO.setImage(eventSpeaker.getSpeaker().getImage());
-            speakersDtoList.add(eventSpeakersDTO);
         }
         return speakersDtoList;
     }
-    private SpeakersDto convertToSpeakersDto(EventSpeaker eventSpeaker) {
-        // Assuming you have appropriate getter methods in the EventSpeaker class
-        Integer speakerId = eventSpeaker.getSpeaker().getId();
-        String speakerName = eventSpeaker.getSpeaker().getName();
-        String jobTitle = eventSpeaker.getSpeaker().getJobTitle();
-        String description = eventSpeaker.getSpeaker().getDescription();
-        String image = eventSpeaker.getSpeaker().getImage();
-
-        return new SpeakersDto(speakerId, speakerName, jobTitle, description, image);
-    }
+   
 
     public Event saveEvent (Event event){
         return eventRepository.save(event);

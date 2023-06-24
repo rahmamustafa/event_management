@@ -17,7 +17,7 @@ export class EventReviewsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._activatedRoute.paramMap.subscribe((params) => {
+    this._activatedRoute.paramMap.subscribe((params:any) => {
       const id = params.get('id');
       console.log(id);
       this.getReviews(id);
@@ -28,11 +28,11 @@ export class EventReviewsComponent implements OnInit {
 
     this.apiService.get("event/" + id + "/reviews")
       .subscribe({
-        next: response => {
+        next: (response: EventReview[]) => {
           this.reviews = response;
          
         },
-        error: error => { }
+        error: (error: any) => { }
       }
       );
 

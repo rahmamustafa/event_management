@@ -19,7 +19,7 @@ export class EventTicketsComponent implements OnInit{
   }
   eventId:any;
   ngOnInit(): void {
-    this._activatedRoute.paramMap.subscribe((params) => {
+    this._activatedRoute.paramMap.subscribe((params: { get: (arg0: string) => any; }) => {
       const id = params.get('id');
       this.eventId=id;
       console.log(id);
@@ -31,11 +31,11 @@ export class EventTicketsComponent implements OnInit{
   
       this.apiService.get("event/"+id+"/tickets")
       .subscribe({
-        next:response=>{
+        next:(response: any)=>{
           this.tickets=response;
           console.log(response);
       },
-      error:error=>{}
+      error:(error: any)=>{}
     }
         );
      

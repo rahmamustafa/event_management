@@ -16,13 +16,13 @@ export class NewEventsComponent implements OnInit{
   ngOnInit(): void {
     this.apiService.get(`events/new`)
     .subscribe({
-      next:response=>{
+      next:(response:any)=>{
         console.log(response);
         this.events =response;
         
         console.log(this.events);
       },
-      error:error=>{
+      error:(error: any)=>{
         console.log("error->"+error);
       }
     }

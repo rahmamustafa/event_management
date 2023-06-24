@@ -23,6 +23,7 @@ export class ReviewFormComponent {
   eventId: string;
   isReviewed:boolean;
   userId:any;
+  userEmail:any;
   constructor(private _form:FormBuilder, private apiService: ApiService,private http: HttpClient,private route: ActivatedRoute,private userService:UserService){
     
   }
@@ -30,21 +31,34 @@ export class ReviewFormComponent {
   
   ngOnInit(): void {
    
+    this.userEmail = this.userService.getuserEmail();
 
     this.reviewForm=this._form.group({
       Review:['',[Validators.required, Validators.min(4)]]
     });
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params: { [x: string]: string; }) => {
       this.eventId = params['id'];
     });
-    this.apiService.get(`events/${this.eventId}/review?user=1`)
+
+    this.http.post<any>("http://localhost:8888/user",{"email":this.userEmail})
     .subscribe({
-      next: response => {
-        this.isReviewed = response;
+      next:(response: any)=>{
+        this.apiService.get(`events/${this.eventId}/review?user=${response}`)
+        .subscribe({
+          next: (response: boolean) => {
+            this.isReviewed = response;
+          },
+          error: (error: any) => { }
+        }
+        );
       },
-      error: error => { }
+      error:(error: any)=>{
+        this.userId=null;
+      }
     }
     );
+
+   
   }
 
   addReview(){
@@ -54,28 +68,41 @@ export class ReviewFormComponent {
       })
     };
       //get User Data
-     
-    console.log("clicked ->"+this.eventId);
-    let userReview = this.reviewForm.get("Review")?.value;
-    let eventReview = new EventReviewCreateDto();
-    eventReview.review=userReview;
-    eventReview.user_id=this.userId;
-    console.log("userId ->"+this.userId);
+    
+      console.log("clicked ->"+this.userEmail);
+      this.http.post<any>("http://localhost:8888/user",{"email":this.userEmail})
+      .subscribe({
+        next:(response: any)=>{
+    
+          let userReview = this.reviewForm.get("Review")?.value;
+          let eventReview = new EventReviewCreateDto();
+          eventReview.review=userReview;
+          eventReview.user_id=response;
+          console.log("userId ->"+this.userId);
+          this.http.post<any>(`http://localhost:8888/events/${this.eventId}/review`, eventReview)
+          .subscribe({
+            next:(response: any)=>{
+              console.log(response);
+              this.reviewForm = this._form.group({
+                Review: ''
+              });
+              this.showSection =false;
+              this.isReviewed = true;
+            },
+            error:(error: any)=>{
+              console.log("error->"+error);
+            }
+          }
+          );
 
-    this.http.post<any>(`http://localhost:8888/events/${this.eventId}/review`, eventReview)
-    .subscribe({
-      next:response=>{
-        console.log(response);
-        this.reviewForm = this._form.group({
-          Review: ''
-        });
-
-      },
-      error:error=>{
-        console.log("error->"+error);
+        },
+        error:(error: any)=>{
+          this.userId=null;
+        }
       }
-    }
-    );
+      );
+      // end 
+
   }
 
 
