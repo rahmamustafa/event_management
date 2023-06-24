@@ -135,4 +135,8 @@ public class EventService {
         return eventRepository.findById(id);
     }
 
+    public boolean checkTitleValid(String title) {
+        return eventRepository.existsByTitleIgnoreCase(title);
+
+    }
 }

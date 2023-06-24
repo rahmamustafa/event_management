@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class AddEventComponent implements OnInit {
 
-  constructor( private formBuilder:FormBuilder , private apiService:ApiService){}
+  constructor( private formBuilder:FormBuilder , private apiService:ApiService, private _router: Router){}
 
   eventForm :FormGroup;
   dateTime: FormGroup
@@ -19,6 +20,9 @@ export class AddEventComponent implements OnInit {
 
   categeories:string[] =["Sport","Science"];
   selectedCategory:string;
+
+  titleExists: boolean;
+  title: string;
 
   speakers = 
   [{ id: 1,name: 'order 1' },
@@ -54,22 +58,13 @@ export class AddEventComponent implements OnInit {
 
 
     this.eventForm = this.formBuilder.group({
-      // title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-      // description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
-      // category: ['', [Validators.required, Validators.email]],
-      // time: ['', [Validators.required, Validators.pattern("^[0][1][0125][0-9]{8}$")]],
-      // speakers: ['', [Validators.required]],
-      // country: ['', [Validators.required]],
-      // gender: ['', [Validators.required]],
-      // birthDate: ['', [Validators.required]]
-
       title: [''],
       description: [''],
       category: [''],
       eventDate: [new FormControl('')],
       speakers: new FormArray([]),
-      ticketPrice: [],
-      ticketNumber: [],
+      ticketPrice: [''],
+      ticketNumber: [''],
       location: [''],
       isOnline: [''],
       image:[""]
@@ -100,6 +95,8 @@ export class AddEventComponent implements OnInit {
         next: (response: any) => {
            
           console.log("success")
+          this._router.navigateByUrl('/events');
+
 
         },
         error: (error: any) => { }
@@ -161,6 +158,19 @@ export class AddEventComponent implements OnInit {
       if (event.latLng != null) this.display = event.latLng.toJSON();
   }
 
-
+  validateEvent(){
+    console.log(this.title);
+    this.apiService.post("api/admin/event-title/exist",this.title)
+    .subscribe({
+      next:(response: any)=>{
+        console.log("resp " + response)
+        this.titleExists=response
+      },
+      error:(error: any)=>{
+        return null;
+      }
+    }
+    );
+}
 
 }
