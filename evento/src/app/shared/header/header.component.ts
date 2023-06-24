@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit{
     this.isAdmin();
   }
 
-
   logOut() {
     localStorage.removeItem('username');
     localStorage.removeItem('token');

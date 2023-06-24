@@ -1,7 +1,7 @@
 import { MbscModule } from '@mobiscroll/angular';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -49,6 +49,7 @@ import { GoogleMapsModule } from '@angular/google-maps'
 
 import { UserService } from './services/user.service';
 import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
+import { AuthService } from './services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +101,13 @@ import { EventSpeakersComponent } from './components/event-details/event-speaker
     
 
   ],
-  providers: [DatePipe,UserService],
+  providers: [DatePipe,UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -114,27 +114,27 @@
                                             <label class="col-lg-4 col-form-label" for="PLATINUMTicket">PLATINUM
                                                 Ticket</label>
                                             <div class="col-lg-3">
-                                                <input type="number" min="0" formControlName="ticketPrice" class="form-control"
-                                                    id="STANDARDTicket" name="STANDARDTicket" placeholder="price"
+                                                <input type="text" min="0" formControlName="ticketPrice" class="form-control"
+                                                    id="PLATINUMTicket" name="PLATINUMTicket" placeholder="price"
                                                     [(ngModel)]="ticketPrice['PLATINUM']"
                                                     (input)="updateTicketPrice('PLATINUM', $event)">
                                             </div>
                                             <div class="col-lg-3">
-                                                <input type="number" min="1" formControlName="ticketNumber" class="form-control"
-                                                    id="STANDARDTicket" name="STANDARDTicket" placeholder="number"
+                                                <input type="text" min="1" formControlName="ticketNumber" class="form-control"
+                                                    id="PLATINUMTicket" name="PLATINUMTicket" placeholder="number"
                                                     [(ngModel)]="ticketNumber['PLATINUM']"
                                                     (input)="updateTicketNumber('PLATINUM', $event)">
                                             </div>
                                             <label class="col-lg-4 col-form-label" for="STANDARDTicket">STANDARD
                                                 Ticket</label>
                                             <div class="col-lg-3">
-                                                <input type="number" min="0" formControlName="ticketPrice" class="form-control"
+                                                <input type="text" min="0" formControlName="ticketPrice" class="form-control"
                                                     id="STANDARDTicket" name="STANDARDTicket" placeholder="price"
                                                     [(ngModel)]="ticketPrice['STANDARD']"
                                                     (input)="updateTicketPrice('STANDARD', $event)">
                                             </div>
                                             <div class="col-lg-3">
-                                                <input type="number" min="1" formControlName="ticketNumber" class="form-control"
+                                                <input type="text" min="1" formControlName="ticketNumber" class="form-control"
                                                     id="STANDARDTicket" name="STANDARDTicket" placeholder="number"
                                                     [(ngModel)]="ticketNumber['STANDARD']"
                                                     (input)="updateTicketNumber('STANDARD', $event)">
@@ -143,13 +143,13 @@
                                                 Ticket</label>
                                             <div class="col-lg-3">
                                                 <input type="number" min="0" formControlName="ticketPrice" class="form-control"
-                                                    id="STANDARDTicket" name="STANDARDTicket" placeholder="price"
+                                                    id="STARTERTicket" name="STARTERTicket" placeholder="price"
                                                     [(ngModel)]="ticketPrice['STARTER']"
                                                     (input)="updateTicketPrice('STARTER', $event)">
                                             </div>
                                             <div class="col-lg-3">
                                                 <input type="number" min="1" formControlName="ticketNumber" class="form-control"
-                                                    id="STANDARDTicket" name="STANDARDTicket" placeholder="number"
+                                                    id="STARTERTicket" name="STARTERTicket" placeholder="number"
                                                     [(ngModel)]="ticketNumber['STARTER']"
                                                     (input)="updateTicketNumber('STARTER', $event)">
                                             </div>
