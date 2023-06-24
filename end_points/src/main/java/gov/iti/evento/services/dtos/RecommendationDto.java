@@ -2,11 +2,11 @@ package gov.iti.evento.services.dtos;
 
 import lombok.Data;
 import lombok.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
 @Data
-@Value
 public class RecommendationDto implements Serializable {
 
     private Integer id;
@@ -16,4 +16,6 @@ public class RecommendationDto implements Serializable {
     byte[] image;
 
 
+    public RecommendationDto() {
+    }
 }

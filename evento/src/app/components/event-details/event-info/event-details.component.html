@@ -58,7 +58,7 @@
                             <div class="gallery-item col-lg-4 col-md-6" data-groups="[&quot;meeting&quot;]">
                                 <div class="image-block">
                                     <div class="image">
-                                        <img [src]="eventSpeaker.image" alt="{{ eventSpeaker.name }}" class="img-fluid"
+                                        <img [src]="'data:image/jpeg;base64,' + eventSpeaker.image" alt="{{ eventSpeaker.name }}" class="img-fluid"
                                             class="nav-link">
                                         <div class="primary-overlay">
                                             <h5>{{ eventSpeaker.name }}</h5>

@@ -44,14 +44,14 @@
                 <div class="image">
                   <img [src]="getImage(e.image)" alt="gallery-image" class="img-fluid" class="nav-link">
                   <div class="primary-overlay">
-                    <a [routerLink]="'/event/' + e.id"><i><b>>></b></i></a>
+                    <a [routerLink]="'/event/' + e.id+ '/eventDetails'"><i><b>>></b></i></a>
                   </div>
                 </div>
                 <div class="content text-center">
                   <h5><a>{{e.title}}</a></h5>
                   <p>{{e.description}} </p>
                   <div>
-                    <a  [routerLink]="'/event-details/' + e.id">Go to Event Details</a>      
+                    <a  [routerLink]="'/event/' + e.id+'/eventDetails'">Go to Event Details</a>      
                   </div>
                 </div>
               </div>

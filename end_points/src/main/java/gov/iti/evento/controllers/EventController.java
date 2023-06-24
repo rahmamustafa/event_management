@@ -6,15 +6,13 @@ import gov.iti.evento.entites.User;
 import gov.iti.evento.repositories.CategoryRepository;
 import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.UserRepository;
+import gov.iti.evento.services.EventDetailService;
 import gov.iti.evento.services.EventReviewService;
 import gov.iti.evento.services.EventTicketService;
+import gov.iti.evento.services.dtos.*;
 import gov.iti.evento.services.dtos.eventReviews.EventReviewDto;
 import gov.iti.evento.services.EventService;
-import gov.iti.evento.services.dtos.EventByDateDto;
-import gov.iti.evento.services.dtos.EventDto;
-import gov.iti.evento.services.dtos.EventReviewCreateDto;
 import gov.iti.evento.services.dtos.ticket.EventTicketDto;
-import gov.iti.evento.services.dtos.NewEventsDto;
 import gov.iti.evento.services.util.exceptions.MessageException;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.websocket.server.PathParam;
@@ -51,6 +49,8 @@ public class EventController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private EventDetailService eventDetailService;
 
     @GetMapping("event/{id}/reviews")
     public List<EventReviewDto> getEventReviews(@PathVariable("id") int id) {
@@ -144,6 +144,16 @@ public class EventController {
 
     public static int calculatePaginationSize(int totalItems, int itemsPerPage) {
         return (int) Math.ceil((double) totalItems / itemsPerPage);
+    }
+    @GetMapping("/event/{eventId}/eventDetails")
+    public EventoDetailesDTO getEvent(@PathVariable Integer eventId) {
+        return eventDetailService.getEvent(eventId);
+    }
+
+
+    @GetMapping("/event/{eventId}/speakers")
+    public List<SpeakersDto> getEventSpeakers(@PathVariable Integer eventId){
+        return  eventDetailService.getEventSpeakers(eventId);
     }
 
    

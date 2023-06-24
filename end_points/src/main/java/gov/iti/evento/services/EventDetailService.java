@@ -44,7 +44,6 @@ public class EventDetailService {
 
         for (EventSpeaker eventSpeaker : eventSpeakers) {
             SpeakersDto speakersDto = convertToSpeakersDto(eventSpeaker);
-            speakersDtoList.add(speakersDto);
             SpeakersDto eventSpeakersDTO = new SpeakersDto();
             eventSpeakersDTO.setId(eventSpeaker.getSpeaker().getId());
             eventSpeakersDTO.setName(eventSpeaker.getSpeaker().getName());

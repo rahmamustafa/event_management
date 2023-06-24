@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 @Table(name = "user_interest")
-public class UserInterest implements Serializable {
+public class UserInterest {
     @EmbeddedId
     private UserInterestId id;
 

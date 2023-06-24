@@ -13,7 +13,7 @@ import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
-  {path:'event/:id',component:EventDetailsComponent},
+  {path:'event/:id/eventDetails',component:EventDetailsComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'events',component:EventListComponent},

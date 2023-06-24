@@ -58,7 +58,7 @@ export class EventDetailsComponent implements OnInit {
 
   getEvent(id: any): void {
 
-    this.apiService.get("event/" + id)
+    this.apiService.get("event/"+ id+"/eventDetails")
       .subscribe({
         next: response => {
           this.eventDetails = response;
@@ -84,7 +84,7 @@ export class EventDetailsComponent implements OnInit {
         parms => {
           let id = parms.get('id');
           console.log(id + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-          this.apiService.get("event/" + id + "/speakers")
+          this.apiService.get("event/"+ id +"/speakers")
             .subscribe({
               next: response => {
                 console.log(response + "??????????????????????????????????????")

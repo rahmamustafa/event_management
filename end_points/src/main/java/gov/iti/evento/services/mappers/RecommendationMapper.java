@@ -14,14 +14,12 @@ public interface RecommendationMapper {
 
     RecommendationMapper INSTANCE= Mappers.getMapper(RecommendationMapper.class);
     @Mappings({
-
-
             @Mapping(source = "title", target = "title"),
             @Mapping(source = "location", target = "location"),
             @Mapping(target = "image", expression = "java(recoverImageFromUrl(event.getImage()))"),
             @Mapping(source = "category.type", target = "categoryType")
             })
-    RecommendationDto toDto(Event event);
+    RecommendationDto toDto(Event event) throws Exception;
 
     default byte[] recoverImageFromUrl(String urlText) throws Exception {
         return ImageConverter.recoverImageFromUrl(urlText);

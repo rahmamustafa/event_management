@@ -27,7 +27,6 @@ import gov.iti.evento.services.SpeakerService;
 import gov.iti.evento.services.dtos.SpeakerMostSpeakingDto;
 
 @RestController
-@RequestMapping("/speakers")
 @CrossOrigin(origins = "http://localhost:4200")
 public class SpeakerController {
 
@@ -46,7 +45,7 @@ public class SpeakerController {
     }
 
 
-    @PostMapping("/{name}")
+    @PostMapping("/speakers/{name}")
     public Speaker addSpeaker(@PathVariable String name) {
         Speaker speaker = new Speaker();
         speaker.setName(name);
@@ -58,7 +57,7 @@ public class SpeakerController {
         return speaker;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/speakers/{id}")
     public ResponseEntity<String> deleteSpeaker(@PathVariable Integer id) {
         Optional<Speaker> speakerOptional = speakerRepository.findById(id);
         if (speakerOptional.isEmpty()) {
@@ -74,7 +73,7 @@ public class SpeakerController {
     }
 
 
-    @PostMapping("/eventSpeaker/{eventId}/{speakerId}")
+    @PostMapping("/speakers/eventSpeaker/{eventId}/{speakerId}")
     public EventSpeaker addSpeakerToEvent(@PathVariable("eventId") Integer eventId, @PathVariable("speakerId") Integer speakerId) {
         Optional<Event> eventOptional = eventController.getEventById(eventId);
         Optional<Speaker> speakerOptional = speakerServices.getSpeakerById(speakerId);
@@ -90,7 +89,6 @@ public class SpeakerController {
             System.out.println(event.getCategory()+speaker.getName());
             eventSpeaker.setEvent(event);
             eventSpeaker.setSpeaker(speaker);
-
         }
         return speakerServices.saveEventSpeaker(eventSpeaker);
 
@@ -98,7 +96,7 @@ public class SpeakerController {
      @Autowired
     private SpeakerService speakerService;
 
-    @GetMapping("/most-speaking")
+    @GetMapping("speakers/most-speaking")
      public ResponseEntity<List<SpeakerMostSpeakingDto>> getMostSpeakingSpeakers() {
         List<SpeakerMostSpeakingDto> speakers = speakerService.getMostSpeakingSpeakersList();
         return ResponseEntity.ok(speakers);
