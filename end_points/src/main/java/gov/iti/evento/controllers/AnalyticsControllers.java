@@ -39,7 +39,7 @@ public class AnalyticsControllers {
         System.out.println(startDate + " " +endDate);
         return analyticsServices.getAgeAnalysis(startDate, endDate);
     }
-    @GetMapping("/users/country")
+    @GetMapping("/api/admin/country")
     public Map<String, Long> getCountryAnalysis() {
         return analyticsServices.getCountryAnalysis();
     }

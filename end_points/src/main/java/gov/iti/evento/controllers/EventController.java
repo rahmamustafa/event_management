@@ -172,10 +172,11 @@ public class EventController {
     }
 
     @PostMapping(value = "/api/events/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void bookTicket(@RequestBody UserTicketDto userTicketDto) {
+    public boolean bookTicket(@RequestBody UserTicketDto userTicketDto) {
         System.out.println("******");
          ticketBookingService.bookEvent(userTicketDto);
         System.out.println("******");
+        return true;
 
     }
 }

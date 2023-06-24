@@ -51,8 +51,11 @@ import { NgChartsModule } from 'ng2-charts';
 import { UserService } from './services/user.service';
 import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
 import { AuthService } from './services/auth.service';
+import { RevenueComponent } from './components/admin/revenue/revenue.component';
 import { AttendanceComponent } from './components/admin/attendance/attendance.component';
 
+import { CountryComponent } from './components/admin/country/country.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +83,9 @@ import { AttendanceComponent } from './components/admin/attendance/attendance.co
     ReviewFormComponent,
     TicketSucessComponent,
     EventSpeakersComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    CountryComponent,
+    RevenueComponent
   ],
   imports: [
     MbscModule,
@@ -104,6 +109,9 @@ import { AttendanceComponent } from './components/admin/attendance/attendance.co
     CarouselModule,
     NgChartsModule
     ],
+    NgChartsModule,
+    NgApexchartsModule
+  ],
   providers: [DatePipe,UserService,
     {
       provide: HTTP_INTERCEPTORS,

@@ -49,17 +49,23 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form class="form-valide" (ngSubmit)="submitForm()" enctype="multipart/form-data" [formGroup]="eventForm">
+                                    <form class="form-valide" (ngSubmit)="submitForm()" enctype="multipart/form-data"
+                                        [formGroup]="eventForm">
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="title">Title
+                                            <label class="col-lg-4 col-form-label" for="title">Title<span
+                                                class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="title" name="title"
+                                                <input (input)="validateEvent()" [(ngModel)]="title" type="text"
+                                                    class="form-control" id="title" name="title"
                                                     placeholder="Enter a username.." formControlName="title">
+                                                <small *ngIf="titleExists" class="form-text text-danger">should be
+                                                    unique title </small>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="description">Description
+                                            <label class="col-lg-4 col-form-label" for="description">Description<span
+                                                class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
                                                 <textarea class="form-control" id="description" name="description"
@@ -68,7 +74,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="category">Category
+                                            <label class="col-lg-4 col-form-label" for="category">Category<span
+                                                class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
                                                 <select class="form-control" [(ngModel)]="selectedCategory"
@@ -99,63 +106,69 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="speakers">Speakers
+                                            <label class="col-lg-4 col-form-label" for="speakers">Speakers<span
+                                                class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-8">
                                                 <div *ngFor="let choice of speakers; let i=index" class="col-md-2">
                                                     <label>
-                                                      <input type="checkbox" [value]="choice.id" (change)="onCheckChange($event)">
-                                                      {{choice.name}}
+                                                        <input type="checkbox" [value]="choice.id"
+                                                            (change)="onCheckChange($event)">
+                                                        {{choice.name}}
                                                     </label>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="PLATINUMTicket">PLATINUM
+                                            <label class="col-lg-4 col-form-label" for="PLATINUMTicket">PLATINUM<span
+                                                class="text-danger">*</span>
                                                 Ticket</label>
                                             <div class="col-lg-3">
-                                                <input type="text" min="0" formControlName="ticketPrice" class="form-control"
-                                                    id="PLATINUMTicket" name="PLATINUMTicket" placeholder="price"
-                                                    [(ngModel)]="ticketPrice['PLATINUM']"
+                                                <input type="number" min="0" 
+                                                    class="form-control" id="PLATINUMTicket" name="PLATINUMTicket"
+                                                    placeholder="price" [(ngModel)]="ticketPrice['PLATINUM']"
                                                     (input)="updateTicketPrice('PLATINUM', $event)">
                                             </div>
                                             <div class="col-lg-3">
-                                                <input type="text" min="1" formControlName="ticketNumber" class="form-control"
-                                                    id="PLATINUMTicket" name="PLATINUMTicket" placeholder="number"
-                                                    [(ngModel)]="ticketNumber['PLATINUM']"
+                                                <input type="number" min="1" 
+                                                    class="form-control" id="PLATINUMTicket" name="PLATINUMTicket"
+                                                    placeholder="number" [(ngModel)]="ticketNumber['PLATINUM']"
                                                     (input)="updateTicketNumber('PLATINUM', $event)">
                                             </div>
-                                            <label class="col-lg-4 col-form-label" for="STANDARDTicket">STANDARD
+                                            <label class="col-lg-4 col-form-label" for="STANDARDTicket">STANDARD<span
+                                                class="text-danger">*</span>
                                                 Ticket</label>
                                             <div class="col-lg-3">
-                                                <input type="text" min="0" formControlName="ticketPrice" class="form-control"
-                                                    id="STANDARDTicket" name="STANDARDTicket" placeholder="price"
-                                                    [(ngModel)]="ticketPrice['STANDARD']"
+                                                <input type="number" min="0" 
+                                                    class="form-control" id="STANDARDTicket" name="STANDARDTicket"
+                                                    placeholder="price" [(ngModel)]="ticketPrice['STANDARD']"
                                                     (input)="updateTicketPrice('STANDARD', $event)">
                                             </div>
                                             <div class="col-lg-3">
-                                                <input type="text" min="1" formControlName="ticketNumber" class="form-control"
-                                                    id="STANDARDTicket" name="STANDARDTicket" placeholder="number"
-                                                    [(ngModel)]="ticketNumber['STANDARD']"
+                                                <input type="number" min="1" 
+                                                    class="form-control" id="STANDARDTicket" name="STANDARDTicket"
+                                                    placeholder="number" [(ngModel)]="ticketNumber['STANDARD']"
                                                     (input)="updateTicketNumber('STANDARD', $event)">
                                             </div>
-                                            <label class="col-lg-4 col-form-label" for="STARTERTicket">STARTER
+                                            <label class="col-lg-4 col-form-label" for="STARTERTicket">STARTER<span
+                                                class="text-danger">*</span>
                                                 Ticket</label>
                                             <div class="col-lg-3">
-                                                <input type="number" min="0" formControlName="ticketPrice" class="form-control"
-                                                    id="STARTERTicket" name="STARTERTicket" placeholder="price"
-                                                    [(ngModel)]="ticketPrice['STARTER']"
+                                                <input type="number" min="0" 
+                                                    class="form-control" id="STARTERTicket" name="STARTERTicket"
+                                                    placeholder="price" [(ngModel)]="ticketPrice['STARTER']"
                                                     (input)="updateTicketPrice('STARTER', $event)">
                                             </div>
                                             <div class="col-lg-3">
-                                                <input type="number" min="1" formControlName="ticketNumber" class="form-control"
-                                                    id="STARTERTicket" name="STARTERTicket" placeholder="number"
-                                                    [(ngModel)]="ticketNumber['STARTER']"
+                                                <input type="number" min="1" 
+                                                    class="form-control" id="STARTERTicket" name="STARTERTicket"
+                                                    placeholder="number" [(ngModel)]="ticketNumber['STARTER']"
                                                     (input)="updateTicketNumber('STARTER', $event)">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="location">Location
+                                            <label class="col-lg-4 col-form-label" for="location">Location<span
+                                                class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="location" name="location"
@@ -171,7 +184,8 @@
                                             <div>Longitude: {{display?.lng}}</div>
                                         </div> -->
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="online">Avilable Online
+                                            <label class="col-lg-4 col-form-label" for="online">Avilable Online<span
+                                                class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
                                                 <div class="radio mb-3">
@@ -187,7 +201,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="image">Event
+                                            <label class="col-lg-4 col-form-label" for="image">Event<span
+                                                class="text-danger">*</span>
                                                 Image
                                             </label>
                                             <div class=" mt-3 col-md-6">
@@ -198,7 +213,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-lg-8 ml-auto">
-                                                <button  class="btn btn-primary">Submit</button>
+                                                <button  [disabled]="titleExists" class="btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </form>
