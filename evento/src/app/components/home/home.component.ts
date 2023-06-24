@@ -8,14 +8,13 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HomeComponent implements AfterViewInit ,OnInit{
 
-  userId:any;
-  constructor(private elRef: ElementRef, private renderer: Renderer2,private userService: UserService) {
-   this.userService.UserId(this.getId);
+  userId:any
+  constructor(private elRef: ElementRef, private renderer: Renderer2) {
   }
-  ngOnInit(): void {}
-  getId(id:any){
-    console.log("id"+ id);
+  ngOnInit(): void {
+    
   }
+  
    ngAfterViewInit() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

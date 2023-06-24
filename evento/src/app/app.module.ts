@@ -42,7 +42,10 @@ import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
 import { Router } from '@angular/router';
 import { ReviewFormComponent } from './components/event-details/event-reviews/review-form/review-form.component';
 import { TicketSucessComponent } from './components/ticket-registeration/ticket-sucess/ticket-sucess.component';
+import { GoogleMapsModule } from '@angular/google-maps'
+
 import { UserService } from './services/user.service';
+import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +71,8 @@ import { UserService } from './services/user.service';
     AddEventComponent,
     SideBarComponent,
     ReviewFormComponent,
-    TicketSucessComponent
+    TicketSucessComponent,
+    EventSpeakersComponent
   ],
   imports: [
     MbscModule,
@@ -87,6 +91,7 @@ import { UserService } from './services/user.service';
     MatNativeDateModule,
     MatMomentDatetimeModule,
     MatDatetimepickerModule,
+    GoogleMapsModule
 
   ],
   providers: [DatePipe,UserService],

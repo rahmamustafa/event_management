@@ -1,12 +1,15 @@
 package gov.iti.evento.services;
 
 import gov.iti.evento.entites.AvailableTicketId;
+import gov.iti.evento.entites.Event;
 import gov.iti.evento.entites.EventTicket;
 import gov.iti.evento.entites.EventTicketId;
 import gov.iti.evento.repositories.AvailableTicketRepository;
 import gov.iti.evento.repositories.EventTicketRepository;
+import gov.iti.evento.repositories.TicketRepository;
 import gov.iti.evento.services.dtos.ticket.EventTicketDto;
 import gov.iti.evento.services.mappers.ticket.EventTicketMapper;
+import gov.iti.evento.services.util.enums.EventTicketType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,9 @@ public class EventTicketService {
     EventTicketRepository eventTicketRepository;
     @Autowired
     AvailableTicketRepository availableTicketRepository;
+
+    @Autowired
+    TicketRepository ticketRepository;
     public List<EventTicketDto> getEventTicketDetails(int eventId){
 
         List<EventTicket> eventTicket=eventTicketRepository.getEventTicketByEvent_Id(eventId);
@@ -39,6 +45,14 @@ public class EventTicketService {
     public int getNumberOfAvailableTickets(int eventId, int ticketId) {
         AvailableTicketId availableTicketId =new AvailableTicketId(ticketId,eventId);
         return availableTicketRepository.getAvailableTicketById(availableTicketId).getAvailableTickets();
+    }
+
+    public void saveEventTicket(Event event , EventTicketType eventTicketType , Float price){
+        EventTicket eventTicket = new EventTicket();
+        eventTicket.setEvent(event);
+        eventTicket.setTicket(ticketRepository.findByType(eventTicketType.name()).orElseThrow());
+        eventTicket.setPrice(price);
+        eventTicketRepository.save(eventTicket);
     }
 
 }

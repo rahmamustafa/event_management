@@ -14,8 +14,8 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Embeddable
 public class EventTicketId implements Serializable {
     private static final long serialVersionUID = 7587029791674106176L;

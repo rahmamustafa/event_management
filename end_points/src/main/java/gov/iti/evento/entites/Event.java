@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -15,6 +16,7 @@ import javax.xml.crypto.Data;
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "event")
 public class Event implements Serializable {
     @Id
