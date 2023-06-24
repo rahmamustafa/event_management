@@ -52,6 +52,8 @@ import { UserService } from './services/user.service';
 import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
 import { AuthService } from './services/auth.service';
 import { AttendanceComponent } from './components/admin/attendance/attendance.component';
+import { CountryComponent } from './components/admin/country/country.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +81,8 @@ import { AttendanceComponent } from './components/admin/attendance/attendance.co
     ReviewFormComponent,
     TicketSucessComponent,
     EventSpeakersComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    CountryComponent
   ],
   imports: [
     MbscModule,
@@ -101,7 +104,8 @@ import { AttendanceComponent } from './components/admin/attendance/attendance.co
     GoogleMapsModule,
     NgbModule,
     CarouselModule,
-    NgChartsModule
+    NgChartsModule,
+    NgApexchartsModule
   ],
   providers: [DatePipe,UserService,
     {
