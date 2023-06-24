@@ -138,7 +138,7 @@ registerTicket() {
 setUserId() {
   let email = this.userService.getuserEmail();
 
-  this.http.post<any>("http://localhost:8888/user",{"email":email.sub})
+  this.http.post<any>("http://localhost:8888/user",{"email":email})
   .subscribe({
     next:response=>{
       console.log("->>>>>>"+response)

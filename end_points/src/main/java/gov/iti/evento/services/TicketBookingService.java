@@ -3,6 +3,7 @@ package gov.iti.evento.services;
 import gov.iti.evento.entites.*;
 import gov.iti.evento.repositories.AvailableTicketRepository;
 import gov.iti.evento.repositories.EventTicketRepository;
+import gov.iti.evento.repositories.UserRepository;
 import gov.iti.evento.repositories.UserTicketRepository;
 import gov.iti.evento.services.dtos.UserTicketDto;
 import gov.iti.evento.services.mappers.UserTicketMapper;
@@ -21,7 +22,8 @@ public class TicketBookingService {
     private EventTicketRepository eventTicketRepository;
     @Autowired
     private UserTicketMapper userTicketMapper;
-
+    @Autowired
+    private UserRepository userRepository;
     public void bookEvent(UserTicketDto userTicketDto) {
         int availableTickets=getAvailableTickets(userTicketDto.getEventId(),userTicketDto.getTicketId());
 
@@ -29,12 +31,13 @@ public class TicketBookingService {
 
         availableTicketRepository.updateAvailableTicketsById(availableTickets,new AvailableTicketId(userTicketDto.getTicketId(),
                 userTicketDto.getEventId()));
-
+        User user=userRepository.getById(userTicketDto.getUserId());
 
         if(!userTicketRepository.existsById(new UserTicketId(userTicketDto.getUserId(),userTicketDto.getTicketId()))) {
             System.out.println("existttttttttttttttttt");
 
             UserTicket userTicket = userTicketMapper.toEntity(userTicketDto);
+            userTicket.setUser(user);
             userTicket.setId(new UserTicketId(userTicketDto.getUserId(),userTicketDto.getTicketId()));
             EventTicket eventTicket=eventTicketRepository.getEventTicketByEventTicketId(new EventTicketId(userTicketDto.getEventId(),userTicketDto.getTicketId()));
             userTicket.setEventTicket(eventTicket);

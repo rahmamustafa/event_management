@@ -35,8 +35,8 @@
               "src/assets/magnific-popup/magnific-popup.css",
               "node_modules/@mobiscroll/angular/dist/css/mobiscroll.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "nodel-modules/primeng/resources/themes/nova-light/theme.css"
+              "node_modules/primeng/resources/primeng.min.css"
+             
             ],
             "scripts": [
               "src/assets/js/script.js"
