@@ -47,7 +47,8 @@ import { ReviewFormComponent } from './components/event-details/event-reviews/re
 import { TicketSucessComponent } from './components/ticket-registeration/ticket-sucess/ticket-sucess.component';
 import { GoogleMapsModule } from '@angular/google-maps'
 import { NgChartsModule } from 'ng2-charts';
-
+import { ChartModule } from '@syncfusion/ej2-angular-charts';
+import {CanvasJSAngularChartsModule} from '@canvasjs/angular-charts'
 import { UserService } from './services/user.service';
 import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
 import { AuthService } from './services/auth.service';
@@ -103,7 +104,9 @@ import { AttendanceComponent } from './components/admin/attendance/attendance.co
     GoogleMapsModule,
     NgbModule,
     CarouselModule,
-    NgChartsModule
+    NgChartsModule,
+    ChartModule,
+    CanvasJSAngularChartsModule
   ],
   providers: [DatePipe,UserService,
     {

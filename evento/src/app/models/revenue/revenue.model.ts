@@ -1,3 +1,3 @@
 export class Revenue{
-    revenue:number;
+    y:number;
 }
