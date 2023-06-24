@@ -113,9 +113,7 @@ export class AddEventComponent implements OnInit {
 
   updateTicketPrice(key: string, event: any) {
     this.ticketPrice[key] = event.target.value;
-    
-
-
+  
   }
 
   updateTicketNumber(key: string, event: any) {

@@ -1,37 +1,10 @@
-
-.product-item-content {
-  border: 1px solid var(--surface-d);
-  border-radius: 3px;
-  margin: 0.3rem;
-  text-align: center;
-  padding: 2rem 0;
+.carousel-container {
+  max-width: 100%;
 }
 
-.product-image {
-  width: 50%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 
-      0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-/* Styling the carousel arrows */
-.carousel .carousel-next-icon,
-.carousel .carousel-prev-icon {
-  color: #fff; /* Arrow color */
-  background-color: #337ab7; /* Arrow background color */
-  border-radius: 50%; /* Border radius for rounded shape */
-  font-size: 20px; /* Arrow icon size */
-  width: 40px; /* Arrow width */
-  height: 40px; /* Arrow height */
-  line-height: 40px; /* Vertical alignment of the arrow icon */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s; /* Transition effect for hover */
-}
-
-/* Styling the carousel arrows on hover */
-
-.carousel .carousel-next-icon:hover,
-.carousel .carousel-prev-icon:hover {
-  background-color: #23527c; /* Updated background color on hover */
+@media (max-width: 767px) {
+  .carousel-container ::ng-deep .p-carousel-item {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
 }

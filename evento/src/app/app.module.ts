@@ -1,7 +1,7 @@
 import { MbscModule } from '@mobiscroll/angular';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -46,9 +46,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewFormComponent } from './components/event-details/event-reviews/review-form/review-form.component';
 import { TicketSucessComponent } from './components/ticket-registeration/ticket-sucess/ticket-sucess.component';
 import { GoogleMapsModule } from '@angular/google-maps'
+import { NgChartsModule } from 'ng2-charts';
 
 import { UserService } from './services/user.service';
 import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
+import { AuthService } from './services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,11 +98,16 @@ import { EventSpeakersComponent } from './components/event-details/event-speaker
     MatDatetimepickerModule,
     GoogleMapsModule,
     NgbModule,
-    CarouselModule
-    
-
+    CarouselModule,
+    NgChartsModule
   ],
-  providers: [DatePipe,UserService],
+  providers: [DatePipe,UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
