@@ -46,6 +46,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewFormComponent } from './components/event-details/event-reviews/review-form/review-form.component';
 import { TicketSucessComponent } from './components/ticket-registeration/ticket-sucess/ticket-sucess.component';
 import { GoogleMapsModule } from '@angular/google-maps'
+import { NgChartsModule } from 'ng2-charts';
 
 import { UserService } from './services/user.service';
 import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
@@ -96,9 +97,8 @@ import { EventSpeakersComponent } from './components/event-details/event-speaker
     MatDatetimepickerModule,
     GoogleMapsModule,
     NgbModule,
-    CarouselModule
-    
-
+    CarouselModule,
+    NgChartsModule
   ],
   providers: [DatePipe,UserService],
   bootstrap: [AppComponent]

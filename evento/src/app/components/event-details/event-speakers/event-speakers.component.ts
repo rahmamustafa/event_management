@@ -20,9 +20,9 @@ export class EventSpeakersComponent {
 
     this.responsiveOptions = [
       {
-          breakpoint: '1024px',
-          numVisible: 3,
-          numScroll: 3
+       breakpoint: '1024px',
+        numVisible: 3,
+        numScroll: 3
       }
   ];
   }
