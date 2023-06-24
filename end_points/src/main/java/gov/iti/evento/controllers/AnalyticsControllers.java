@@ -24,8 +24,7 @@ public class AnalyticsControllers {
     public Map<String, Long> getEventAttendance() {
         return analyticsServices.getEventAttendance();
     }
-
-    @GetMapping("/users/gender")
+    @GetMapping("/api/admin/gender")
     public Map<String, Long> getGenderAnalysis() {
         return analyticsServices.getGenderAnalysis();
     }
@@ -36,13 +35,15 @@ public class AnalyticsControllers {
         LocalDate startDate = AgeUtils.getStartDateForAgeRange(minAge);
         LocalDate endDate = AgeUtils.getEndDateForAgeRange(maxAge);
 
-        System.out.println(startDate + " " +endDate);
+        System.out.println(startDate + " " + endDate);
         return analyticsServices.getAgeAnalysis(startDate, endDate);
     }
+
     @GetMapping("/api/admin/country")
     public Map<String, Long> getCountryAnalysis() {
         return analyticsServices.getCountryAnalysis();
     }
+
     @GetMapping("/events/popular")
     public List<String> getPopularEvents() {
         return analyticsServices.getPopularEvents();
