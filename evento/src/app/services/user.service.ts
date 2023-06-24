@@ -45,13 +45,13 @@ export class UserService {
     console.log(this.userId);
   }
    
-  getUserRole(): boolean {
+  getUserRole() {
     const token = localStorage.getItem(this.TOKEN_KEY);
     if (token) {
-      console.log("Role   " + this.getClaim(token, "isAdmin"));
-      return this.getClaim(token, "isAdmin")==='0'?false:true;
+      // console.log("Role   " + this.getClaim(token, "isAdmin"));
+      return this.getClaim(token, "isAdmin");
     }
-    return false;
+    return null;
   }
 
   getUserIdToken(): any {
@@ -60,7 +60,7 @@ export class UserService {
       console.log("Id   " + this.getClaim(token, "id"));
       return this.getClaim(token, "id");
     }
-    return null;
+    return 0;
   }
 
   public decodeToken(token: string): any {

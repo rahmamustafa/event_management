@@ -51,6 +51,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { UserService } from './services/user.service';
 import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
 import { AuthService } from './services/auth.service';
+import { RevenueComponent } from './components/admin/revenue/revenue.component';
 import { AttendanceComponent } from './components/admin/attendance/attendance.component';
 import { CountryComponent } from './components/admin/country/country.component';
 import { NgApexchartsModule } from "ng-apexcharts";
@@ -82,7 +83,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
     TicketSucessComponent,
     EventSpeakersComponent,
     AttendanceComponent,
-    CountryComponent
+    CountryComponent,
+    RevenueComponent
   ],
   imports: [
     MbscModule,

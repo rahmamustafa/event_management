@@ -10,22 +10,23 @@ import { UserService } from 'src/app/services/user.service';
 export class HeaderComponent implements OnInit{
 
   isUserLoggedIn:boolean = false;
+  isAdmin:boolean=false;
   constructor(private authService:AuthService , private userService:UserService){}
   ngOnInit(): void {
     this.isUserLoggedIn = this.authService.isUserLoggedIn();
-    this.isAdmin();
+    this.isAdmin = this.userService.getUserRole()==1?true:false;
+    console.log("isAdmin "+ this.isAdmin);
     this.userService.getUserIdToken();
   }
 
   logOut() {
     localStorage.removeItem('username');
     localStorage.removeItem('token');
+    this.isAdmin=false;
     console.log("logout")
     this.isUserLoggedIn = false;
   }
-  isAdmin():boolean{
-     return this.userService.getUserRole();
-  }
+  
 
 
 }

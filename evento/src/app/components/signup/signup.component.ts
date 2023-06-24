@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { countries } from 'src/app/models/country-data-store';
 import { ApiService } from 'src/app/services/api.service';
 import { EmailValidator } from 'src/app/services/email-validator';
 
@@ -23,19 +24,20 @@ export class SignupComponent implements OnInit {
   selectedImage: File
   email: string;
   emailExists: boolean;
-  countries: any;
+  // countries: any;
   registerForm: FormGroup;
+  public countries:any = countries
 
 
   ngOnInit(): void {
-    this.http.get('https://trial.mobiscroll.com/content/countries.json').subscribe((resp: any) => {
-      const countries = [];
-      for (let i = 0; i < resp.length; ++i) {
-        const country = resp[i];
-        countries.push({ text: country.text, value: country.value });
-      }
-      this.countries = countries;
-    });
+    // this.http.get('https://trial.mobiscroll.com/content/countries.json').subscribe((resp: any) => {
+    //   const countries = [];
+    //   for (let i = 0; i < resp.length; ++i) {
+    //     const country = resp[i];
+    //     countries.push({ text: country.text, value: country.value });
+    //   }
+    //   this.countries = countries;
+    // });
     this.registerForm = this._formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
