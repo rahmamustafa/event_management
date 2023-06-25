@@ -7,6 +7,7 @@ import gov.iti.evento.entites.EventSpeakerId;
 import gov.iti.evento.entites.Speaker;
 import gov.iti.evento.repositories.SpeakerRepository;
 import gov.iti.evento.services.SpeakerServices;
+import gov.iti.evento.services.dtos.SpeakerAdminDto;
 import gov.iti.evento.services.speaker.SpeakerDto;
 import gov.iti.evento.services.util.converters.ImageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,6 +119,11 @@ public class SpeakerController {
         return ResponseEntity.ok(speakers);
 
 
+    }
+    @GetMapping("/sp")
+    public ResponseEntity<List<SpeakerAdminDto>> getAllSpeakers() throws Exception {
+        List<SpeakerAdminDto> speakers = speakerService.getAllSpeakers();
+        return ResponseEntity.ok(speakers);
     }
 
 }

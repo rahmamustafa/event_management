@@ -6,9 +6,13 @@ import gov.iti.evento.entites.Speaker;
 import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.EventSpeakerRepository;
 import gov.iti.evento.repositories.SpeakerRepository;
+import gov.iti.evento.services.dtos.SpeakerAdminDto;
+import gov.iti.evento.services.mappers.SpeakerAdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -41,4 +45,5 @@ public class SpeakerServices {
     public EventSpeaker saveEventSpeaker (EventSpeaker eventSpeaker){
         return eventSpeakerRepository.save(eventSpeaker);
     }
+
 }
