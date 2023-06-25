@@ -1,5 +1,9 @@
 <app-shared>
-  <section class="page-title bg-title overlay-dark">
+    <br>
+    <br>
+
+    <br>
+  <!-- <section class="page-title bg-title overlay-dark">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
@@ -10,12 +14,10 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
-<section class="news section">
-    <!-- Article -->
+<!-- <section class="news section">
 
-    <!-- <section class="section single-speaker"> -->
         <div class="container">
             <div class="block">
                 <div class="row">
@@ -25,7 +27,6 @@
                         </div>
                         <div class="post-content">
                             <div class="date">
-                                <!-- <h4>{{eventDetails.eventDate}}<span>May</span></h4> -->
                                 <h4><span>{{ eventDetails.eventDate | date: 'MMM d' }}</span></h4>
 
                             </div>
@@ -43,11 +44,7 @@
                                     {{eventDetails.title}}
                                 </h3>
                             </div>
-                            <!-- <div class="profession text">
-                                                <h3>
-                                                    {{eventDetails.title}}
-                                                </h3>
-                                            </div> -->
+                           
                             <div class="details">
                                 <p>{{eventDetails.description}}</p>
                             </div>
@@ -64,7 +61,62 @@
                 
             </div>
         </div>
-    <!-- </section> -->
     
-    </section>
+    </section> -->
+
+    
+<section class="section single-speaker">
+	<div class="container">
+		<div class="block">
+			<div class="row">
+				<div class="col-lg-5 col-md-6 align-self-md-center">
+					<div class="image-block">
+                        <img [src]="image" class="img-fluid rounded" alt="speaker">
+					</div>
+				</div>
+				<div class="col-lg-7 col-md-6 align-self-center">
+					<div class="content-block">
+						<div class="name">
+							<h3>  {{eventDetails.title}}</h3>
+						</div>
+						<div class="profession">
+							<p>{{eventDetails.location}}</p>
+						</div>
+						<div class="details">
+							<p>{{eventDetails.description}}</p>
+						</div>
+						<div class="social-profiles">
+							<h5>{{ eventDetails.eventDate | date: 'MMM d' }}</h5>
+							<ul class="list-inline social-list">
+								<li class="list-inline-item">
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li class="list-inline-item">
+									<a href="#"><i class="fa fa-linkedin"></i></a>
+								</li>
+								<li class="list-inline-item">
+									<a href="#"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li class="list-inline-item">
+									<a href="#"><i class="fa fa-skype"></i></a>
+								</li>
+								<li class="list-inline-item">
+									<a href="#"><i class="fa fa-pinterest-p"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <br>
+        <br>
+        
+        <app-event-speakers></app-event-speakers>
+        <div *ngIf="eventDate < currentDateTime ; else elseBlock">
+            <app-event-reviews></app-event-reviews>
+          </div>
+          <ng-template #elseBlock><app-event-tickets></app-event-tickets></ng-template>
+	</div>
+</section>
     </app-shared>

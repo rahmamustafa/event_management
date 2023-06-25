@@ -14,13 +14,13 @@ import { Category } from 'src/app/models/event/category';
 export class EventListComponent implements OnInit {
   events: Event[] = [];
   categories: Category[] = [];
-  numbers: number[];
+  numbers: any[]=[];
   image: any;
   pageNumber: number = 0;
   categoryType: string;
   type: number;
   size: number = 9;
-  pageNumbers: number ;
+  pageNumbers: number=0;
   constructor(
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
@@ -28,30 +28,44 @@ export class EventListComponent implements OnInit {
   ) {
 
   }
-
+  getNumberRange(max: number): number[] {
+    return Array.from({ length: max }, (_, index) => index + 1);
+  }
   ngOnInit(): void {
     this.getEvents(0);
     this.getCategories();
     console.log("aaaaaaaaaaaaaaa");
 
-    this.numbers = this.numSequence(this.pageNumbers);
+     this.numbers=this.getpageNumber();
 
   }
   numSequence(n: number): Array<number> {
 
     return Array(n);
   }
-  getpageNumber(): any {
+  getpageNumber() :any{
     this.apiService.get(`pagesNumber/${this.size}`).subscribe({
       next: (response: number) => {
         console.log(response);
-        this.pageNumbers = response;       
+        this.pageNumbers =response;
+
+        console.log("page numbers->>>>" + this.pageNumbers);
+        for(let i=1;i<this.pageNumbers;i++) {
+          console.log(i);
+         
+            this.numbers.push(i)
+            console.log( this.numbers)
+        }
+        console.log("---------*" + this.numbers);
+        return this.numbers;
       },
       error: (error: any) => {
         console.log("ERROR");
       }
     });
+    console.log("page numbers2222->>>>" + this.pageNumbers);
   }
+
   getEvents(page: number) {
     this.apiService.get(`events?page=${this.pageNumber}&size=9`).subscribe({
       next: (response: any) => {
@@ -61,10 +75,9 @@ export class EventListComponent implements OnInit {
       },
       error: (error: any) => { }
     });
-    this.pageNumber = this.getpageNumber();
-
-    console.log("**********" + this.pageNumbers)
-    console.log("**********" + this.getpageNumber())
+  
+    
+   
   }
 
   getCategories() {
