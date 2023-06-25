@@ -7,7 +7,6 @@ import gov.iti.evento.entites.EventSpeakerId;
 import gov.iti.evento.entites.Speaker;
 import gov.iti.evento.repositories.SpeakerRepository;
 import gov.iti.evento.services.SpeakerServices;
-import gov.iti.evento.services.dtos.SpeakerAdminDto;
 import gov.iti.evento.services.speaker.SpeakerDto;
 import gov.iti.evento.services.util.converters.ImageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +87,7 @@ public class SpeakerController {
             eventSpeakerId.setEventId(eventId);
             eventSpeakerId.setSpeakerId(speakerId);
             eventSpeaker.setId(eventSpeakerId);
-            System.out.println(event.getCategory() + speaker.getName());
+            System.out.println(event.getCategory()+speaker.getName());
 //            eventSpeaker.setEvent(event);
 //            eventSpeaker.setSpeaker(speaker);
 
@@ -98,31 +97,27 @@ public class SpeakerController {
     }
 
 
+
+
 //            return ResponseEntity.ok("Speaker added to the event successfully");
 //        } else {
 //            return ResponseEntity.notFound().build();
 
-    @Autowired
+     @Autowired
     private SpeakerService speakerService;
 
     @GetMapping("/most-speaking")
-    public ResponseEntity<List<SpeakerMostSpeakingDto>> getMostSpeakingSpeakers() {
+     public ResponseEntity<List<SpeakerMostSpeakingDto>> getMostSpeakingSpeakers() {
         List<SpeakerMostSpeakingDto> speakers = speakerService.getMostSpeakingSpeakersList();
         return ResponseEntity.ok(speakers);
     }
 
     @GetMapping("/all-speakers")
-    public ResponseEntity<List<SpeakerDto>> getAllSpeakersName() {
+    public ResponseEntity<List<SpeakerDto>> getAllSpeakersName(){
         List<SpeakerDto> speakers = speakerService.getAllSpeakerName();
         return ResponseEntity.ok(speakers);
 
 
-    }
-
-    @GetMapping("/sp")
-    public ResponseEntity<List<SpeakerAdminDto>> getAllSpeakers() throws Exception {
-        List<SpeakerAdminDto> speakers = speakerService.getAllSpeakers();
-        return ResponseEntity.ok(speakers);
     }
 
 }
