@@ -42,4 +42,9 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
 
     boolean existsByTitleIgnoreCase(@NonNull String title);
+
+    @Query ("SELECT id FROM Event e WHERE e.title =: eventTitle")
+    Integer findEventIdByEventTitle (String eventTitle);
+
+
 }
