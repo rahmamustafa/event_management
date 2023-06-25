@@ -1,6 +1,6 @@
 package gov.iti.evento.services;
 
-import com.fasterxml.jackson.annotation.OptBoolean;
+//import com.fasterxml.jackson.annotation.OptBoolean;
 import gov.iti.evento.entites.*;
 import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.EventReviewRepository;
@@ -51,8 +51,8 @@ public class RecommendationService {
         if(userOptional.isPresent() && eventOptional.isPresent()) {
             user = userOptional.get();
             event = eventOptional.get();
-//            userInterestId.setUserId(userId);
-//            userInterestId.setEventId(eventId);
+            userInterestId.setUserId(userId);
+            userInterestId.setEventId(eventId);
             System.out.println(userInterestId);
             userInterest.setEvent(event);
             userInterest.setUser(user);
