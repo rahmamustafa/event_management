@@ -44,7 +44,7 @@ public class AnalyticsControllers {
         return analyticsServices.getCountryAnalysis();
     }
 
-    @GetMapping("/events/popular")
+    @GetMapping("/api/admin/popular")
     public List<String> getPopularEvents() {
         return analyticsServices.getPopularEvents();
     }

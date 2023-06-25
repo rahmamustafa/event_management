@@ -57,10 +57,16 @@ public class AnalyticsServices {
     }
 
     public List<String> getPopularEvents() {
-        List<String> sortedKeys = new ArrayList<>(getEventAttendance().keySet());
-        Collections.sort(sortedKeys);
-        Collections.reverse(sortedKeys);
-        return sortedKeys;
+        Map<String, Long> sortedMap = getEventAttendance().entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue,
+                        LinkedHashMap::new
+                ));
+        return sortedMap.keySet().stream().toList();
     }
 
 }
