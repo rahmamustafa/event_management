@@ -1,5 +1,12 @@
 <div class="comments">
-    <h5>Comments ({{reviews.length}})</h5>
+    <div class="row">
+        <div class="col-12">
+            <div class="section-title">
+                <h3><span class="alternate">Comments ({{reviews.length}})</span>  </h3>
+                
+            </div>
+        </div>
+    </div>
     <!-- Comment -->
     <div class="scrollable-section">
         <div class="media comment" *ngFor="let r of reviews;">
