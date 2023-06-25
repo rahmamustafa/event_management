@@ -1,0 +1,38 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem; }
+  .card-body {
+    flex: 1 1 auto;
+    padding: $card-spacer-x;
+  }
+  .active-member .table img {
+    width: 35px; }
+@media (max-width: 575.98px) {
+  .table-responsive-sm {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar; }
+    .table-responsive-sm > .table-bordered {
+      border: 0; } }
+      .container-fluid {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto; }
+ #main-wrapper {
+   opacity: 0;
+   transition: all 0.25s ease-in;
+   overflow: hidden;
+   position: relative; }
+   #main-wrapper.show {
+     opacity: 1; }

@@ -60,6 +60,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { CountryComponent } from './components/admin/country/country.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { GenderComponent } from './components/admin/gender/gender.component';
+import { MostPopularComponent } from './components/admin/most-popular/most-popular.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +93,8 @@ import { GenderComponent } from './components/admin/gender/gender.component';
     CalendarComponent,
     CountryComponent,
     RevenueComponent,
-    GenderComponent
+    GenderComponent,
+    MostPopularComponent
   ],
   imports: [
     MbscModule,

@@ -1,12 +1,12 @@
 <app-shared>
-    <section class="banner">
+  <section class="banner">
 
-    <div >
-
-        <!--**********************************
-            Sidebar start
-        ***********************************-->
-        <app-side-bar></app-side-bar>
+    <!--**********************************
+        Sidebar start
+    ***********************************-->
+    <app-side-bar></app-side-bar>
+    <div id="main-wrapper">
+      <div class="content-body">
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -14,19 +14,54 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
-
-
-           <app-country></app-country>
-           <app-attendance></app-attendance>
-           <app-gender></app-gender>
-            <!-- #/ container -->
+        <div class="container-fluid">
+          <div class="row">
+            <!-- /# column -->
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <app-country></app-country>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <app-attendance></app-attendance>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- /# column -->
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <app-gender></app-gender>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="active-member">
+                    <div class="table-responsive">
+                      <app-most-popular></app-most-popular>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--**********************************
+              Content body end
+          ***********************************-->
         </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
+      </div>
 
     </div>
-    </section>
+  </section>
 
 </app-shared>

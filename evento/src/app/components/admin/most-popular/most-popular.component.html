@@ -1,0 +1,22 @@
+<table class="table table-xs mb-0">
+  <thead>
+  <tr>
+    <th>Event</th>
+    <th>Category</th>
+    <th>Country</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let e of popularEvent;">
+  <tr>
+    <td><img [src]="getImage(e.image)" class="rounded-circle mr-3" alt="">{{e.title}}</td>
+    <td>{{e.categoryType}}</td>
+    <td>
+      <span>{{e.location}}</span>
+    </td>
+    <td>
+      {{e.status}}
+    </td>
+  </tr>
+  </tbody>
+</table>

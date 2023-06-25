@@ -1,9 +1,10 @@
 package gov.iti.evento.services;
 
 import gov.iti.evento.entites.*;
-import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.UserRepository;
 import gov.iti.evento.repositories.UserTicketRepository;
+import gov.iti.evento.services.dtos.EventDto;
+import gov.iti.evento.services.mappers.EventMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ public class AnalyticsServices {
     UserTicketRepository userTicketRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    EventMapper eventMapper;
 
     public Map<String, Long> getEventAttendance() {
         List<UserTicket> userTickets = userTicketRepository.findAll();
@@ -56,17 +59,32 @@ public class AnalyticsServices {
         return usersPerGender;
     }
 
-    public List<String> getPopularEvents() {
-        Map<String, Long> sortedMap = getEventAttendance().entrySet()
+    public List<EventDto> getPopularEvents() throws Exception {
+        List<UserTicket> userTickets = userTicketRepository.findAll();
+        Map<Event, Long> popularEvents = userTickets.stream()
+                .collect(Collectors.groupingBy(
+                        userTicket -> (userTicket.getEventTicket().getEvent()),
+                        Collectors.counting()
+                ));
+        Map<Event, Long> sortedPopularEvents = popularEvents.entrySet()
                 .stream()
-                .sorted(Map.Entry.comparingByValue())
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,
                         (oldValue, newValue) -> oldValue,
                         LinkedHashMap::new
                 ));
-        return sortedMap.keySet().stream().toList();
+        List<Event> events = sortedPopularEvents.keySet().stream().toList();
+        List<EventDto> pop_event = new ArrayList<>();
+        for (Event event : events) {
+            EventDto eventDto = eventMapper.INSTANCE.toDto(event);
+            pop_event.add(eventDto);
+        }
+        sortedPopularEvents.forEach((eventId, userCount) -> {
+            System.out.println("Popular Event : " + eventId + ", User Count: " + userCount);
+        });
+        return pop_event;
     }
 
 }

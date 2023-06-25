@@ -4,4 +4,6 @@ export class Event{
     categoryType:string;
     image:any;
     id:number;
+    location:string;
+    status:string;
 }

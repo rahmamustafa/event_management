@@ -1,7 +1,9 @@
 package gov.iti.evento.controllers;
 
+import gov.iti.evento.entites.Event;
 import gov.iti.evento.entites.User;
 import gov.iti.evento.services.AnalyticsServices;
+import gov.iti.evento.services.dtos.EventDto;
 import gov.iti.evento.services.util.converters.AgeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,6 +26,7 @@ public class AnalyticsControllers {
     public Map<String, Long> getEventAttendance() {
         return analyticsServices.getEventAttendance();
     }
+
     @GetMapping("/api/admin/gender")
     public Map<String, Long> getGenderAnalysis() {
         return analyticsServices.getGenderAnalysis();
@@ -45,7 +48,7 @@ public class AnalyticsControllers {
     }
 
     @GetMapping("/api/admin/popular")
-    public List<String> getPopularEvents() {
+    public List<EventDto> getPopularEvents() throws Exception {
         return analyticsServices.getPopularEvents();
     }
 
