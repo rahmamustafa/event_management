@@ -12,17 +12,22 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class SpeakerListComponent {
   speakers: eventSpeakersDTO[] = [];
+  size: number = 8;
+  pageNumbers: number=0;
+  numbers: any[]=[];
   constructor(
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
     private sanitizer: DomSanitizer
-  ) { }
+  ) { 
+    this.numbers=this.getpageNumber();
+  }
   ngOnInit(): void {
-    this.getSpeakers();
+    this.getSpeakers(0);
 
   }
-  getSpeakers() {
-    this.apiService.get("speakers/sp").subscribe({
+  getSpeakers(page: number) {
+    this.apiService.get(`speakers/sp?page=${page}`).subscribe({
       next: (response: any) => {
         console.log(response);
         this.speakers = response;
@@ -41,4 +46,33 @@ export class SpeakerListComponent {
     let return_image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
     return return_image;
   }
+  getpageNumber() :any{
+    this.apiService.get(`speakers/pagesNumber/${this.size}`).subscribe({
+      next: (response: number) => {
+        console.log(response);
+        this.pageNumbers =response;
+
+       
+        for(let i=1;i<this.pageNumbers;i++) {
+          console.log(i);
+         
+            this.numbers.push(i)
+            console.log( this.numbers)
+        }
+      
+        return this.numbers;
+      },
+      error: (error: any) => {
+        console.log("ERROR");
+      }
+    });
+  
+  }
+  getNumberRange(max: number): number[] {
+    return Array.from({ length: max }, (_, index) => index + 1);
+  }
+  setPageNumber(page: number) {
+      this.getSpeakers(page);
+  }
+
 }
