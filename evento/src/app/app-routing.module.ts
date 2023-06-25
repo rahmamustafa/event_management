@@ -14,6 +14,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { TicketSucessComponent } from './components/ticket-registeration/ticket-sucess/ticket-sucess.component';
 import { RevenueComponent } from './components/admin/revenue/revenue.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { SpeakerListComponent } from './components/speaker-list/speaker-list.component';
 import { UserUpComingEventsComponent } from './components/user-up-coming-events/user-up-coming-events.component';
 
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'events',component:EventListComponent},
+  {path:'speakers',component:SpeakerListComponent},
   {path:'admin',component:AdminComponent},
   {path:'add-event',component:AddEventComponent},
   {path:'add-speaker',component:AddSpeakerComponent},
