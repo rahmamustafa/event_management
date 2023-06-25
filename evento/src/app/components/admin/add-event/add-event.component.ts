@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { co } from '@fullcalendar/core/internal-common';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class AddEventComponent implements OnInit {
   isOnline:boolean;
   selectedImage: File;
 
-  categeories:string[] =["Sport","Science","Health","Music"];
+  categeories :string[] = [];
   selectedCategory:string;
 
   titleExists: boolean;
@@ -39,9 +40,14 @@ export class AddEventComponent implements OnInit {
   ngOnInit() {
     this.apiService.get("categories")
     .subscribe({
-      next: (response: any) => {
-         console.log("all cate" + response);
-         this.categeories = response.forEach((cat:any) => cat.get('type'));
+      next: (response:{type:string}[]) => {
+        // const convertedCat = response.map(cat => ({
+        //   type: cat.type
+        // }));
+        // this.categeories = convertedCat;
+
+        // console.log("cattttt " + convertedCat);
+        response.forEach(cat=>this.categeories.push(cat.type))
       },
       error: (error: any) => { }
     }
