@@ -59,7 +59,7 @@ export class TotalRevenueComponent implements OnInit {
       data: {
           labels: this.labels,
           datasets: [{
-              label: '# of Votes',
+              label: '# of Revenues',
               data: this.datasets,
               backgroundColor:this.colors,
               

@@ -24,6 +24,7 @@ export class RevenueComponent implements OnInit {
     const month = parseInt(parts[1], 10) - 1; // Extract the month as a number (subtract 1 as months are zero-based in JavaScript)
 
     const currentYear = new Date().getFullYear(); // Get the current year
+    console.log("date ->"+new Date(currentYear, month, day));
     return new Date(currentYear, month, day);
 
   }
@@ -35,7 +36,9 @@ export class RevenueComponent implements OnInit {
       next:(response:any)=>{
         this.revenueByDate=response;
         response.forEach((re:any) => 
-        { arr.push({x:this.dateConverter(re.x),y:re.y});
+        { 
+          console.log("revenue date ->"+re.x+" "+re.y);
+          arr.push({x:this.dateConverter(re.x),y:re.y});
           
         });
         
@@ -56,13 +59,12 @@ export class RevenueComponent implements OnInit {
       }, 
       axisY: {
       title: "Revenue",
-      valueFormatString: "#0,,.",
-      suffix: "K"
+      valueFormatString: "",
+      suffix: ""
       },
       data: [{
       type: "splineArea",
       color: "rgba(54,158,173,.7)",
-      xValueFormatString: "DD MMMM YYYY	",
       dataPoints: arr
       }]
     }	
