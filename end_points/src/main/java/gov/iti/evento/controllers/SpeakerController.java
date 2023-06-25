@@ -11,6 +11,7 @@ import gov.iti.evento.services.dtos.SpeakerAdminDto;
 import gov.iti.evento.services.speaker.SpeakerDto;
 import gov.iti.evento.services.util.converters.ImageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -121,9 +122,12 @@ public class SpeakerController {
 
     }
     @GetMapping("/sp")
-    public ResponseEntity<List<SpeakerAdminDto>> getAllSpeakers() throws Exception {
-        List<SpeakerAdminDto> speakers = speakerService.getAllSpeakers();
+    public ResponseEntity<List<SpeakerAdminDto>> getAllSpeakers(@RequestParam("page") @DefaultValue("0") int page) throws Exception {
+        List<SpeakerAdminDto> speakers = speakerService.getAllSpeakers(page);
         return ResponseEntity.ok(speakers);
     }
-
+    @GetMapping("/pagesNumber/{pageSize}")
+    public long getNumberOfPages(@PathVariable("pageSize")int pageSize) {
+        return speakerService.getNumberOfPages(pageSize);
+    }
 }
