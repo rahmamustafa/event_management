@@ -6,15 +6,16 @@
             <img [src]="getImage(r.user.image)" alt="image"
                 style="width: 100px; height: 100px;">
             <div class="media-body">
-                <h6>{{r.user.name}}</h6>
+                <h6><span class="fa fa-calendar"></span>{{r.reviewDate
+                    | date:'medium'}}</h6>
                 <ul class="list-inline">
-                    <li class="list-inline-item"><span class="fa fa-calendar"></span>{{r.reviewDate
-                        | date:'medium'}}
+                    <li class="list-inline-item">
+                       {{r.review}}
                     </li>
                     <!-- <li class="list-inline-item"><a href="#">Reply</a></li> -->
                 </ul>
-                <p>
-                    {{r.review}}
+                <p>  
+                   {{r.user.name}}
                 </p>
 
             </div>

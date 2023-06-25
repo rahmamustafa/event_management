@@ -28,17 +28,18 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
               "src/assets/css/style.css",
-              "src/assets/slick/slick-theme.css",
-              "src/assets/bootstrap/bootstrap.min.css",
-              "src/assets/slick/slick.css",
-              "src/assets/font-awsome/css/font-awesome.min.css",
-              "src/assets/magnific-popup/magnific-popup.css",
+
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/font-awesome.min.css",
+              "src/assets/css/magnific-popup.css",
               "node_modules/@mobiscroll/angular/dist/css/mobiscroll.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/primeng.min.css",
+              "src/assets/css/style.css"
             ],
             "scripts": [
               "src/assets/js/script.js"
+
             ]
           },
           "configurations": {
