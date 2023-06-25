@@ -1,5 +1,5 @@
-<!-- <section class="section speakers bg-speaker overlay-lighter" *ngIf="!isLoggedIn()"> -->
-	<!-- <section class="section speakers bg-speaker overlay-lighter">
+<section class="section speakers bg-speaker overlay-lighter" *ngIf="userEmail == null"> 
+	<!-- <section class="section speakers bg-speaker overlay-lighter"> -->
 
 	<div class="container">
 		<div class="row">
@@ -31,12 +31,12 @@
 			</div>
 		</div>
 	</div>
-</section> -->
+</section>
 
 
-<!-- <section class="section speakers bg-speaker overlay-lighter" *ngIf="isLoggedIn()"> -->
-	<section class="section speakers bg-speaker overlay-lighter" >
-	<section class="section speakers bg-speaker overlay-lighter">
+ <section class="section speakers bg-speaker overlay-lighter" *ngIf="userEmail != null"> 
+	<!-- <section class="section speakers bg-speaker overlay-lighter" > -->
+	<!-- <section class="section speakers bg-speaker overlay-lighter"> -->
 
 		<div class="container">
 			<div class="row">
@@ -51,9 +51,9 @@
 
 				<div id="captioned-gallery">
 					<figure class="slider">
-						<figure *ngFor="let speaker of recommendedEvents">
-							<img [src]="'data:image/jpeg;base64,' + speaker.image" alt="Image">
-							<figcaption>
+						<figure  *ngFor="let speaker of recommendedEvents" >
+							<img [src]="'data:image/jpeg;base64,' + speaker.image" alt="Image" routerLink="/event/{{speaker.id}}">
+							<figcaption routerLink="/event/{{speaker.id}}">
 								<div>
 									<h1>{{speaker.title}}</h1>
 								</div>

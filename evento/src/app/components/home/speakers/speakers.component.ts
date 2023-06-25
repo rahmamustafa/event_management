@@ -15,13 +15,13 @@ import { ThemeService } from 'ng2-charts';
   styleUrls: ['./speakers.component.css']
 })
 export class SpeakersComponent implements OnInit {
-  userService2: any ;
   // userId: any;
   // userId=this.userService2.getUserIdToken();
   hola: LoginComponent ;
   speakers: speaker[] = [];
   recommendedEvents: RecommendationDto[]=[];
   userId: any;
+  userEmail: any;
   image: any;
   currentDateTime: string | null;
   // hola.isUserLoggedIn();
@@ -31,12 +31,14 @@ export class SpeakersComponent implements OnInit {
   constructor(private apiService: ApiService, private sanitizer: DomSanitizer, public datepipe: DatePipe, public userService1: UserService) {
     this.currentDateTime = this.datepipe.transform((new Date), 'yyyy-MM-dd h:mm:ss');
     console.log(this.currentDateTime);
-    this.userService2 = this.userService1;
-    this.userId=this.userService2.getUserIdToken();
+    // this.userService2 = this.userService1;
+    // this.userId=this.userService2.getUserIdToken();
+    
     
   }
 
   ngOnInit(): void {
+
     this.apiService.get(`speakers/most-speaking`)
       .subscribe({
         next: response => {
@@ -49,14 +51,18 @@ export class SpeakersComponent implements OnInit {
         }
       }
       );
-    this.getEventSpeakers();
-    this.isLoggedIn();
+    this.userEmail = this.userService1.getuserEmail();
+    this.userId = this.userService1.getUserIdToken();
+    this.getRecommendation();
+    // this.isLoggedIn();
   }
-  getEventSpeakers(): void {
+  getRecommendation(): void {
     this.apiService.get("recommendation/"+1 )
       .subscribe({
         next: response => {
-          console.log(response + "?????????????????????????????????????")
+          console.log(this.userId);
+          console.log("Saraaaaaaaaaaaaaaaaaaaaa");
+          console.log(response + "?????????????????????????????????????");
           this.recommendedEvents = response;
           console.log(this.recommendedEvents);
           //   if (response.speakers && response.speakers.length > 0) {

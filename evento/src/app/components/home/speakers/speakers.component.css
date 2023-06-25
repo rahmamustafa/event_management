@@ -19,34 +19,46 @@ body, figure {
   background:scroll;
   font-family: Istok Web, sans-serif;
   font-weight: 100;
+  width: 30% ;
 }
 div#captioned-gallery { 
   width: 100%;
-  height: 50%;
+  height: 90%;
   overflow: hidden; 
 }
 figure.slider { 
   position: relative; 
   width: 500%;
-  height: 70%;
+  height: 90%;
   font-size: 0; 
   animation: 30s slidy infinite; 
 }
 figure.slider figure { 
-  width: 20%; 
+  width: 15%; 
   height: 20%;
  display:inline-flex;  
   /*  position: inherit;  */
 }
 figure.slider img {
-   width: 60%; height: 50%; 
+   width: 60%; 
+   height: 50%; 
+  } 
+
+
+figure.slider figure figcaption:hover{ 
+    /* display:block; */
+    position:absolute; 
+    /* bottom: 0; */
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+     width: 9.5%;
+    font-size: 9rem; 
+    padding: 6rem; 
+    height: 98%;
   }
-figure.slider figure figcaption{ 
-  position:sticky; 
-  /* bottom: 0; */
-  background: rgba(0,0,0,0.4);
-  color: #fff;
-   width: 70%;
-  font-size: 9rem; 
-  padding: 9rem; 
+
+
+.imageMargin{
+    /* margin: 100px; */
+    padding: 100px;
 }
