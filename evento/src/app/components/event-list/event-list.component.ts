@@ -14,13 +14,13 @@ import { Category } from 'src/app/models/event/category';
 export class EventListComponent implements OnInit {
   events: Event[] = [];
   categories: Category[] = [];
-  numbers: any[]=[];
+  numbers: any[] = [];
   image: any;
   pageNumber: number = 0;
   categoryType: string;
   type: number;
   size: number = 9;
-  pageNumbers: number=0;
+  pageNumbers: number = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
@@ -29,7 +29,7 @@ export class EventListComponent implements OnInit {
     this.getEvents(0);
     this.getCategories();
 
-     this.numbers=this.getpageNumber();
+    this.numbers = this.getpageNumber();
 
   }
   getNumberRange(max: number): number[] {
@@ -39,47 +39,47 @@ export class EventListComponent implements OnInit {
     this.getEvents(0);
     this.getCategories();
 
-     this.numbers=this.getpageNumber();
+    this.numbers = this.getpageNumber();
 
   }
   numSequence(n: number): Array<number> {
 
     return Array(n);
   }
-  getpageNumber() :any{
+  getpageNumber(): any {
     this.apiService.get(`pagesNumber/${this.size}`).subscribe({
       next: (response: number) => {
         console.log(response);
-        this.pageNumbers =response;
+        this.pageNumbers = response;
 
-       
-        for(let i=1;i<this.pageNumbers;i++) {
+
+        for (let i = 1; i < this.pageNumbers; i++) {
           console.log(i);
-         
-            this.numbers.push(i)
-            console.log( this.numbers)
+
+          this.numbers.push(i)
+          console.log(this.numbers)
         }
-      
+
         return this.numbers;
       },
       error: (error: any) => {
         console.log("ERROR");
       }
     });
-  
+
   }
 
   getEvents(page: number) {
     this.apiService.get(`events?page=${this.pageNumber}&size=9`).subscribe({
       next: (response: any) => {
         this.events = response;
-        
+
       },
       error: (error: any) => { }
     });
-  
-    
-   
+
+
+
   }
 
   getCategories() {
