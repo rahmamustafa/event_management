@@ -15,11 +15,13 @@ import { TicketSucessComponent } from './components/ticket-registeration/ticket-
 import { RevenueComponent } from './components/admin/revenue/revenue.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { SpeakerListComponent } from './components/speaker-list/speaker-list.component';
+import { UserUpComingEventsComponent } from './components/user-up-coming-events/user-up-coming-events.component';
 
 
  
 const routes: Routes = [
    {path:'pay/success',component:TicketSucessComponent},
+   {path:'MyEvents',component:UserUpComingEventsComponent},
   {path:'event/:eventId/register/:ticketId',component:TicketRegisterationComponent},
   {path:'404',component:NotFoundComponent},
   {path:'home',component:HomeComponent},

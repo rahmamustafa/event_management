@@ -41,5 +41,6 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
     public List<Event> findTop3ByOrderByEventDateDesc();
     public long countEventsBy();
 
+
     boolean existsByTitleIgnoreCase(@NonNull String title);
 }

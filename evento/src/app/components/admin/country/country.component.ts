@@ -34,8 +34,6 @@ export class CountryComponent {
   ngOnInit(): void {
 
     this.getCountries();
-    console.log("in Event AttendanceComponent on INit");
-    console.log("serios->>>>>>>>>>"+this.serios)
    
    }
   getCountries(){

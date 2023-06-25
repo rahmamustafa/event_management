@@ -1,5 +1,6 @@
 package gov.iti.evento.services;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -41,6 +42,7 @@ public class EventService {
     private final EventTicketService eventTicketService;
     private final AvailableTicketService availableTicketService;
     private final SpeakerRepository speakerRepository;
+    private final UserTicketRepository userTicketRepository;
 
 
     public List<EventDto> getEvents(int page, int size) throws Exception {
@@ -153,4 +155,5 @@ public class EventService {
         else
             return (long) (count/pageSize);
     }
+
 }
