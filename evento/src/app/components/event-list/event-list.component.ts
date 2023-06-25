@@ -26,6 +26,10 @@ export class EventListComponent implements OnInit {
     private apiService: ApiService,
     private sanitizer: DomSanitizer
   ) {
+    this.getEvents(0);
+    this.getCategories();
+
+     this.numbers=this.getpageNumber();
 
   }
   getNumberRange(max: number): number[] {
@@ -34,7 +38,6 @@ export class EventListComponent implements OnInit {
   ngOnInit(): void {
     this.getEvents(0);
     this.getCategories();
-    console.log("aaaaaaaaaaaaaaa");
 
      this.numbers=this.getpageNumber();
 
@@ -49,29 +52,28 @@ export class EventListComponent implements OnInit {
         console.log(response);
         this.pageNumbers =response;
 
-        console.log("page numbers->>>>" + this.pageNumbers);
+       
         for(let i=1;i<this.pageNumbers;i++) {
           console.log(i);
          
             this.numbers.push(i)
             console.log( this.numbers)
         }
-        console.log("---------*" + this.numbers);
+      
         return this.numbers;
       },
       error: (error: any) => {
         console.log("ERROR");
       }
     });
-    console.log("page numbers2222->>>>" + this.pageNumbers);
+  
   }
 
   getEvents(page: number) {
     this.apiService.get(`events?page=${this.pageNumber}&size=9`).subscribe({
       next: (response: any) => {
         this.events = response;
-        console.log("ssssssss s");
-        console.log(response);
+        
       },
       error: (error: any) => { }
     });

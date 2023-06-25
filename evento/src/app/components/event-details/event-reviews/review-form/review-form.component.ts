@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import {  EventReviewCreateDto } from 'src/app/models/event-details-models/review-models/event-review-create-dto.model';
 import { ApiService } from 'src/app/services/api.service';
+import { SharedServiceService } from 'src/app/services/shared-service.service';
 import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-review-form',
@@ -20,15 +21,18 @@ import { UserService } from 'src/app/services/user.service';
 export class ReviewFormComponent {
   reviewForm:FormGroup;
   showSection = false;
-  eventId: string;
+  eventId: any;
   isReviewed:boolean;
   userId:any;
   userEmail:any;
-  constructor(private _form:FormBuilder, private apiService: ApiService,private http: HttpClient,private route: ActivatedRoute,private userService:UserService){
+  
+  constructor(private _form:FormBuilder,private sharedService:SharedServiceService, private apiService: ApiService,private http: HttpClient,private route: ActivatedRoute,private userService:UserService){
     
   }
  
-  
+  triggerRefresh() {
+    this.sharedService.refreshComponent(this.eventId);
+  }
   ngOnInit(): void {
    
     this.userEmail = this.userService.getuserEmail();
@@ -88,6 +92,7 @@ export class ReviewFormComponent {
               });
               this.showSection =false;
               this.isReviewed = true;
+              this.triggerRefresh();
             },
             error:(error: any)=>{
               console.log("error->"+error);

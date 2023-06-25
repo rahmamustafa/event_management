@@ -33,9 +33,8 @@ public class Event implements Serializable {
     @Column(name = "location", nullable = false, length = 100)
     private String location;
 
-    @Size(max = 100)
     @NotNull
-    @Column(name = "description", nullable = false, length = 100)
+    @Column(name = "description", nullable = false)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
