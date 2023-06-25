@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TotalRevenueDto {
-    private String eventName;
-    private Double revenue;
+    private String label;
+    private Double y;
 }

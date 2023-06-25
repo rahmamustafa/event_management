@@ -109,7 +109,7 @@
                                                 class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-8">
-                                                <div *ngFor="let choice of speakers; let i=index" class="col-md-2">
+                                                <div *ngFor="let choice of speakers; let i=index" class="">
                                                     <label>
                                                         <input type="checkbox" [value]="choice.id"
                                                             (change)="onCheckChange($event)">

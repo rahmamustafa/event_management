@@ -47,7 +47,8 @@ import { ReviewFormComponent } from './components/event-details/event-reviews/re
 import { TicketSucessComponent } from './components/ticket-registeration/ticket-sucess/ticket-sucess.component';
 import { GoogleMapsModule } from '@angular/google-maps'
 import { NgChartsModule } from 'ng2-charts';
-
+import { ChartModule } from '@syncfusion/ej2-angular-charts';
+import {CanvasJSAngularChartsModule} from '@canvasjs/angular-charts'
 import { UserService } from './services/user.service';
 import { EventSpeakersComponent } from './components/event-details/event-speakers/event-speakers.component';
 import { AuthService } from './services/auth.service';
@@ -61,6 +62,7 @@ import { CountryComponent } from './components/admin/country/country.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { GenderComponent } from './components/admin/gender/gender.component';
 import { MostPopularComponent } from './components/admin/most-popular/most-popular.component';
+import { TotalRevenueComponent } from './components/admin/total-revenue/total-revenue.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,7 +96,8 @@ import { MostPopularComponent } from './components/admin/most-popular/most-popul
     CountryComponent,
     RevenueComponent,
     GenderComponent,
-    MostPopularComponent
+    MostPopularComponent,
+    TotalRevenueComponent
   ],
   imports: [
     MbscModule,
@@ -117,6 +120,8 @@ import { MostPopularComponent } from './components/admin/most-popular/most-popul
     NgbModule,
     CarouselModule,
     NgChartsModule,
+    ChartModule,
+    CanvasJSAngularChartsModule,
     FullCalendarModule,
     NgApexchartsModule
   ],
