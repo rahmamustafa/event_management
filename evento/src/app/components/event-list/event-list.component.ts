@@ -14,22 +14,56 @@ import { Category } from 'src/app/models/event/category';
 export class EventListComponent implements OnInit {
   events: Event[] = [];
   categories: Category[] = [];
-  numbers: number[] = [1, 2, 3, 4, 5];
+  numbers: any[]=[];
   image: any;
-  pageNumber:number = 0 ;
-  categoryType:string;
-  type:number;
-
+  pageNumber: number = 0;
+  categoryType: string;
+  type: number;
+  size: number = 9;
+  pageNumbers: number=0;
   constructor(
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
     private sanitizer: DomSanitizer
-  ) {}
+  ) {
 
+  }
+  getNumberRange(max: number): number[] {
+    return Array.from({ length: max }, (_, index) => index + 1);
+  }
   ngOnInit(): void {
     this.getEvents(0);
     this.getCategories();
     console.log("aaaaaaaaaaaaaaa");
+
+     this.numbers=this.getpageNumber();
+
+  }
+  numSequence(n: number): Array<number> {
+
+    return Array(n);
+  }
+  getpageNumber() :any{
+    this.apiService.get(`pagesNumber/${this.size}`).subscribe({
+      next: (response: number) => {
+        console.log(response);
+        this.pageNumbers =response;
+
+        console.log("page numbers->>>>" + this.pageNumbers);
+        for(let i=1;i<this.pageNumbers;i++) {
+          console.log(i);
+         
+            this.numbers.push(i)
+            console.log( this.numbers)
+        }
+        console.log("---------*" + this.numbers);
+        return this.numbers;
+      },
+      error: (error: any) => {
+        console.log("ERROR");
+      }
+    });
+    console.log("page numbers2222->>>>" + this.pageNumbers);
   }
 
   getEvents(page: number) {
@@ -39,8 +73,11 @@ export class EventListComponent implements OnInit {
         console.log("ssssssss s");
         console.log(response);
       },
-      error: (error: any) => {}
+      error: (error: any) => { }
     });
+  
+    
+   
   }
 
   getCategories() {
@@ -48,7 +85,7 @@ export class EventListComponent implements OnInit {
       next: (response: any) => {
         this.categories = response;
       },
-      error: (error: any) => {}
+      error: (error: any) => { }
     });
   }
 
@@ -57,16 +94,16 @@ export class EventListComponent implements OnInit {
       next: (response: any) => {
         this.events = response;
       },
-      error: (error: any) => {}
+      error: (error: any) => { }
     });
   }
 
-  getEventBySpeaker(speakerName: string ) {
+  getEventBySpeaker(speakerName: string) {
     this.apiService.get(`events/${speakerName}?page=${this.pageNumber}`).subscribe({
-      next: (response:any) => {
+      next: (response: any) => {
         this.events = response;
       },
-      error: (error: any) => {}
+      error: (error: any) => { }
     });
   }
 
@@ -75,26 +112,26 @@ export class EventListComponent implements OnInit {
       next: (response: any) => {
         this.events = response;
       },
-      error: (error: any) => {}
+      error: (error: any) => { }
     });
   }
-  setPageNumber(page:number) {
-   this.pageNumber = page ;
-   if(this.type==1)
+  setPageNumber(page: number) {
+    this.pageNumber = page;
+    if (this.type == 1)
       this.getEventByCategory();
-   else if(this.type==0)
+    else if (this.type == 0)
       this.getEvents(page);
   }
-  setCategoryType(type:string) {
-   this.categoryType = type;
-   this.getEventByCategory();
+  setCategoryType(type: string) {
+    this.categoryType = type;
+    this.getEventByCategory();
   }
-  getImage(image:any):any {
-          const bytes = new Uint8Array(image);
-          const base64 = btoa(String.fromCharCode(...bytes));
-          let objectURL = 'data:image/png;base64,' + image;
-          let return_image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-          return return_image;
-    }
+  getImage(image: any): any {
+    const bytes = new Uint8Array(image);
+    const base64 = btoa(String.fromCharCode(...bytes));
+    let objectURL = 'data:image/png;base64,' + image;
+    let return_image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    return return_image;
+  }
 
 }
