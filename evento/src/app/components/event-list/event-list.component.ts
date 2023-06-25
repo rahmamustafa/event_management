@@ -33,7 +33,7 @@ export class EventListComponent implements OnInit {
   }
 
   getEvents(page: number) {
-    this.apiService.get(`events?page=${this.pageNumber}&size=6`).subscribe({
+    this.apiService.get(`events?page=${this.pageNumber}&size=9`).subscribe({
       next: (response: any) => {
         this.events = response;
         console.log("ssssssss s");
