@@ -9,7 +9,7 @@ import gov.iti.evento.services.SubscriptionService;
 import gov.iti.evento.services.dtos.SubscriptionRequest;
 
 @RestController
-@RequestMapping("/api/subscribe")
+@RequestMapping("/subscribe")
 @CrossOrigin(origins = "http://localhost:4200")
 public class SubscriptionController {
 

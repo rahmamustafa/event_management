@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EmailSubscriptionService {
-  private baseUrl = 'http://localhost:8888/api/subscribe';
+  private baseUrl = 'http://localhost:8888/subscribe';
 
   constructor(private http: HttpClient) { }
 
