@@ -108,7 +108,7 @@
                                             <label class="col-lg-4 col-form-label" for="speakers">Speakers<span
                                                 class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-8 scrollable-div" style="height: 125px; overflow-y: scroll;">
                                                 <div *ngFor="let choice of speakers; let i=index" class="">
                                                     <label>
                                                         <input type="checkbox" [value]="choice.id"
