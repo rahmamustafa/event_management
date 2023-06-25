@@ -8,6 +8,9 @@
     max-width: 100% !important;
   }
 }
+.speaker-slider-single {
+  max-width:250px;
+}
 .speaker-slider {
-  max-width:100%;
+  max-width:400px;
 }

@@ -15,7 +15,7 @@ export class EventSpeakersComponent {
   speakers: Speakers[] = [];
   image: any;
   responsiveOptions;
- 
+  length:number;
   constructor(config: NgbCarouselConfig,private _activatedRoute: ActivatedRoute, private apiService: ApiService, private sanitizer: DomSanitizer) {
 
     this.responsiveOptions = [
@@ -41,7 +41,8 @@ export class EventSpeakersComponent {
       .subscribe({
         next: (response: any) => {
           this.speakers = response;
-         
+          this.length=this.speakers.length;
+          console.log("length ->"+this.length);
         },
         error: (error: any) => { }
       }
