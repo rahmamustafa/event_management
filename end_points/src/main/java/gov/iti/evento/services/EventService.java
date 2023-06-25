@@ -144,4 +144,13 @@ public class EventService {
     public List<EventCalendarDto> findAllEvents() {
          return eventRepository.findAll().stream().map(eventMapper.INSTANCE::toEventCalendarDto).toList();
     }
+
+    public long getNumberOfPages(int pageSize) {
+        long count=eventRepository.count();
+        if(eventRepository.count()%pageSize !=0)
+
+            return (long) (count/pageSize)+1;
+        else
+            return (long) (count/pageSize);
+    }
 }

@@ -58,9 +58,12 @@
         </div>
         <div class="col-md-12">
           <!--Pagination Start-->
-          <div class="iqoniq-pagination text-center ml-2" *ngFor="let number of numbers">
+          <div class="iqoniq-pagination text-center ml-2" *ngFor="let number of  numbers">
             <a class="page-numbers" (click)="setPageNumber(number-1) ; type = 0">{{ number }}</a>
           </div>
+          <!-- <div class="iqoniq-pagination text-center ml-2" *ngFor="let n of numSequence(pageNumbers)">
+            <a class="page-numbers" (click)="setPageNumber(n) ; type = 0">{{ n+1 }}</a>
+          </div> -->
           <!--Pagination End-->
         </div>
       </div>
