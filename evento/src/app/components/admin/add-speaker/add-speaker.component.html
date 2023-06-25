@@ -41,12 +41,22 @@
                                 <div class="form-validation">
                                     <form class="form-valide" (ngSubmit)="submitForm()" enctype="multipart/form-data" [formGroup]="eventForm">
                                         <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="name">Name<span
+                                                    class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="name" name="name"
+                                                 placeholder="Enter Your Name.." formControlName="name">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="title">Job Title<span
                                                     class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="title" name="title"
-                                                    placeholder="Enter a Job Title.." formControlName="jobTitle">
+                                                 placeholder="Enter a Job Title.." formControlName="jobTitle">
 
                                             </div>
                                         </div>
@@ -61,12 +71,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="category">Ae<span
-                                                    class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="category">Age<span
+                                                  class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-3">
                                                 <input type="number" min="0" class="form-control" id="STARTERTicket"
-                                                    name="STARTERTicket" placeholder="Age">
+                                                formControlName="age"   name="STARTERTicket" placeholder="Age">
                                             </div>
                                         </div>
 
@@ -83,7 +93,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-lg-8 ml-auto">
-                                                <button class="btn btn-primary">Submit</button>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </form>

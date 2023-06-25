@@ -34,7 +34,7 @@ public class AdminController {
 
         AddEventDto eventDto;
         eventDto = objectMapper.readValue(event, AddEventDto.class);
-        String userImageName = fileStorageService.storeFile(eventImage , eventDto.getTitle() , "Events");
+        String userImageName = fileStorageService.storeFile(eventImage, eventDto.getTitle(), "Events");
         eventDto.setImage(userImageName);
         eventDto.setStatus(EventStatus.valueOf(EventStatus.PENDING.toString()));
         eventService.saveEvent(eventDto);
@@ -42,14 +42,21 @@ public class AdminController {
         System.out.println(eventDto);
 
     }
+
     @PostMapping("/event-title/exist")
-    public boolean checkEmailValid(@RequestBody String title){
+    public boolean checkEmailValid(@RequestBody String title) {
         return eventService.checkTitleValid(title);
     }
 
     @PostMapping("/speaker")
-    public SpeakerAdminDto saveSpeaker (Speaker speaker) throws Exception {
-        return speakerAdminService.addSpeakerByAdmin(speaker);
+    public SpeakerAdminDto saveSpeaker(@RequestParam("image") MultipartFile eventImage
+            , @RequestParam("speaker") String speaker) throws Exception {
+        Speaker speaker1;
+        speaker1 = objectMapper.readValue(speaker, Speaker.class);
+        String userImageName = fileStorageService.storeFile(eventImage, speaker1.getName(), "Speakers");
+        speaker1.setImage(userImageName);
+        speakerAdminService.addSpeakerByAdmin(speaker1);
+        return speakerAdminService.addSpeakerByAdmin(speaker1);
     }
 
 }
