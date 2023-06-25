@@ -53,7 +53,7 @@ export class SpeakersComponent implements OnInit {
     this.isLoggedIn();
   }
   getEventSpeakers(): void {
-    this.apiService.get("recommendation/" + this.userId)
+    this.apiService.get("recommendation/"+1 )
       .subscribe({
         next: response => {
           console.log(response + "?????????????????????????????????????")
@@ -78,6 +78,8 @@ export class SpeakersComponent implements OnInit {
       });
     }
   isLoggedIn(): boolean {
+    console.log("is loggedin ?????????????????");
+    console.log(this.hola.isUserLoggedIn());
    return this.hola.isUserLoggedIn();
 }
 

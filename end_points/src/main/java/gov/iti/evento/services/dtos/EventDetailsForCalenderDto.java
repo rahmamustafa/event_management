@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class EventDetailsForCalenderDto {
     private Long id;
     private String title;
-    
+
 }
