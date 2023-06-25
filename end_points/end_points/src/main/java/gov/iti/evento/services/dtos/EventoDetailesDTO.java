@@ -23,7 +23,6 @@ public class EventoDetailesDTO implements Serializable {
     private Timestamp eventDate;
     private String description;
     private String title;
-    private Integer id;
     private Byte isOnline;
     private String location;
     private byte[] image;

@@ -16,5 +16,7 @@ public class EventDto implements Serializable {
     byte[] image;
     private String description;
     private String categoryType;
+    private String location;
+    private String status;
 
 }

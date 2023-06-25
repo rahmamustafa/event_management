@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 
+import gov.iti.evento.services.speaker.SpeakerDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import gov.iti.evento.entites.Speaker;
 import gov.iti.evento.services.dtos.SpeakerMostSpeakingDto;
+import gov.iti.evento.services.dtos.SpeakersDto;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 @Component
@@ -26,6 +28,10 @@ public interface SpeakerMapper {
 
     @Mapping(source = "image", target = "image", qualifiedByName = "toPath")
     SpeakerMostSpeakingDto toDto(Speaker speaker);
+    SpeakerDto toSpeakerDto(Speaker speaker);
+
+    @Mapping(source = "image", target = "image", qualifiedByName = "toPath")
+    SpeakersDto toSpeakersDto(Speaker speaker);
     
     @Named("toPath")
     default String toPath(String image) {

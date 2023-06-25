@@ -1,10 +1,14 @@
 package gov.iti.evento.services.dtos;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class SpeakersDto implements Serializable {
     private Integer id;
@@ -12,18 +16,6 @@ public class SpeakersDto implements Serializable {
     private String name;
     private String description;
     private String image;
-
-
-    public SpeakersDto (Integer speakerId, String speakerName, String jobTitle, String description){
-        this.description =description;
-        this.image =image;
-        this.id =speakerId;
-        this.jobTitle=jobTitle;
-        this.name =speakerName;
-
-    }
-    public SpeakersDto(){}
-
 
 
 }

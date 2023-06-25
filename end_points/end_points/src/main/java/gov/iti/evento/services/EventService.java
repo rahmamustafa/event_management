@@ -5,46 +5,43 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import gov.iti.evento.services.dtos.UserTicketDto;
+import gov.iti.evento.services.dtos.event.EventCalendarDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import gov.iti.evento.entites.*;
+import gov.iti.evento.repositories.*;
+import gov.iti.evento.services.dtos.event.AddEventDto;
+import gov.iti.evento.services.util.enums.EventTicketType;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import gov.iti.evento.entites.Category;
-import gov.iti.evento.entites.Event;
 
 
-import gov.iti.evento.entites.EventSpeaker;
-import gov.iti.evento.repositories.CategoryRepository;
-import gov.iti.evento.repositories.EventRepository;
-import gov.iti.evento.repositories.EventSpeakerRepository;
 import gov.iti.evento.services.dtos.EventByDateDto;
 import gov.iti.evento.services.dtos.EventDto;
 import gov.iti.evento.services.dtos.NewEventsDto;
 import gov.iti.evento.services.mappers.EventMapper;
 import gov.iti.evento.services.util.exceptions.MessageException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Type;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+
 import org.springframework.data.domain.PageRequest;
 import java.util.ArrayList;
 
 @Service
+@RequiredArgsConstructor
 public class EventService {
-    @Autowired
-    EventRepository eventRepository;
-    @Autowired
-    CategoryRepository categoryRepository;
-    @Autowired
-    EventSpeakerRepository eventSpeakerRepository;
+    private final EventRepository eventRepository;
+    private final CategoryRepository categoryRepository;
+    private final EventSpeakerRepository eventSpeakerRepository;
+    private final EventMapper eventMapper;
+    private final EventTicketRepository eventTicketRepository;
+    private final TicketRepository ticketRepository;
+    private final EventTicketService eventTicketService;
+    private final AvailableTicketService availableTicketService;
+    private final SpeakerRepository speakerRepository;
 
-    @Autowired
-    EventMapper eventMapper;
 
     public List<EventDto> getEvents(int page, int size) throws Exception {
         System.out.println("Page : " + page + " Size : " + size);
@@ -58,8 +55,36 @@ public class EventService {
         return list;
     }
 
+    public void saveEvent(AddEventDto addEventDto){
+
+        Event event = eventMapper.toEntity(addEventDto);
+        event.setCategory(categoryRepository.findCategoryByTypeIgnoreCase(addEventDto.getCategory()));
+        eventRepository.save(event);
+
+        eventTicketService.saveEventTicket(event, EventTicketType.STANDARD
+                ,addEventDto.getTicketPrice().get(EventTicketType.STANDARD.name()));
+        eventTicketService.saveEventTicket(event, EventTicketType.PLATINUM
+                ,addEventDto.getTicketPrice().get(EventTicketType.PLATINUM.name()));
+        eventTicketService.saveEventTicket(event, EventTicketType.STARTER
+                ,addEventDto.getTicketPrice().get(EventTicketType.STARTER.name()));
+
+
+        availableTicketService.saveAvailableTicket(event,EventTicketType.STANDARD,
+                addEventDto.getTicketNumber().get(EventTicketType.STANDARD.name()));
+        availableTicketService.saveAvailableTicket(event,EventTicketType.STARTER,
+                addEventDto.getTicketNumber().get(EventTicketType.STARTER.name()));
+        availableTicketService.saveAvailableTicket(event,EventTicketType.PLATINUM,
+                addEventDto.getTicketNumber().get(EventTicketType.PLATINUM.name()));
+
+        addEventDto.getSpeakers().stream()
+                .forEach(speakerId -> eventSpeakerRepository
+                                        .save(new EventSpeaker(event,speakerRepository.findById(speakerId).orElseThrow())));
+
+
+    }
+
     public List<EventDto> getEventByCategoryType(String categoryType, int page) throws Exception {
-        Category category = categoryRepository.findCategoryByType(categoryType);
+        Category category = categoryRepository.findCategoryByTypeIgnoreCase(categoryType);
         if (category == null) throw new MessageException("Category Not Found");
         PageRequest pageRequest = PageRequest.of(page, 6);
         List<Event> events = Collections.unmodifiableList(eventRepository.findByCategoryType(categoryType, pageRequest));
@@ -82,6 +107,7 @@ public class EventService {
         }
         return list;
     }
+    
 
     public List<EventDto> getEventByStatus(String status, int page) throws Exception {
         PageRequest pageRequest = PageRequest.of(page, 6);
@@ -108,5 +134,14 @@ public class EventService {
     }
     public Optional<Event> findEventById (Integer id){
         return eventRepository.findById(id);
+    }
+
+    public boolean checkTitleValid(String title) {
+        return eventRepository.existsByTitleIgnoreCase(title);
+
+    }
+
+    public List<EventCalendarDto> findAllEvents() {
+         return eventRepository.findAll().stream().map(eventMapper.INSTANCE::toEventCalendarDto).toList();
     }
 }

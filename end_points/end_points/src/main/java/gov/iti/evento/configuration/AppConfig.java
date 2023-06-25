@@ -1,7 +1,6 @@
 package gov.iti.evento.configuration;
 
 import gov.iti.evento.repositories.UserRepository;
-import gov.iti.evento.services.dtos.RecommendationDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,9 +42,5 @@ public class AppConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public RecommendationDto recommendationDto() {
-        // Create and return an instance of RecommendationDto
-        return new RecommendationDto();
-    }
+
 }

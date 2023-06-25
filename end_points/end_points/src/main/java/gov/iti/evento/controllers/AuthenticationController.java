@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.iti.evento.services.FileStorageService;
 import gov.iti.evento.services.UserService;
 import gov.iti.evento.services.dtos.AuthResponse;
+import gov.iti.evento.services.dtos.event.AddEventDto;
 import gov.iti.evento.services.dtos.user.CreateUserDto;
 import gov.iti.evento.services.dtos.user.UserLoginDto;
 import lombok.RequiredArgsConstructor;
@@ -32,15 +33,13 @@ public class AuthenticationController {
 
             CreateUserDto createUserDto;
             createUserDto = objectMapper.readValue(userDto , CreateUserDto.class);
-            String userImageName = fileStorageService.storeFile(userImage , createUserDto.getEmail());
+            String userImageName = fileStorageService.storeFile(userImage , createUserDto.getEmail() , "Users");
             createUserDto.setImage(userImageName);
             System.out.println(createUserDto);
             return ResponseEntity.ok(userService.saveUser(createUserDto));
     }
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthResponse> authenticate(
-            @RequestBody UserLoginDto request
-    ) {
+    public ResponseEntity<AuthResponse> authenticate(@RequestBody UserLoginDto request) {
         return ResponseEntity.ok(userService.authenticate(request));
     }
 
@@ -48,4 +47,6 @@ public class AuthenticationController {
     public boolean checkEmailValid(@RequestBody String email){
         return userService.checkEmailValid(email);
     }
+
+
 }

@@ -7,7 +7,7 @@ import gov.iti.evento.entites.EventSpeakerId;
 import gov.iti.evento.entites.Speaker;
 import gov.iti.evento.repositories.SpeakerRepository;
 import gov.iti.evento.services.SpeakerServices;
-import gov.iti.evento.services.dtos.SpeakersDto;
+import gov.iti.evento.services.speaker.SpeakerDto;
 import gov.iti.evento.services.util.converters.ImageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +27,7 @@ import gov.iti.evento.services.SpeakerService;
 import gov.iti.evento.services.dtos.SpeakerMostSpeakingDto;
 
 @RestController
+@RequestMapping("/speakers")
 @CrossOrigin(origins = "http://localhost:4200")
 public class SpeakerController {
 
@@ -45,7 +46,7 @@ public class SpeakerController {
     }
 
 
-    @PostMapping("/speakers/{name}")
+    @PostMapping("/{name}")
     public Speaker addSpeaker(@PathVariable String name) {
         Speaker speaker = new Speaker();
         speaker.setName(name);
@@ -57,7 +58,7 @@ public class SpeakerController {
         return speaker;
     }
 
-    @DeleteMapping("/speakers/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteSpeaker(@PathVariable Integer id) {
         Optional<Speaker> speakerOptional = speakerRepository.findById(id);
         if (speakerOptional.isEmpty()) {
@@ -68,15 +69,15 @@ public class SpeakerController {
         return ResponseEntity.ok("Speaker deleted successfully");
     }
 
-    public SpeakersDto getSpeakerById(@PathVariable Integer id) throws Exception{
+    public Optional<Speaker> getSpeakerById(@PathVariable Integer id) {
         return speakerServices.findById(id);
     }
 
 
-    @PostMapping("/speakers/eventSpeaker/{eventId}/{speakerId}")
+    @PostMapping("/eventSpeaker/{eventId}/{speakerId}")
     public EventSpeaker addSpeakerToEvent(@PathVariable("eventId") Integer eventId, @PathVariable("speakerId") Integer speakerId) {
         Optional<Event> eventOptional = eventController.getEventById(eventId);
-        Optional<Speaker> speakerOptional = speakerServices.getSpeakerById(speakerId);
+        Optional<Speaker> speakerOptional = getSpeakerById(speakerId);
         EventSpeaker eventSpeaker = new EventSpeaker();
         EventSpeakerId eventSpeakerId = new EventSpeakerId();
 
@@ -87,18 +88,36 @@ public class SpeakerController {
             eventSpeakerId.setSpeakerId(speakerId);
             eventSpeaker.setId(eventSpeakerId);
             System.out.println(event.getCategory()+speaker.getName());
-            eventSpeaker.setEvent(event);
-            eventSpeaker.setSpeaker(speaker);
+//            eventSpeaker.setEvent(event);
+//            eventSpeaker.setSpeaker(speaker);
+
         }
         return speakerServices.saveEventSpeaker(eventSpeaker);
 
     }
+
+
+
+
+//            return ResponseEntity.ok("Speaker added to the event successfully");
+//        } else {
+//            return ResponseEntity.notFound().build();
+
      @Autowired
     private SpeakerService speakerService;
 
-    @GetMapping("speakers/most-speaking")
+    @GetMapping("/most-speaking")
      public ResponseEntity<List<SpeakerMostSpeakingDto>> getMostSpeakingSpeakers() {
         List<SpeakerMostSpeakingDto> speakers = speakerService.getMostSpeakingSpeakersList();
         return ResponseEntity.ok(speakers);
     }
+
+    @GetMapping("/all-speakers")
+    public ResponseEntity<List<SpeakerDto>> getAllSpeakersName(){
+        List<SpeakerDto> speakers = speakerService.getAllSpeakerName();
+        return ResponseEntity.ok(speakers);
+
+
+    }
+
 }

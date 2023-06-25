@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -15,6 +16,7 @@ import javax.xml.crypto.Data;
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "event")
 public class Event implements Serializable {
     @Id
@@ -46,7 +48,7 @@ public class Event implements Serializable {
     private String status;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 

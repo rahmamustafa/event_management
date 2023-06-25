@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.iti.evento.services.FileStorageService;
 import gov.iti.evento.services.UserService;
+import gov.iti.evento.services.dtos.UserEmailDto;
 import gov.iti.evento.services.dtos.user.CreateUserDto;
 import gov.iti.evento.services.dtos.user.UserLoginDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class UserController {
         CreateUserDto createUserDto;
 
         createUserDto = objectMapper.readValue(userDto , CreateUserDto.class);
-        String userImageName = fileStorageService.storeFile(userImage , createUserDto.getEmail());
+        String userImageName = fileStorageService.storeFile(userImage , createUserDto.getEmail() , "Users");
         createUserDto.setImage(userImageName);
 
         System.out.println(createUserDto);
@@ -42,5 +43,10 @@ public class UserController {
     public boolean checkUserValid(@RequestBody UserLoginDto user){
         return userService.checkUserValid(user);
     }
-
+    @PostMapping(value = "/user" )
+    public Integer getuserData(@RequestBody UserEmailDto email){
+        System.out.println("email ->"+email);
+        return userService.getUserId(email.getEmail());
+    }
+    
 }

@@ -1,10 +1,11 @@
 package gov.iti.evento.controllers;
 
-import gov.iti.evento.entites.Category;
 import gov.iti.evento.services.CategoryService;
-import gov.iti.evento.services.dtos.CategoryCreateDto;
+import gov.iti.evento.services.dtos.CategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -15,13 +16,8 @@ public class CategoryController {
     CategoryService categoryService;
 
     @GetMapping("/categories")
-    public List<CategoryCreateDto> getCategories() {
+    public List<CategoryDto> getCategories() {
         return categoryService.getCategories();
     }
-    @PostMapping("category/{categoryType}")
-    public Category addCategory (@PathVariable String categoryType){
-        Category category = new Category();
-        category.setType(categoryType);
-        return categoryService.saveCategory(category);
-    }
+
 }
