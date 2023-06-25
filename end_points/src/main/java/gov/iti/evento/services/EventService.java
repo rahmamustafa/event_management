@@ -149,8 +149,8 @@ public class EventService {
 
     public long getNumberOfPages(int pageSize) {
         long count=eventRepository.count();
-        if(eventRepository.count()%pageSize !=0)
-
+        System.out.println("Count : " + count);
+        if(eventRepository.count() % pageSize !=0)
             return (long) (count/pageSize)+1;
         else
             return (long) (count/pageSize);

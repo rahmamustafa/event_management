@@ -64,6 +64,7 @@ import { GenderComponent } from './components/admin/gender/gender.component';
 import { MostPopularComponent } from './components/admin/most-popular/most-popular.component';
 import { TotalRevenueComponent } from './components/admin/total-revenue/total-revenue.component';
 import { UserUpComingEventsComponent } from './components/user-up-coming-events/user-up-coming-events.component';
+import { AddSpeakerComponent } from './components/admin/add-speaker/add-speaker.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,7 +100,8 @@ import { UserUpComingEventsComponent } from './components/user-up-coming-events/
     GenderComponent,
     MostPopularComponent,
     TotalRevenueComponent,
-    UserUpComingEventsComponent
+    UserUpComingEventsComponent,
+    AddSpeakerComponent
   ],
   imports: [
     MbscModule,

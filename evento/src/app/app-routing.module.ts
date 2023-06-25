@@ -9,6 +9,7 @@ import {EventListComponent} from './components/event-list/event-list.component'
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { TicketRegisterationComponent } from './components/ticket-registeration/ticket-registeration.component';
 import { AddEventComponent } from './components/admin/add-event/add-event.component';
+import { AddSpeakerComponent } from './components/admin/add-speaker/add-speaker.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { TicketSucessComponent } from './components/ticket-registeration/ticket-sucess/ticket-sucess.component';
 import { RevenueComponent } from './components/admin/revenue/revenue.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path:'events',component:EventListComponent},
   {path:'admin',component:AdminComponent},
   {path:'add-event',component:AddEventComponent},
+  {path:'add-speaker',component:AddSpeakerComponent},
   {path:'calendar',component:CalendarComponent},
   {path:'',component:HomeComponent},
   {path:'**',component:NotFoundComponent}

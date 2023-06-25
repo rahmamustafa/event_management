@@ -7,13 +7,10 @@ import gov.iti.evento.entites.User;
 import gov.iti.evento.repositories.CategoryRepository;
 import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.repositories.UserRepository;
-import gov.iti.evento.services.EventReviewService;
-import gov.iti.evento.services.EventTicketService;
-import gov.iti.evento.services.TicketBookingService;
+import gov.iti.evento.services.*;
 import gov.iti.evento.services.dtos.*;
 import gov.iti.evento.services.dtos.event.EventCalendarDto;
 import gov.iti.evento.services.dtos.eventReviews.EventReviewDto;
-import gov.iti.evento.services.EventService;
 import gov.iti.evento.services.dtos.ticket.EventTicketDto;
 import gov.iti.evento.services.util.exceptions.MessageException;
 import io.swagger.v3.core.util.Json;
@@ -55,6 +52,10 @@ public class EventController {
     private UserRepository userRepository;
     @Autowired
     private TicketBookingService ticketBookingService;
+
+    @Autowired
+    private EventDetailService eventDetailService;
+
     @GetMapping("event/{id}/reviews")
     public List<EventReviewDto> getEventReviews(@PathVariable("id") int id) {
         System.out.println(id);
@@ -188,5 +189,15 @@ public class EventController {
     @GetMapping("/all-events")
     public List<EventCalendarDto> checkEmailValid(){
         return eventService.findAllEvents();
+    }
+
+    @GetMapping("/event/{eventId}/speakers")
+    public List<SpeakersDto> getEventSpeakers(@PathVariable Integer eventId){
+        return  eventDetailService.getEventSpeakers(eventId);
+    }
+
+    @GetMapping("/event/{eventId}/eventDetails")
+    public EventoDetailesDTO getEvent(@PathVariable Integer eventId) {
+        return eventDetailService.getEvent(eventId);
     }
 }
