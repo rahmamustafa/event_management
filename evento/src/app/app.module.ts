@@ -63,6 +63,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import { GenderComponent } from './components/admin/gender/gender.component';
 import { MostPopularComponent } from './components/admin/most-popular/most-popular.component';
 import { TotalRevenueComponent } from './components/admin/total-revenue/total-revenue.component';
+import { UserUpComingEventsComponent } from './components/user-up-coming-events/user-up-coming-events.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,7 +98,8 @@ import { TotalRevenueComponent } from './components/admin/total-revenue/total-re
     RevenueComponent,
     GenderComponent,
     MostPopularComponent,
-    TotalRevenueComponent
+    TotalRevenueComponent,
+    UserUpComingEventsComponent
   ],
   imports: [
     MbscModule,

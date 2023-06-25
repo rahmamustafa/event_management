@@ -2,17 +2,21 @@ package gov.iti.evento.services;
 
 import gov.iti.evento.configuration.JwtService;
 import gov.iti.evento.entites.User;
-import gov.iti.evento.repositories.UserRepository;
+import gov.iti.evento.repositories.*;
 import gov.iti.evento.services.dtos.AuthResponse;
+import gov.iti.evento.services.dtos.EventDto;
 import gov.iti.evento.services.dtos.user.CreateUserDto;
 import gov.iti.evento.services.dtos.user.UserLoginDto;
+import gov.iti.evento.services.mappers.EventMapper;
 import gov.iti.evento.services.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.sql.Timestamp;
+import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,7 +32,11 @@ public class UserService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
+    @Autowired
+    private UserTicketRepository userTicketRepository;
 
+    @Autowired
+    EventMapper eventMapper;
 
 
     public AuthResponse saveUser(CreateUserDto createUserDto){
@@ -72,4 +80,24 @@ public class UserService {
         return null;
     }
 
+    public List<EventDto> findUpcomingEventsByUserId(Integer userId, int page, int size) throws Exception {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        List<UserTicketInfo> userTicketInfo=userTicketRepository.findUpcomingEventsByUserId(userId,new Timestamp(System.currentTimeMillis()), pageRequest);
+        userTicketInfo.get(0).getEventTicket().getEvent();
+        List<EventDto> eventDtos=new ArrayList<>();
+        for (UserTicketInfo u: userTicketInfo
+             ) {
+           eventDtos.add(eventMapper.toDto(u.getEventTicket().getEvent()));
+        }
+        return eventDtos;
+
+    }
+    public long getNumberOfPagesPerUser(int userId,int pageSize) {
+        long count=userTicketRepository.countByUser_IdAndEventTicket_Event_EventDateGreaterThan(userId,new Timestamp(System.currentTimeMillis()));
+        if(count%pageSize !=0)
+
+            return (long) (count/pageSize)+1;
+        else
+            return (long) (count/pageSize);
+    }
 }

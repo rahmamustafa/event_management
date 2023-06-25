@@ -4,13 +4,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.iti.evento.services.FileStorageService;
 import gov.iti.evento.services.UserService;
+import gov.iti.evento.services.dtos.EventDto;
 import gov.iti.evento.services.dtos.UserEmailDto;
 import gov.iti.evento.services.dtos.user.CreateUserDto;
 import gov.iti.evento.services.dtos.user.UserLoginDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -48,5 +52,13 @@ public class UserController {
         System.out.println("email ->"+email);
         return userService.getUserId(email.getEmail());
     }
-    
+    @GetMapping(value = "/user/{id}/upComingEvents" )
+    public List<EventDto> getuserData(@PathVariable("id") int id , @RequestParam("page") @DefaultValue("0") int page) throws Exception {
+
+        return userService.findUpcomingEventsByUserId(id,page,9);
+    }
+    @GetMapping("/user/{userId}/pageSize/{pageSize}")
+    public long getNumberOfPages(@PathVariable("userId") int userId,@PathVariable("pageSize")int pageSize) {
+        return userService.getNumberOfPagesPerUser(userId,pageSize);
+    }
 }

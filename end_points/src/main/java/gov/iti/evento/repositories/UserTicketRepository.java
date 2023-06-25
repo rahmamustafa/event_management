@@ -6,10 +6,12 @@ import gov.iti.evento.services.dtos.revenue.RevenueByDateDto;
 import gov.iti.evento.services.dtos.revenue.RevenueByEventTypeDto;
 import gov.iti.evento.services.dtos.revenue.TotalRevenueDto;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -35,5 +37,13 @@ public interface UserTicketRepository extends JpaRepository<UserTicket, UserTick
 
     @Query("SELECT new gov.iti.evento.services.dtos.revenue.RevenueByDateDto(ut.eventTicket.event.eventDate , SUM(ut.eventTicket.price * ut.quantity)) FROM UserTicket ut group by ut.eventTicket.event.eventDate")
     public List<RevenueByDateDto> calculateRevenueByDate();
+
+    @Query("select u from UserTicket u where u.id.userId = ?1 and u.eventTicket.event.eventDate >= ?2")
+    List<UserTicketInfo> findUpcomingEventsByUserId(Integer userId, Timestamp eventDate, Pageable pageable);
+
+    long countByUser_IdAndEventTicket_Event_EventDateGreaterThan(Integer id, Timestamp eventDate);
+
+//    long countById_UserIdAndEventTicket_Event_EventDate(Integer userId, Timestamp eventDate);
+
 
 }
