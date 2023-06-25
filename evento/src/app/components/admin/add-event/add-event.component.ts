@@ -18,7 +18,7 @@ export class AddEventComponent implements OnInit {
   isOnline:boolean;
   selectedImage: File;
 
-  categeories:string[] =["Sport","Science"];
+  categeories:string[] =["Sport","Science","Health","Music"];
   selectedCategory:string;
 
   titleExists: boolean;
