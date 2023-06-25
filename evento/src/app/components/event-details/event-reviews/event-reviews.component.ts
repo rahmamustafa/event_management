@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { EventReview } from 'src/app/models/event-details-models/review-models/event-review.model';
 import { ApiService } from 'src/app/services/api.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
+import { SharedServiceService } from 'src/app/services/shared-service.service';
+
 @Component({
   selector: 'app-event-reviews',
   templateUrl: './event-reviews.component.html',
@@ -11,9 +14,17 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class EventReviewsComponent implements OnInit {
   reviews: EventReview[] = [];
   image: any;
-  
-  constructor(private _activatedRoute: ActivatedRoute, private apiService: ApiService, private sanitizer: DomSanitizer) {
-
+  private refreshSubscription: Subscription;
+  event_id:number;
+  constructor(private sharedService:SharedServiceService,private _activatedRoute: ActivatedRoute, private apiService: ApiService, private sanitizer: DomSanitizer) {
+    this.refreshSubscription = this.sharedService.refresh$.subscribe(() => {
+      this._activatedRoute.paramMap.subscribe((params:any) => {
+        let id = params.get('id');
+        this.refreshComponent(id);
+        
+      });
+     
+    });
   }
 
   ngOnInit(): void {
@@ -44,5 +55,12 @@ export class EventReviewsComponent implements OnInit {
     let return_image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
     return return_image;
   }
+  ngOnDestroy() {
+   
+    this.refreshSubscription.unsubscribe();
+  }
 
+  refreshComponent(id:any) {
+    this.getReviews(id);
+  }
 }
