@@ -32,13 +32,13 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     public List<Event> findByStatus(String status, Pageable pageable);
 
-    public Page<Event> findAll(@PageableDefault(size = 6) Pageable pageable);
+    public Page<Event> findAll(@PageableDefault(size = 9) Pageable pageable);
 
     @Query("SELECT e FROM Event e WHERE DATE(e.eventDate) = DATE(:date)")
     Page<Event> findByDate(@Param("date") LocalDate date, Pageable pageable);
 
     public List<Event> findTop3ByOrderByEventDateDesc();
-
+    public long countEventsBy();
 
     boolean existsByTitleIgnoreCase(@NonNull String title);
 }

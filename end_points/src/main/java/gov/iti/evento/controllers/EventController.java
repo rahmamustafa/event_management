@@ -69,10 +69,14 @@ public class EventController {
     public void m() {
     }
 
+    @GetMapping("/pagesNumber/{pageSize}")
+    public long getNumberOfPages(@PathVariable("pageSize")int pageSize) {
+        return eventService.getNumberOfPages(pageSize);
+    }
     @GetMapping("/events")
     public ResponseEntity<List<EventDto>> getEvents(@RequestParam("page") @DefaultValue("0") int page) throws Exception {
         System.out.println("rtyrtry : ");
-        return new ResponseEntity<>(eventService.getEvents(page, 6), HttpStatus.OK);
+        return new ResponseEntity<>(eventService.getEvents(page, 9), HttpStatus.OK);
     }
 
     @GetMapping("/events/category/{categoryType}")

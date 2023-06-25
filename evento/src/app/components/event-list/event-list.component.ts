@@ -14,24 +14,47 @@ import { Category } from 'src/app/models/event/category';
 export class EventListComponent implements OnInit {
   events: Event[] = [];
   categories: Category[] = [];
-  numbers: number[] = [1, 2, 3, 4, 5];
+  numbers: number[] ;
   image: any;
   pageNumber:number = 0 ;
   categoryType:string;
   type:number;
-
+  size:number=9;
+  pageNumbers:number;
   constructor(
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
     private sanitizer: DomSanitizer
-  ) {}
+  ) {
+    
+  }
 
   ngOnInit(): void {
     this.getEvents(0);
     this.getCategories();
     console.log("aaaaaaaaaaaaaaa");
+   
+    // this.numbers=this.numSequence(this.pageNumbers);
+    
   }
-
+  numSequence(n: number): Array<number> {
+   
+    return Array(n);
+  }
+  getpageNumber(){
+    this.apiService.get("pagesNumber/"+this.size).subscribe({
+      next: (response: any) => {
+        console.log("page numbers"+response);
+        this.pageNumbers=response;
+       
+      },
+      error: (error: any) => {}
+    });
+    console.log("page numbers->>>>"+ this.pageNumbers);
+    this.numbers=this.numSequence(2);
+    console.log("---------*"+this.numbers)
+    return this.numbers;
+  }
   getEvents(page: number) {
     this.apiService.get(`events?page=${this.pageNumber}&size=9`).subscribe({
       next: (response: any) => {
@@ -41,6 +64,9 @@ export class EventListComponent implements OnInit {
       },
       error: (error: any) => {}
     });
+    this.getpageNumber();
+    console.log("**********"+this.pageNumbers)
+    console.log("**********"+this.numbers)
   }
 
   getCategories() {
