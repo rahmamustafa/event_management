@@ -12,12 +12,12 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class AddSpeakerComponent {
   constructor(private formBuilder: FormBuilder, private apiService: ApiService, private _router: Router) { }
-  eventForm: FormGroup;
+  speakerForm: FormGroup;
   dateTime: FormGroup;
   selectedImage: File;
   speaker:eventSpeakersDTO;
   ngOnInit() {
-    this.eventForm = this.formBuilder.group({
+    this.speakerForm = this.formBuilder.group({
       jobTitle: [''],
       description: [''],
       name: [''],
@@ -25,7 +25,6 @@ export class AddSpeakerComponent {
       image: [""]
 
     });
-    this.speaker = this.eventForm.value;
     this.dateTime = this.formBuilder.group({
       datetimeCtrl: new FormControl(''),
     });
@@ -34,13 +33,17 @@ export class AddSpeakerComponent {
     this.selectedImage = event.target.files[0];
   }
   submitForm(){
+    this.speaker = this.speakerForm.value;
+    const speakerData = new FormData();
+    speakerData.append('image', this.selectedImage);
+    speakerData.append('speaker', JSON.stringify(this.speaker));
     console.log(this.speaker);
-    this.apiService.post("api/admin/speaker", this.speaker)
+    this.apiService.post("api/admin/speaker", speakerData)
       .subscribe({
         next: (response: any) => {
            
           console.log("success")
-          this._router.navigateByUrl('/events');
+          // this._router.navigateByUrl('/events');
 
         },
         error: (error: any) => { }

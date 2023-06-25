@@ -2,6 +2,7 @@ package gov.iti.evento.services.mappers;
 
 
 import gov.iti.evento.entites.Speaker;
+import gov.iti.evento.services.dtos.AddSpeakerDto;
 import gov.iti.evento.services.dtos.SpeakerAdminDto;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
@@ -20,6 +21,7 @@ public interface SpeakerAdminMapper {
 
     SpeakerAdminMapper INSTANCE = Mappers.getMapper( SpeakerAdminMapper.class );
 
+    Speaker toEntity (AddSpeakerDto speakerDto) throws Exception;
 
     @Mappings({
             @Mapping(source = "jobTitle", target = "jobTitle"),

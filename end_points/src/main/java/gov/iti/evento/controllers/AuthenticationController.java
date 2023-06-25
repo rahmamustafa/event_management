@@ -51,15 +51,15 @@ public class AuthenticationController {
         return userService.checkEmailValid(email);
     }
 
-    @PostMapping("/addspeaker")
-    public ResponseEntity<SpeakerAdminDto> addSpeaker(@RequestParam("image") MultipartFile userImage
-            , @RequestParam("speaker") String userDto)
-            throws Exception {
-        Speaker speakerAdminDto;
-        speakerAdminDto = objectMapper.readValue(userDto, Speaker.class);
-        String userImageName = fileStorageService.storeFile(userImage, speakerAdminDto.getName(), "Speakers");
-        speakerAdminDto.setImage(userImageName);
-        return ResponseEntity.ok(speakerService.addSpeakerByAdmin(speakerAdminDto));
-    }
+    // @PostMapping("/addspeaker")
+    // public ResponseEntity<SpeakerAdminDto> addSpeaker(@RequestParam("image") MultipartFile userImage
+    //         , @RequestParam("speaker") String userDto)
+    //         throws Exception {
+    //     Speaker speakerAdminDto;
+    //     speakerAdminDto = objectMapper.readValue(userDto, Speaker.class);
+    //     String userImageName = fileStorageService.storeFile(userImage, speakerAdminDto.getName(), "Speakers");
+    //     speakerAdminDto.setImage(userImageName);
+    //     return ResponseEntity.ok(speakerService.addSpeakerByAdmin(speakerAdminDto));
+    // }
 
 }

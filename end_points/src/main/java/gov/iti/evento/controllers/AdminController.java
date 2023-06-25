@@ -7,6 +7,7 @@ import gov.iti.evento.repositories.EventRepository;
 import gov.iti.evento.services.EventService;
 import gov.iti.evento.services.FileStorageService;
 import gov.iti.evento.services.SpeakerAdminService;
+import gov.iti.evento.services.dtos.AddSpeakerDto;
 import gov.iti.evento.services.dtos.SpeakerAdminDto;
 import gov.iti.evento.services.dtos.SpeakersDto;
 import gov.iti.evento.services.dtos.event.AddEventDto;
@@ -49,14 +50,15 @@ public class AdminController {
     }
 
     @PostMapping("/speaker")
-    public SpeakerAdminDto saveSpeaker(@RequestParam("image") MultipartFile eventImage
+    public void saveSpeaker(@RequestParam("image") MultipartFile speakerImage
             , @RequestParam("speaker") String speaker) throws Exception {
-        Speaker speaker1;
-        speaker1 = objectMapper.readValue(speaker, Speaker.class);
-        String userImageName = fileStorageService.storeFile(eventImage, speaker1.getName(), "Speakers");
-        speaker1.setImage(userImageName);
-        speakerAdminService.addSpeakerByAdmin(speaker1);
-        return speakerAdminService.addSpeakerByAdmin(speaker1);
+        AddSpeakerDto speakerDto;
+        speakerDto = objectMapper.readValue(speaker, AddSpeakerDto.class);
+        String speakerImageName = fileStorageService.storeFile(speakerImage, speakerDto.getName(), "Speakers");
+        speakerDto.setImage(speakerImageName);
+        speakerAdminService.addSpeakerByAdmin(speakerDto);
+        System.out.println(speakerDto);
+        // return speakerAdminService.addSpeakerByAdmin(speaker1);
     }
 
 }

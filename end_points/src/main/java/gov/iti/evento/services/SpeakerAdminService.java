@@ -2,6 +2,7 @@ package gov.iti.evento.services;
 
 import gov.iti.evento.entites.Speaker;
 import gov.iti.evento.repositories.SpeakerRepository;
+import gov.iti.evento.services.dtos.AddSpeakerDto;
 import gov.iti.evento.services.dtos.SpeakerAdminDto;
 import gov.iti.evento.services.mappers.SpeakerAdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,9 @@ public class SpeakerAdminService {
     @Autowired
     SpeakerAdminMapper speakerAdminMapper;
 
-    public SpeakerAdminDto addSpeakerByAdmin (Speaker speaker) throws Exception {
-        Speaker speakerAdminDto = speakerRepository.save(speaker);
-        return speakerAdminMapper.INSTANCE.toDto(speakerAdminDto);
+    public void addSpeakerByAdmin (AddSpeakerDto speakerDto) throws Exception {
+        Speaker speaker = speakerRepository.save(speakerAdminMapper.INSTANCE.toEntity(speakerDto));
+        System.out.println(speaker.getId());
+        // return speakerAdminMapper.INSTANCE.toDto(speakerAdminDto);
     }
 }
