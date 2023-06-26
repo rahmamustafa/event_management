@@ -83,7 +83,7 @@ public class UserService {
     public List<EventDto> findUpcomingEventsByUserId(Integer userId, int page, int size) throws Exception {
         PageRequest pageRequest = PageRequest.of(page, size);
         List<UserTicketInfo> userTicketInfo=userTicketRepository.findUpcomingEventsByUserId(userId,new Timestamp(System.currentTimeMillis()), pageRequest);
-        userTicketInfo.get(0).getEventTicket().getEvent();
+
         List<EventDto> eventDtos=new ArrayList<>();
         for (UserTicketInfo u: userTicketInfo
              ) {

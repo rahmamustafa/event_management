@@ -180,6 +180,8 @@ public class EventController {
     @PostMapping(value = "/api/events/register", consumes = MediaType.APPLICATION_JSON_VALUE)
     public boolean bookTicket(@RequestBody UserTicketDto userTicketDto) {
         System.out.println("******");
+        System.out.println("event id "+userTicketDto.getEventId());
+        System.out.println("ticketid id "+userTicketDto.getTicketId());
          ticketBookingService.bookEvent(userTicketDto);
         System.out.println("******");
         return true;

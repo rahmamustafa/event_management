@@ -15,4 +15,5 @@ public interface EventTicketRepository extends JpaRepository<EventTicket, EventT
     public EventTicket getEventTicketByEventTicketId(EventTicketId eventTicketId);
 
 
+
 }

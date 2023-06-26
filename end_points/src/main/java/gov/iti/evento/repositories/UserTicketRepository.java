@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,6 +25,9 @@ public interface UserTicketRepository extends JpaRepository<UserTicket, UserTick
     @Query("update UserTicket u set u.quantity = u.quantity+?1 where u.id = ?2")
     int updateQuantityById(int quantity, UserTicketId id);
 
+
+
+    public UserTicket getUserTicketById(UserTicketId id);
 
     public boolean existsById(UserTicketId userTicketId);
 
@@ -44,6 +48,7 @@ public interface UserTicketRepository extends JpaRepository<UserTicket, UserTick
     long countByUser_IdAndEventTicket_Event_EventDateGreaterThan(Integer id, Timestamp eventDate);
 
 //    long countById_UserIdAndEventTicket_Event_EventDate(Integer userId, Timestamp eventDate);
+
 
 
 }

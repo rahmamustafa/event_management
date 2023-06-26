@@ -31,9 +31,5 @@ public class UserTicket implements Serializable {
     @Column(name = "quantity")
     private int quantity;
 
-    public UserTicket(User user, EventTicket eventTicket, int quantity) {
-        this.user = user;
-        this.eventTicket = eventTicket;
-        this.quantity = quantity;
-    }
+
 }

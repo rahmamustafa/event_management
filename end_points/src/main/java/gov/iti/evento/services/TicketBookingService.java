@@ -38,7 +38,9 @@ public class TicketBookingService {
 
             UserTicket userTicket = userTicketMapper.toEntity(userTicketDto);
             userTicket.setUser(user);
-            userTicket.setId(new UserTicketId(userTicketDto.getUserId(),userTicketDto.getTicketId()));
+
+            userTicket.setId(new UserTicketId(userTicketDto.getUserId(),eventTicketRepository.getIdById(new EventTicketId(userTicketDto.getEventId(),userTicketDto.getTicketId()))));
+            System.out.println(eventTicketRepository.getIdById(new EventTicketId(userTicketDto.getEventId(),userTicketDto.getTicketId())));
             EventTicket eventTicket=eventTicketRepository.getEventTicketByEventTicketId(new EventTicketId(userTicketDto.getEventId(),userTicketDto.getTicketId()));
             userTicket.setEventTicket(eventTicket);
             System.out.println(eventTicket);
