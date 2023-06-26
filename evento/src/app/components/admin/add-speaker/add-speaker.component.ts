@@ -43,7 +43,7 @@ export class AddSpeakerComponent {
         next: (response: any) => {
            
           console.log("success")
-          // this._router.navigateByUrl('/events');
+          this._router.navigateByUrl('/speakers');
 
         },
         error: (error: any) => { }
