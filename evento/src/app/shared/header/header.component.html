@@ -36,7 +36,7 @@
         <!-- <li class="nav-item">
           <a class="nav-link" href="contact.html">Contact<span>/</span></a>
         </li> -->
-        <li *ngIf="isUserLoggedIn && !isAdmin" class="nav-item">
+        <li *ngIf="isUserLoggedIn" class="nav-item">
           <a routerLink="/MyEvents" class="nav-link nav-link-button">My Events<span>/</span></a>
         </li>
         <li *ngIf="isAdmin" class="nav-item">
