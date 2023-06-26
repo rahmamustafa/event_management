@@ -12,21 +12,22 @@ import { eventTable } from 'src/app/models/home-models/event-table.model';
 })
 export class ScheduleComponent implements OnInit{
   today: string|null;
+  yesterDay: string|null;
   currentDate: string|null;
   tomorrowDate: string|null;
   afterTomorrowDate: string|null;
   events: eventTable[] = [];
   currentPage:number;
   Pagination :number;
-  activeButton: number = 1;
+  activeButton: number;
   constructor(private datePipe: DatePipe,private apiService:ApiService) {
     this.setDate();
 
   }
   ngOnInit(): void {
    
-    this.getTableData(this.today,1);
-   
+    this.getTableData(this.tomorrowDate,1);
+     
   }
   getTableData(date:string|null,page:number=1):void{
     console.log("  getTableData->"+date+" page ->"+page);
@@ -50,11 +51,13 @@ export class ScheduleComponent implements OnInit{
   setDate(){
     const today = new Date();
     const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+    const YesterDay = new Date(today.getFullYear(), today.getMonth(), today.getDate() -1);
     const AfterTomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2);
 
     this.today = this.datePipe.transform(today, 'd MMMM  y');
     this.tomorrowDate = this.datePipe.transform(tomorrow, 'd MMMM  y');
     this.afterTomorrowDate = this.datePipe.transform(AfterTomorrow, 'd MMMM  y');
+    this.yesterDay = this.datePipe.transform(YesterDay, 'd MMMM  y');
   }
   changeDate(date:string|null){
     console.log("current date 0->"+date);

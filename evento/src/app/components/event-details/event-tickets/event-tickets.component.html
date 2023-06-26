@@ -32,7 +32,7 @@
 							<li><p><span class="fa fa-times-circle unavailable"></span>Easy Access</p></li>
 						</ul>
 					</div>
-					<div class="pricing-footer text-center">
+					<div class="pricing-footer text-center" *ngIf="t1>0">
 						<a (click)="buyTicket(tickets[0].ticket.id)" class="btn btn-transparent-md">Buy a ticket</a>
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 							<li><p><span class="fa fa-times-circle unavailable"></span>Easy Access</p></li>
 						</ul>
 					</div>
-					<div class="pricing-footer text-center">
+					<div class="pricing-footer text-center" *ngIf="t2>0">
 						<a (click)="buyTicket(tickets[1].ticket.id)" class="btn btn-transparent-md">Buy a ticket</a>
 					</div>
 				</div>
@@ -88,7 +88,7 @@
 							<li><p><span class="fa fa-check-circle available"></span>Easy Access</p></li>
 						</ul>
 					</div>
-					<div class="pricing-footer text-center">
+					<div class="pricing-footer text-center" *ngIf="t3>0">
 						<a (click)="buyTicket(tickets[2].ticket.id)" class="btn btn-transparent-md">Buy a ticket</a>
 					</div>
 				</div>

@@ -12,11 +12,14 @@ import { AuthService } from 'src/app/services/auth.service';
 export class EventTicketsComponent implements OnInit{
 
  tickets:EventTicket[];
-  
+  t1:number;
+  t2:number;
+  t3:number;
   constructor(private _activatedRoute:ActivatedRoute,private apiService:ApiService,private authService:AuthService,
     private router:Router){
   
   }
+
   eventId:any;
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe((params: { get: (arg0: string) => any; }) => {
@@ -25,8 +28,35 @@ export class EventTicketsComponent implements OnInit{
       console.log(id);
       this.getTickets(id);
     });
+    this.getNumberOfAvailableTickets();
   }
-
+  getNumberOfAvailableTickets() {
+    this.apiService.get("events/"+this.eventId+"/availableTickets/1")
+      .subscribe({
+        next:(response: any)=>{
+         this.t1=response;
+      },
+      error:(error: any)=>{}
+    }
+        );
+        this.apiService.get("events/"+this.eventId+"/availableTickets/2")
+        .subscribe({
+          next:(response: any)=>{
+           this.t2=response;
+        },
+        error:(error: any)=>{}
+      }
+          );
+          this.apiService.get("events/"+this.eventId+"/availableTickets/3")
+          .subscribe({
+            next:(response: any)=>{
+             this.t3=response;
+             console.log(this.t3)
+          },
+          error:(error: any)=>{}
+        }
+            );
+  }
   getTickets(id:any) {
   
       this.apiService.get("event/"+id+"/tickets")

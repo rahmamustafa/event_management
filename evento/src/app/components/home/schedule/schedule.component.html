@@ -13,21 +13,21 @@
 				<div class="schedule-tab">
 					<ul class="nav nav-pills text-center">
 					  <li class="nav-item">
-					    <a class="nav-link active" href="#today" data-toggle="pill" (click)="getTableData(today)">
-					    	Today
+					    <a class="nav-link " href="#today" data-toggle="pill" (click)="getTableData(today)">
+					    	Yesterday
+					    	<span>{{ yesterDay }}</span>
+					    </a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link active"  href="#tomorrow" data-toggle="pill" (click)="getTableData(tomorrowDate)">
+							Today 
 					    	<span>{{ today }}</span>
 					    </a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link"  href="#tomorrow" data-toggle="pill" (click)="getTableData(tomorrowDate)">
-							Tomorrow 
-					    	<span>{{ tomorrowDate }}</span>
-					    </a>
-					  </li>
-					  <li class="nav-item">
 					    <a class="nav-link" href="#after" data-toggle="pill" (click)="getTableData(afterTomorrowDate)">
-							The Day After
-					    	<span>{{ afterTomorrowDate }}</span>
+							Tomorrow
+					    	<span>{{ tomorrowDate }}</span>
 					    </a>
 					  </li>
 					</ul>
@@ -39,7 +39,7 @@
 					  	<ul class="m-0 p-0">
 					  		<li class="headings">
 					  			<div class="time">Time</div>
-					  			<div class="speaker">Event</div>
+					  			<div class="	">Event</div>
 								<div class="subject">Category</div>
 					  			<div class="venue">Venue</div>
 
