@@ -7,6 +7,7 @@ import listPlugin from '@fullcalendar/list';
 // import { INITIAL_EVENTS, createEventId } from 'src/app/models/event/event-utils';
 import { ApiService } from 'src/app/services/api.service';
 import moment from 'moment';
+import { Router } from '@angular/router';
 // import { EventByDate, getEvents } from 'src/app/models/event/eventByDate';
 
 @Component({
@@ -36,6 +37,8 @@ export class CalendarComponent implements OnInit {
   currentEvents = signal<EventApi[]>([]);
 
   calendarOptions:CalendarOptions;
+  title:any;
+  id:any;
 
 
 
@@ -43,7 +46,8 @@ export class CalendarComponent implements OnInit {
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -65,7 +69,8 @@ export class CalendarComponent implements OnInit {
       selectable: true,
       selectMirror: true,
       dayMaxEvents: true,
-      events: [] 
+      events: [] ,
+    eventClick: this.handleEventClick.bind(this),
     };
 
       this.apiService.get('all-events').subscribe({
@@ -88,6 +93,31 @@ export class CalendarComponent implements OnInit {
       });
 
     };
+
+
+    handleEventClick(clickInfo: EventClickArg) {
+      // if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+      //   clickInfo.event.remove();
+      // }
+      this.title=clickInfo.event.title;
+      console.log("tesssssssssst");
+      console.log(this.title);
+      this.id=clickInfo.event.id;
+
+      // this.apiService.get(`calender/event/${this.title}`).subscribe({
+      //   next: (response: any) => {
+      //     this.id=response;
+      //     console.log("tesssssssssst2");
+      // console.log(this.id);
+          
+      //   },
+      //   error: (error) => { }
+      // });
+
+      
+      this.router.navigate([`/event/${this.id}`]);
+
+    }
 
 
 
