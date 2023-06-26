@@ -7,4 +7,5 @@ import gov.iti.evento.entites.EventTicket;
  */
 public interface UserTicketInfo {
     EventTicket getEventTicket();
+
 }
